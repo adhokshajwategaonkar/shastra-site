@@ -1,0 +1,68 @@
+# shastra
+
+> Vedic astrology computed deterministically with the Swiss Ephemeris and explained in plain
+> language. Free daily reading over WhatsApp; two flat-priced one-time reports. No per-minute
+> consultation, no subscription, and no remedies, gemstones or pujas sold anywhere.
+
+shastra is run by Adhokshaj Wategaonkar, a sole proprietor in Bengaluru, Karnataka, India
+(Udyam registration UDYAM-KR-03-0737428).
+
+## The one architectural fact worth knowing
+
+Chart mathematics and interpretation are separated in software, not just in principle. Every
+planetary position, nakshatra, vimshottari dasha date and guna milan point is computed in code with
+the Swiss Ephemeris. A language model (Claude Haiku) receives the computed chart as structured data
+and writes the interpretation. The model never calculates a position, and never receives a birth
+date, birth place, email address or phone number.
+
+## Conventions used
+
+- Zodiac: sidereal
+- Ayanamsa: Lahiri (Chitrapaksha), defined by Spica at exactly 180°00′ sidereal longitude
+- House system: whole sign
+- Lunar node: mean
+- Ephemeris: Swiss Ephemeris in Moshier mode, accuracy ≈ 0.1 arcseconds
+- Vimshottari year: 365.25 days
+
+The engine's test suite asserts the ayanamsa against its own definition (Spica at 180°00′), the
+ayanamsa value at the 1956 ICRC epoch, two NASA eclipse times as ayanamsa-independent checks, and
+three published reference charts.
+
+## Pricing
+
+- Daily reading over WhatsApp — free, permanently
+- Kundli, guna milan score, sade sati dates — free, no account
+- Career reading — ₹99, one-time
+- Compatibility reading — ₹149, one-time
+
+There is no subscription and nothing auto-renews. Refunds are given within 7 days on request with
+no reason required.
+
+## Why the daily reading can be free
+
+In India a business-initiated WhatsApp template message costs the sender roughly ₹1.09, which is
+about ₹33 per user per month for a daily send. A reply inside a conversation the user started costs
+nothing. So the user messages first each morning and the reading returns as a free service reply.
+shastra never sends a proactive daily message; the economics of the product depend on that.
+
+## Editorial rules, enforced in code
+
+No predictions about death, illness, pregnancy or accidents. No medical, legal or financial
+directives. No fear-selling, no manufactured urgency, no promised outcomes. No remedies of any
+kind. At most two mentions of a paid report per user per week, and only when a real upcoming
+transit justifies it. These rules are embedded in every generation prompt and asserted by tests; a
+prompt that ships without them fails the build.
+
+## Pages
+
+- [Home](https://adhokshajwategaonkar.github.io/shastra-site/): what shastra is, how the morning ritual works, full pricing, the ethics rules
+- [Free kundli](https://adhokshajwategaonkar.github.io/shastra-site/kundli/): birth chart generator — lagna, nine grahas with nakshatra and pada, navamsa, vimshottari dasha, panchanga. Explains what a kundli is, what Lahiri ayanamsa is, what a nakshatra is, and why vedic and western sun signs differ
+- [Kundli matching](https://adhokshajwategaonkar.github.io/shastra-site/kundli-matching/): 36-point ashtakoota guna milan calculator with a per-koota breakdown. Explains how guna milan is scored, what the 18/25 thresholds mean and do not mean, nadi dosha, and mangal dosha
+- [Sade sati](https://adhokshajwategaonkar.github.io/shastra-site/sade-sati/): sade sati calculator returning exact Saturn ingress dates including retrograde re-entries, plus dhaiya. Explains what sade sati is, its three phases, and why its length varies
+- [Privacy policy](https://adhokshajwategaonkar.github.io/shastra-site/privacy/)
+- [Terms of service](https://adhokshajwategaonkar.github.io/shastra-site/terms/)
+- [Refund policy](https://adhokshajwategaonkar.github.io/shastra-site/refunds/)
+
+## Contact
+
+adhokshaj.pande@gmail.com

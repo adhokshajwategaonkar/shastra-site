@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B0B0F">
+<title>Free Kundli Matching — 36-point guna milan calculator | shastra</title>
+<meta name="description" content="Free kundli matching with the full 36-point ashtakoota guna milan — varna, vashya, tara, yoni, graha maitri, gana, bhakoot and nadi scored separately, plus mangal dosha checked from lagna, moon and venus. Computed, not guessed. No verdict attached.">
+<link rel="canonical" href="https://adhokshajwategaonkar.github.io/shastra-site/kundli-matching/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="shastra">
+<meta property="og:title" content="Free Kundli Matching — the real 36 points">
+<meta property="og:description" content="Every koota scored separately, mangal dosha checked from three references, and the arithmetic shown. Free.">
+<meta property="og:url" content="https://adhokshajwategaonkar.github.io/shastra-site/kundli-matching/">
+<meta property="og:image" content="https://adhokshajwategaonkar.github.io/shastra-site/assets/og-matching.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@600,500&f[]=satoshi@400,500,700&display=swap">
+<link rel="stylesheet" href="../assets/shastra.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "shastra", "item": "https://adhokshajwategaonkar.github.io/shastra-site/" },
+        { "@type": "ListItem", "position": 2, "name": "Kundli matching", "item": "https://adhokshajwategaonkar.github.io/shastra-site/kundli-matching/" }
+      ]
+    },
+    {
+      "@type": "WebApplication",
+      "name": "Free kundli matching (guna milan) calculator",
+      "url": "https://adhokshajwategaonkar.github.io/shastra-site/kundli-matching/",
+      "applicationCategory": "LifestyleApplication",
+      "browserRequirements": "Requires JavaScript",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+      "featureList": [
+        "Full 36-point ashtakoota guna milan",
+        "Per-koota breakdown with the values each score came from",
+        "Nadi and bhakoot dosha detection with classical exemptions",
+        "Mangal dosha checked from lagna, moon and venus for both charts"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is guna milan and how is it scored?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Guna milan, also called ashtakoota milan, is the vedic method of comparing two birth charts for marriage. It scores eight factors — kootas — out of 36 points total: varna 1 point, vashya 2, tara 3, yoni 4, graha maitri 5, gana 6, bhakoot 7 and nadi 8. Every koota is derived from the Moon's nakshatra and sign in each chart, and nothing else. The whole calculation is arithmetic on lookup tables, which is why any two correct implementations must produce the same number." }
+        },
+        {
+          "@type": "Question",
+          "name": "How many gunas out of 36 are considered a good match?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The conventional reading in Indian practice is that 18 or more out of 36 is regarded as acceptable, 25 or more as strong, and below 18 as weak — with the caveat that nadi (8 points) and bhakoot (7 points) carry outsized weight, so a total above 18 that lost both is treated differently from one that lost neither. These thresholds are convention, not arithmetic: they are a summary of what the tradition has settled on, not a result the calculation produces. shastra reports the number and the breakdown and does not issue a verdict on a relationship." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is nadi dosha?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Nadi dosha, sometimes called nadi dosh, occurs when both people's Moon nakshatras fall in the same nadi group — aadi, madhya or antya. Nadi is worth 8 of the 36 points, the largest single koota, and a match sharing a nadi scores zero for it. Classical sources list exemptions, including the two charts sharing the same Moon sign, the same nakshatra with different padas, or the nakshatra lords being the same. shastra checks those exemptions and reports which, if any, applied." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is mangal dosha (manglik)?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Mangal dosha, or being manglik, means Mars occupies the 1st, 2nd, 4th, 7th, 8th or 12th house from a reference point in the chart. Practice differs on which reference to use, so shastra checks all three that classical sources actually cite — the lagna, the Moon and Venus — and reports each separately rather than picking one and calling it settled. It also applies the classical cancellations, such as Mars occupying its own or an exalted sign. Mangal dosha is not part of the 36-point score; it is a separate check reported alongside." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does guna milan use birth time?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Guna milan itself needs only the Moon's position, which depends on the date far more than the clock — so a missing birth time rarely changes the score, and never by much. Mangal dosha is different: it is checked partly from the lagna, which moves a full sign roughly every two hours, so an unknown birth time makes the lagna-based half of that check approximate. shastra says which case you are in rather than presenting both at the same confidence." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is kundli matching required for marriage?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. It is a widespread custom in Indian marriage arrangement, not a legal requirement, and classical astrology itself weighs it as one input among several rather than as a decision. Guna milan compares Moon positions and nothing else — it has no information about two people who already know each other. shastra reports the arithmetic and declines to convert it into a recommendation about a relationship." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+
+<body>
+<a class="skip" href="#tool">skip to the calculator</a>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="wordmark" href="../">shastra<span>.</span></a>
+    <nav aria-label="primary">
+      <a href="../kundli/">free kundli</a>
+      <a href="./" class="hide-sm">kundli matching</a>
+      <a href="../sade-sati/" class="hide-sm">sade sati</a>
+      <a class="btn btn-primary" href="https://shastra.onrender.com" data-warm="cold">open shastra</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="section" id="tool" style="padding-block:clamp(2.5rem,6vw,4.5rem)">
+    <div class="wrap">
+      <p class="label">free · no signup · the full 36</p>
+      <h1 class="display">kundli matching</h1>
+      <p class="lede" style="margin-top:1.5rem">
+        <strong style="color:var(--ink)">Guna milan scores eight factors out of 36 points, all of
+        them derived from the two Moon positions.</strong> This calculator computes every koota
+        separately and shows the values each score came from — varna 1, vashya 2, tara 3, yoni 4,
+        graha maitri 5, gana 6, bhakoot 7, nadi 8 — plus mangal dosha checked from lagna, Moon and
+        Venus for both charts. The number is arithmetic. What it means about two people is not, and
+        this page does not pretend otherwise.
+      </p>
+
+      <form id="form" novalidate style="margin-top:2.5rem">
+        <div class="error" id="err" hidden role="alert"></div>
+
+        <div class="two-charts">
+          <fieldset class="card">
+            <legend class="label" style="margin:0 0 1rem">first person</legend>
+            <div class="field-row">
+              <label class="field"><span>date of birth</span>
+                <input type="date" name="adate" required min="1800-01-01" max="2030-12-31"></label>
+              <label class="field"><span>time of birth</span>
+                <input type="time" name="atime" id="atime"></label>
+            </div>
+            <label class="checkbox">
+              <input type="checkbox" name="atimeUnknown" id="atimeUnknown">
+              <span>birth time unknown</span>
+            </label>
+            <label class="field"><span>place of birth</span>
+              <input type="text" name="aplace" placeholder="city or town" required></label>
+          </fieldset>
+
+          <fieldset class="card">
+            <legend class="label" style="margin:0 0 1rem">second person</legend>
+            <div class="field-row">
+              <label class="field"><span>date of birth</span>
+                <input type="date" name="bdate" required min="1800-01-01" max="2030-12-31"></label>
+              <label class="field"><span>time of birth</span>
+                <input type="time" name="btime" id="btime"></label>
+            </div>
+            <label class="checkbox">
+              <input type="checkbox" name="btimeUnknown" id="btimeUnknown">
+              <span>birth time unknown</span>
+            </label>
+            <label class="field"><span>place of birth</span>
+              <input type="text" name="bplace" placeholder="city or town" required></label>
+          </fieldset>
+        </div>
+
+        <div class="btn-row" style="margin-top:1.5rem">
+          <button type="submit" class="btn btn-primary" id="go" data-warm="cold">compute the 36 points</button>
+          <span class="tiny" id="warmnote"></span>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ── result ─────────────────────────────────────────────────────────── -->
+  <section class="section result" id="result" hidden>
+    <div class="wrap">
+      <div class="score-head">
+        <div>
+          <p class="label">guna milan</p>
+          <p class="score"><span id="total">0</span><span class="of">/ 36</span></p>
+          <p class="small" id="band-line" style="margin-top:0.5rem"></p>
+        </div>
+        <div class="score-bar" aria-hidden="true"><div id="bar"></div></div>
+      </div>
+
+      <p class="small" id="honest" style="margin-top:1.75rem;max-width:var(--prose)"></p>
+
+      <h3 class="display" style="margin-top:3rem">koota by koota</h3>
+      <div class="scroller" style="margin-top:1.25rem">
+        <table class="data" id="kootas">
+          <thead>
+            <tr><th scope="col">koota</th><th scope="col">score</th><th scope="col">what it compared</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div class="grid grid-2" style="margin-top:3rem">
+        <div class="card">
+          <p class="label" style="margin-bottom:0.75rem">the two moon positions</p>
+          <div class="readout" id="profiles"></div>
+        </div>
+        <div class="card">
+          <p class="label" style="margin-bottom:0.75rem">mangal dosha, all three references</p>
+          <div class="readout" id="mangal"></div>
+          <p class="tiny" id="mangal-framing" style="margin-top:1rem;margin-bottom:0"></p>
+        </div>
+      </div>
+
+      <div class="card upsell" style="margin-top:3rem">
+        <p class="label" style="margin-bottom:0.75rem">the other half</p>
+        <h3 class="display">the number is free. what it means is ₹149, once.</h3>
+        <p class="small" style="max-width:44rem">
+          the 36 points above are arithmetic and you can check them anywhere. the compatibility
+          reading takes this computed score and reads it properly — which kootas are actually load
+          bearing here, what the dosha framing means when one chart carries it and the other
+          doesn't, and where the two charts genuinely pull in different directions.
+          one payment, no subscription, refundable for 7 days.
+        </p>
+        <div class="btn-row" style="margin-top:1.5rem">
+          <a class="btn btn-primary" href="https://shastra.onrender.com" data-warm="cold">save both charts — free</a>
+          <a class="btn btn-ghost" href="../kundli/">see a full kundli instead</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── explainer ──────────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="wrap">
+      <p class="label">the eight kootas</p>
+      <h2 class="display" style="max-width:22ch">what each of the 36 points is actually for.</h2>
+      <p class="lede" style="margin-top:1.5rem">
+        Every koota is computed from the Moon's nakshatra and sign in each chart — nothing else
+        enters the calculation. The points are not evenly weighted, and the two biggest carry more
+        than half the total between them.
+      </p>
+
+      <div class="scroller" style="margin-top:2.5rem">
+        <table class="data koota-ref">
+          <thead>
+            <tr><th scope="col">koota</th><th scope="col">points</th><th scope="col">what it compares</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">varna</th><td class="num">1</td><td>a fourfold grouping of the Moon signs. Scores only when the groom's group is not below the bride's in the classical order.</td></tr>
+            <tr><th scope="row">vashya</th><td class="num">2</td><td>a five-way grouping of the signs — human, quadruped, aquatic, wild, insect — read as mutual influence.</td></tr>
+            <tr><th scope="row">tara</th><td class="num">3</td><td>counts the nakshatra distance between the two charts in both directions; some remainders are auspicious, some are not.</td></tr>
+            <tr><th scope="row">yoni</th><td class="num">4</td><td>each nakshatra maps to one of fourteen animal symbols with a sex; the score is a table of how each pair relates.</td></tr>
+            <tr><th scope="row">graha maitri</th><td class="num">5</td><td>friendship between the lords of the two Moon signs, read both ways and combined.</td></tr>
+            <tr><th scope="row">gana</th><td class="num">6</td><td>a three-way temperament grouping of the nakshatras — deva, manushya, rakshasa.</td></tr>
+            <tr><th scope="row">bhakoot</th><td class="num">7</td><td>the distance between the two Moon signs. Certain axes — 6/8 and 5/9 — score zero and are called bhakoot dosha.</td></tr>
+            <tr><th scope="row">nadi</th><td class="num">8</td><td>a three-way grouping — aadi, madhya, antya. Sharing one scores zero, the single largest loss available, subject to classical exemptions.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="tiny" style="margin-top:1.5rem;max-width:var(--prose)">
+        two conventions here are genuinely disputed between classical sources: the vashya matrix and
+        the mixed cells of graha maitri, worth 2 and 5 points respectively. shastra uses the
+        mainstream Indian implementation and records the disagreement in its code rather than
+        hiding it — which is why your score may differ by a point or two from a site that chose the
+        other convention.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="label">about the thresholds</p>
+      <h2 class="display" style="max-width:24ch">18 out of 36 is a convention, not a result.</h2>
+      <div class="grid grid-2" style="margin-top:2.5rem">
+        <div class="card">
+          <h3 class="display">what the tradition says</h3>
+          <p class="small">In common Indian practice, 18 or more out of 36 is regarded as
+            acceptable, 25 or more as strong, and below 18 as weak. Nadi and bhakoot — 8 and 7
+            points — are weighted heavily enough that a total above 18 which lost both is usually
+            read differently from one that lost neither.</p>
+        </div>
+        <div class="card">
+          <h3 class="display">what this page will not do</h3>
+          <p class="small">Turn that into a verdict about your relationship. Guna milan compares two
+            Moon positions. It has no information about two people who already know each other, and
+            classical astrology itself treats it as one input among several. shastra reports the
+            number, shows the arithmetic, and stops there — no pass or fail, and nothing sold to
+            "fix" a low score.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── faq ────────────────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="wrap">
+      <p class="label">matching questions, answered</p>
+      <h2 class="display" style="margin-bottom:2.5rem">frequently asked</h2>
+      <div class="faq">
+        <details open>
+          <summary>What is guna milan and how is it scored?</summary>
+          <div><p>Guna milan, also called ashtakoota milan, is the vedic method of comparing two
+            birth charts for marriage. It scores eight factors — kootas — out of 36 points total:
+            varna 1, vashya 2, tara 3, yoni 4, graha maitri 5, gana 6, bhakoot 7 and nadi 8.</p>
+            <p>Every koota is derived from the Moon's nakshatra and sign in each chart, and nothing
+            else. The whole calculation is arithmetic on lookup tables, which is why any two correct
+            implementations must produce the same number.</p></div>
+        </details>
+
+        <details>
+          <summary>How many gunas out of 36 are considered a good match?</summary>
+          <div><p>The conventional reading is 18 or more out of 36 as acceptable, 25 or more as
+            strong, and below 18 as weak — with the caveat that nadi (8 points) and bhakoot (7
+            points) carry outsized weight, so a total above 18 that lost both is read differently
+            from one that lost neither.</p>
+            <p>Those thresholds are convention, not arithmetic. They summarise what the tradition
+            has settled on; they are not something the calculation produces. shastra reports the
+            number and the breakdown and does not issue a verdict on a relationship.</p></div>
+        </details>
+
+        <details>
+          <summary>What is nadi dosha?</summary>
+          <div><p>Nadi dosha occurs when both Moon nakshatras fall in the same nadi group — aadi,
+            madhya or antya. Nadi is worth 8 of the 36 points, the largest single koota, and a match
+            sharing a nadi scores zero for it.</p>
+            <p>Classical sources list exemptions: the two charts sharing the same Moon sign, the
+            same nakshatra with different padas, or the nakshatra lords being the same. shastra
+            checks those and reports which, if any, applied — rather than reporting the dosha and
+            leaving you to find out about the exemptions elsewhere.</p></div>
+        </details>
+
+        <details>
+          <summary>What is mangal dosha, and am I manglik?</summary>
+          <div><p>Mangal dosha means Mars occupies the 1st, 2nd, 4th, 7th, 8th or 12th house from a
+            reference point in the chart. Practice differs on which reference to use, so shastra
+            checks all three that classical sources actually cite — the lagna, the Moon and Venus —
+            and reports each separately instead of picking one and calling it settled.</p>
+            <p>It also applies the classical cancellations, such as Mars occupying its own sign or
+            an exalted one. Mangal dosha is not part of the 36-point score; it is a separate check
+            reported alongside it.</p></div>
+        </details>
+
+        <details>
+          <summary>Does kundli matching need exact birth times?</summary>
+          <div><p>Guna milan needs only the Moon's position, which depends on the date far more than
+            the clock — so a missing birth time rarely changes the score, and never by much.</p>
+            <p>Mangal dosha is different: part of that check is made from the lagna, which moves a
+            full sign roughly every two hours. With an unknown birth time the lagna-based half of it
+            is approximate, and this page says so rather than presenting both at the same
+            confidence.</p></div>
+        </details>
+
+        <details>
+          <summary>Is kundli matching required for marriage?</summary>
+          <div><p>No. It is a widespread custom in Indian marriage arrangement, not a legal
+            requirement, and classical astrology itself weighs it as one input among several rather
+            than as a decision.</p>
+            <p>Guna milan compares Moon positions and nothing else. It knows nothing about two
+            people who already know each other.</p></div>
+        </details>
+
+        <details>
+          <summary>Why does my score differ from another website's?</summary>
+          <div><p>Almost always one of two conventions. The vashya matrix (2 points) and the mixed
+            cells of graha maitri (5 points) are genuinely disputed between classical sources, and
+            different implementations pick differently. A one or two point difference from those is
+            expected.</p>
+            <p>A larger gap usually means a different ayanamsa, which can move a Moon into a
+            neighbouring nakshatra and change several kootas at once. shastra uses Lahiri, the
+            Indian standard.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="wordmark" href="../">shastra<span>.</span></a>
+        <p class="tiny" style="margin-top:0.75rem;max-width:24rem">the sky, computed. read plainly.<br>made in Bengaluru.</p>
+      </div>
+      <div>
+        <h4>free tools</h4>
+        <ul>
+          <li><a href="../kundli/">free kundli</a></li>
+          <li><a href="./">kundli matching</a></li>
+          <li><a href="../sade-sati/">sade sati</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>the legal bit</h4>
+        <ul>
+          <li><a href="../privacy/">privacy</a></li>
+          <li><a href="../terms/">terms</a></li>
+          <li><a href="../refunds/">refunds</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>contact</h4>
+        <ul>
+          <li><a href="mailto:adhokshaj.pande@gmail.com">adhokshaj.pande@gmail.com</a></li>
+          <li><span class="tiny">Bengaluru, Karnataka, India</span></li>
+          <li><span class="tiny">UDYAM-KR-03-0737428</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="disclaimer">
+      <p style="margin:0;max-width:44rem">shastra computes real positions and reads them as timing,
+        not fate. it is for reflection. it is not medical, legal or financial advice. you must be 18
+        or older to use it.</p>
+      <p style="margin:0">© 2026 Adhokshaj Wategaonkar</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .two-charts { display: grid; gap: 1.25rem; }
+  @media (min-width: 55rem) { .two-charts { grid-template-columns: 1fr 1fr; } }
+  fieldset.card { border: 1px solid var(--hairline); margin: 0; }
+  fieldset.card legend { padding: 0 0.5rem; }
+
+  .score-head { display: grid; gap: 1.5rem; align-items: end; }
+  @media (min-width: 45rem) { .score-head { grid-template-columns: auto 1fr; gap: 2.5rem; } }
+  .score {
+    font-family: var(--display); font-weight: 600; line-height: 0.9;
+    font-size: clamp(3.5rem, 12vw, 6rem); color: var(--gold); margin: 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .score .of { font-size: 0.3em; color: var(--faint); margin-left: 0.4rem; letter-spacing: 0; }
+  .score-bar { height: 0.5rem; border-radius: 999px; background: var(--elevated); overflow: hidden; border: 1px solid var(--hairline); }
+  .score-bar > div {
+    height: 100%; width: 0;
+    background: linear-gradient(90deg, var(--saffron), var(--gold));
+    transition: width 1.1s var(--spring);
+  }
+  .koota-ref th[scope='row'], table.data#kootas th[scope='row'] {
+    text-transform: none; letter-spacing: 0; font-size: 0.9375rem; color: var(--ink); font-weight: 500;
+  }
+  .upsell { border-color: rgba(232, 184, 75, 0.22); }
+</style>
+
+<script src="../assets/shastra.js" defer></script>
+<script defer>
+window.addEventListener('load', function () {
+  var S = window.shastra;
+  var form = document.getElementById('form');
+  var err = document.getElementById('err');
+  var go = document.getElementById('go');
+  var result = document.getElementById('result');
+  var warmnote = document.getElementById('warmnote');
+
+  S.placeField(form.querySelector('[name="aplace"]'));
+  S.placeField(form.querySelector('[name="bplace"]'));
+
+  [['atimeUnknown', 'atime'], ['btimeUnknown', 'btime']].forEach(function (pair) {
+    var box = document.getElementById(pair[0]);
+    var t = document.getElementById(pair[1]);
+    box.addEventListener('change', function () {
+      t.disabled = box.checked;
+      t.style.opacity = box.checked ? '0.4' : '1';
+    });
+  });
+
+  var warnTimer = setTimeout(function () {
+    if (S.warm === 'warming') warmnote.textContent = 'waking the engine up — first request of the hour is slow.';
+  }, 2500);
+  var poll = setInterval(function () {
+    if (S.warm !== 'warming' && S.warm !== 'cold') { clearInterval(poll); clearTimeout(warnTimer); warmnote.textContent = ''; }
+  }, 700);
+
+  function row(k, v) { return '<div><span class="k">' + k + '</span><span class="v">' + v + '</span></div>'; }
+
+  // What each koota actually compared — the values, not a judgement.
+  function evidence(name, k, tc) {
+    switch (name) {
+      case 'varna': return tc(k.groom) + ' / ' + tc(k.bride) + (k.note ? ' — ' + k.note : '');
+      case 'vashya': return tc(k.groom) + ' / ' + tc(k.bride);
+      case 'tara': return tc(k.forGroom.name) + ' (' + k.forGroom.taraNumber + ') / ' +
+        tc(k.forBride.name) + ' (' + k.forBride.taraNumber + ')';
+      case 'yoni': return tc(k.groom) + ' / ' + tc(k.bride) + (k.sameYoni ? ' — same yoni' : '');
+      case 'grahaMaitri': return tc(k.groomLord) + ' / ' + tc(k.brideLord) +
+        (k.sameLord ? ' — same lord' : ' — ' + k.relation.join(' & '));
+      case 'gana': return tc(k.groom) + ' / ' + tc(k.bride);
+      case 'bhakoot': return k.fromGroom + '/' + k.fromBride + ' axis' +
+        (k.dosha ? ' — bhakoot dosha' : '');
+      case 'nadi': return tc(k.groom) + ' / ' + tc(k.bride) +
+        (k.dosha ? (k.exemptions.length ? ' — same nadi, exempted: ' + k.exemptions.join('; ') : ' — same nadi') : '');
+      default: return '';
+    }
+  }
+
+  var LABEL = {
+    varna: 'varna', vashya: 'vashya', tara: 'tara', yoni: 'yoni',
+    grahaMaitri: 'graha maitri', gana: 'gana', bhakoot: 'bhakoot', nadi: 'nadi',
+  };
+
+  function render(m) {
+    var tc = S.titleCase;
+
+    S.countUp(document.getElementById('total'), m.total, m.total % 1 ? 1 : 0);
+    document.getElementById('bar').style.width = (m.total / m.max * 100) + '%';
+    document.getElementById('band-line').textContent =
+      m.percent + '% of the available points · the tradition calls this band "' + m.band + '"';
+    document.getElementById('honest').textContent = m.honestNote;
+
+    document.querySelector('#kootas tbody').innerHTML = m.order.map(function (name) {
+      var k = m.kootas[name];
+      var full = k.score === k.max;
+      var zero = k.score === 0;
+      return '<tr><th scope="row">' + LABEL[name] + '</th>' +
+        '<td class="num mono" style="color:' + (full ? 'var(--gold)' : zero ? 'var(--faint)' : 'var(--ink)') + '">' +
+        k.score + ' / ' + k.max + '</td>' +
+        '<td class="small">' + evidence(name, k, tc) + '</td></tr>';
+    }).join('');
+
+    var p = m.profiles;
+    document.getElementById('profiles').innerHTML =
+      row('first · moon', tc(p.groom.moonSign) + ' · ' + tc(p.groom.nakshatra) + ' pada ' + p.groom.nakshatraPada) +
+      row('second · moon', tc(p.bride.moonSign) + ' · ' + tc(p.bride.nakshatra) + ' pada ' + p.bride.nakshatraPada) +
+      row('gana', tc(p.groom.gana) + ' / ' + tc(p.bride.gana)) +
+      row('nadi', tc(p.groom.nadi) + ' / ' + tc(p.bride.nadi)) +
+      row('yoni', tc(p.groom.yoni) + ' / ' + tc(p.bride.yoni));
+
+    var mg = m.doshas.mangal;
+    function refs(x) {
+      var on = [];
+      if (x.fromLagna) on.push('lagna');
+      if (x.fromMoon) on.push('moon');
+      if (x.fromVenus) on.push('venus');
+      return on.length ? 'from ' + on.join(', ') : 'from none of the three';
+    }
+    document.getElementById('mangal').innerHTML =
+      row('first person', refs(mg.groom)) +
+      row('second person', refs(mg.bride)) +
+      (mg.groom.cancellations.length ? row('exemption', mg.groom.cancellations[0]) : '') +
+      (mg.bride.cancellations.length ? row('exemption', mg.bride.cancellations[0]) : '');
+    document.getElementById('mangal-framing').textContent = mg.framing;
+
+    result.hidden = false;
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    S.clearFail(err);
+
+    var a = S.birthFrom(form, 'a');
+    var b = S.birthFrom(form, 'b');
+
+    if (!a.date || !b.date) return S.fail(err, 'both dates of birth are needed — guna milan compares two moons.');
+    if ((!a.place && !a.lat) || (!b.place && !b.lat)) return S.fail(err, 'both places of birth are needed. type a city and pick from the list.');
+
+    S.busy(go, true);
+    S.call('/api/match', { body: { a: a, b: b } })
+      .then(function (d) {
+        render(d.milan);
+        result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      })
+      .catch(function (ex) { S.fail(err, ex.message); })
+      .then(function () { S.busy(go, false); });
+  });
+});
+</script>
+</body>
+</html>

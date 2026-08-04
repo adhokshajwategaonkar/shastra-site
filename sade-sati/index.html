@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B0B0F">
+<title>Sade Sati Calculator — exact Saturn transit dates | shastra</title>
+<meta name="description" content="Free sade sati calculator with real dates. Find out whether Saturn is in the 12th, 1st or 2nd from your natal moon, when the current period started and ends, and when the next one begins — computed from the ephemeris, including retrograde re-entries. No fear-selling, no remedies.">
+<link rel="canonical" href="https://adhokshajwategaonkar.github.io/shastra-site/sade-sati/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="shastra">
+<meta property="og:title" content="Sade Sati Calculator — the actual dates">
+<meta property="og:description" content="Which phase, started when, ends when, next one when. Computed from Saturn's real ingresses. Free, and nothing sold to 'fix' it.">
+<meta property="og:url" content="https://adhokshajwategaonkar.github.io/shastra-site/sade-sati/">
+<meta property="og:image" content="https://adhokshajwategaonkar.github.io/shastra-site/assets/og-sadesati.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@600,500&f[]=satoshi@400,500,700&display=swap">
+<link rel="stylesheet" href="../assets/shastra.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "shastra", "item": "https://adhokshajwategaonkar.github.io/shastra-site/" },
+        { "@type": "ListItem", "position": 2, "name": "Sade sati calculator", "item": "https://adhokshajwategaonkar.github.io/shastra-site/sade-sati/" }
+      ]
+    },
+    {
+      "@type": "WebApplication",
+      "name": "Sade sati calculator",
+      "url": "https://adhokshajwategaonkar.github.io/shastra-site/sade-sati/",
+      "applicationCategory": "LifestyleApplication",
+      "browserRequirements": "Requires JavaScript",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+      "featureList": [
+        "Current sade sati phase from the natal moon sign",
+        "Exact start and end dates for every episode in a lifetime",
+        "Retrograde re-entries resolved from the ephemeris",
+        "Dhaiya (small panoti) periods for the 4th and 8th from the moon"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is sade sati?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Sade sati is the period when Saturn transits the three signs centred on your natal Moon sign — the 12th, the 1st and the 2nd. Saturn takes roughly two and a half years per sign, so the whole passage lasts about seven and a half years, which is what the name means in Hindi. Because Saturn's orbit is eccentric its apparent speed varies, so real episodes run between about six and a half and nine years rather than exactly 7.5. It recurs roughly every 29.5 years, Saturn's orbital period, so most people see it two or three times in a lifetime." }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I know if sade sati is running for me?",
+          "acceptedAnswer": { "@type": "Answer", "text": "It depends only on your natal Moon sign — your rashi — and on where Saturn is now. If Saturn currently occupies the sign before your Moon sign, your Moon sign itself, or the sign after it, sade sati is running. Your lagna, sun sign and birth time do not enter this calculation at all, which is why a missing birth time barely affects the answer." }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the three phases of sade sati?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The rising phase, when Saturn is in the 12th from your Moon; the peak phase, when Saturn is in the same sign as your Moon; and the setting phase, when Saturn is in the 2nd from your Moon. Each lasts roughly two and a half years. Classical texts associate them loosely with different areas — the 12th with expenditure and endings, the 1st with the self and the body, the 2nd with family and resources — but they are phases of a transit, not a schedule of events." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is sade sati always bad?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No, and the assumption that it is has been commercially useful to a lot of people. Sade sati is a transit: Saturn passing through three particular signs relative to where the Moon was when you were born. Classical texts describe it as a period of slowing, consolidation and demanded discipline rather than a sentence, and it arrives for roughly a quarter of the population at any given moment — about three of the twelve moon signs are in it at once. shastra reports the dates and declines to grade the years." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is dhaiya or small panoti?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Dhaiya, also called small panoti or kantak shani, is Saturn transiting the 4th or the 8th sign from your natal Moon. Each lasts about two and a half years — dhai varsh, which is where the name comes from. It is distinct from sade sati and cannot overlap with it, because the 4th and 8th signs are not among the 12th, 1st and 2nd." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need remedies for sade sati?",
+          "acceptedAnswer": { "@type": "Answer", "text": "shastra does not sell remedies and does not recommend them. The market for gemstones, yantras, pujas and paid rituals aimed at sade sati is large and works by first establishing that you should be afraid. A transit is a position of a planet; it is computable, it has dates, and it ends on its own schedule regardless of what is purchased." }
+        },
+        {
+          "@type": "Question",
+          "name": "How accurate are these sade sati dates?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The ingress dates are computed from the Swiss Ephemeris using Lahiri ayanamsa and resolved to the minute, then verified against published panchang values — Saturn's entry into sidereal Capricorn on 24 January 2020, Aquarius on 17 January 2023 and Pisces on 29 March 2025 are all asserted as tests. The calculation also captures retrograde re-entries, such as Saturn entering Aquarius in April 2022, reversing back into Capricorn that July, and re-entering for good in January 2023 — a detail that lookup tables often flatten into a single date." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+
+<body>
+<a class="skip" href="#tool">skip to the calculator</a>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="wordmark" href="../">shastra<span>.</span></a>
+    <nav aria-label="primary">
+      <a href="../kundli/">free kundli</a>
+      <a href="../kundli-matching/" class="hide-sm">kundli matching</a>
+      <a href="./" class="hide-sm">sade sati</a>
+      <a class="btn btn-primary" href="https://shastra.onrender.com" data-warm="cold">open shastra</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="section" id="tool" style="padding-block:clamp(2.5rem,6vw,4.5rem)">
+    <div class="wrap tool-grid">
+      <div>
+        <p class="label">free · no signup · real dates</p>
+        <h1 class="display">sade sati calculator</h1>
+        <p class="lede" style="margin-top:1.5rem">
+          <strong style="color:var(--ink)">Sade sati is the stretch when Saturn passes through the
+          three signs centred on your natal Moon — the 12th, the 1st and the 2nd.</strong>
+          About two and a half years in each, so roughly seven and a half in total, recurring about
+          every 29.5 years. This calculator finds Saturn's actual ingress dates from the ephemeris —
+          retrograde re-entries included — and tells you which phase you are in, when it started,
+          and when it ends.
+        </p>
+
+        <form id="form" novalidate style="margin-top:2.25rem">
+          <div class="error" id="err" hidden role="alert"></div>
+          <div class="field-row">
+            <label class="field"><span>date of birth</span>
+              <input type="date" name="date" required min="1800-01-01" max="2030-12-31"></label>
+            <label class="field"><span>time of birth</span>
+              <input type="time" name="time" id="time"></label>
+          </div>
+          <label class="checkbox">
+            <input type="checkbox" name="timeUnknown" id="timeUnknown">
+            <span>I don't know my birth time — it barely matters here, and the result will say why</span>
+          </label>
+          <label class="field"><span>place of birth</span>
+            <input type="text" name="place" placeholder="city or town" required></label>
+          <div class="btn-row">
+            <button type="submit" class="btn btn-primary" id="go" data-warm="cold">find my dates</button>
+            <span class="tiny" id="warmnote"></span>
+          </div>
+        </form>
+      </div>
+
+      <div class="tool-aside">
+        <div class="card">
+          <p class="label" style="margin-bottom:0.75rem">before you read the result</p>
+          <p class="small" style="margin-top:0">
+            sade sati is running for about a quarter of everyone alive at any moment — three of the
+            twelve moon signs at a time. it is a planetary position with start and end dates, not a
+            verdict on seven years of your life.
+          </p>
+          <p class="small" style="margin-bottom:0">
+            this page will give you the dates and stop there. there is nothing on this site to buy
+            that claims to shorten, soften or cancel it, because no such thing exists.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── result ─────────────────────────────────────────────────────────── -->
+  <section class="section result" id="result" hidden>
+    <div class="wrap">
+      <p class="label">your sade sati</p>
+      <h2 class="display" id="headline" style="max-width:22ch"></h2>
+      <p class="small" id="subline" style="margin-top:1rem;max-width:var(--prose)"></p>
+
+      <div class="readout" id="status" style="margin-top:2rem;max-width:38rem"></div>
+
+      <div id="phases-wrap" hidden>
+        <h3 class="display" style="margin-top:3rem">the three phases of this period</h3>
+        <div class="phases" id="phases"></div>
+        <p class="tiny" id="wobble" style="margin-top:1rem;max-width:var(--prose)"></p>
+      </div>
+
+      <h3 class="display" style="margin-top:3.5rem">every sade sati in your lifetime</h3>
+      <p class="small" style="max-width:var(--prose)">
+        saturn's orbital period is about 29.5 years, which is what sets the spacing. lengths vary
+        because saturn's orbit is eccentric, so it covers the same three signs faster in some
+        centuries than others.
+      </p>
+      <div class="scroller" style="margin-top:1.25rem">
+        <table class="data" id="episodes">
+          <thead>
+            <tr><th scope="col">period</th><th scope="col">from</th><th scope="col">to</th><th scope="col">length</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <h3 class="display" style="margin-top:3.5rem">dhaiya · small panoti</h3>
+      <p class="small" style="max-width:var(--prose)">
+        saturn in the 4th or 8th from your moon — about two and a half years each, and separate
+        from sade sati. included because it is the question that follows the first one.
+      </p>
+      <div class="readout" id="dhaiya" style="margin-top:1.25rem;max-width:38rem"></div>
+
+      <div class="card upsell" style="margin-top:3.5rem">
+        <p class="label" style="margin-bottom:0.75rem">what the dates don't tell you</p>
+        <h3 class="display">saturn is one transit. your chart is running several.</h3>
+        <p class="small" style="max-width:44rem">
+          sade sati is measured from your moon alone. what it actually coincides with depends on
+          which vimshottari dasha you are in, where saturn sits in your birth chart to begin with,
+          and what else is moving. shastra's free daily reading works that out against your whole
+          chart every morning — and it will never open with a warning about saturn.
+        </p>
+        <div class="btn-row" style="margin-top:1.5rem">
+          <a class="btn btn-primary" href="https://shastra.onrender.com" data-warm="cold">start free</a>
+          <a class="btn btn-ghost" href="../kundli/">see your full kundli</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── explainer ──────────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="wrap">
+      <p class="label">the three phases</p>
+      <h2 class="display" style="max-width:22ch">two and a half years each, in a fixed order.</h2>
+      <div class="grid grid-3" style="margin-top:2.5rem">
+        <div class="card">
+          <p class="label" style="margin-bottom:0.5rem">phase one</p>
+          <h3 class="display">rising · 12th from the moon</h3>
+          <p class="small">Saturn enters the sign before your Moon sign. Classically associated with
+            expenditure, endings and things being wound down. Traditionally read as the beginning of
+            a slowing, not of a crisis.</p>
+        </div>
+        <div class="card">
+          <p class="label" style="margin-bottom:0.5rem">phase two</p>
+          <h3 class="display">peak · on the moon</h3>
+          <p class="small">Saturn occupies your Moon sign itself. The phase most often written about,
+            and classically linked to the self, the body and mental weather — which is precisely why
+            it is also the one most often sold against.</p>
+        </div>
+        <div class="card">
+          <p class="label" style="margin-bottom:0.5rem">phase three</p>
+          <h3 class="display">setting · 2nd from the moon</h3>
+          <p class="small">Saturn moves into the sign after your Moon sign. Associated with family,
+            speech and resources. The tail of the passage rather than its own event.</p>
+        </div>
+      </div>
+      <p class="tiny" style="margin-top:1.75rem;max-width:var(--prose)">
+        the phases can appear to overlap in a computed timeline, and that is not an error: Saturn
+        retrogrades. It commonly enters the next sign, reverses back into the previous one for a few
+        months, then enters again for good. shastra shows each phase from its first entry to its
+        final exit and tells you when a re-entry happened, rather than picking one date and hiding
+        the other two.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="label">a note we think matters</p>
+      <h2 class="display" style="max-width:20ch">on what sade sati is not.</h2>
+      <div class="stack" style="margin-top:1.5rem;max-width:var(--prose)">
+        <p class="lede">
+          Search for sade sati and most of what comes back is calibrated to worry you, because
+          worry is what converts. The structure is consistent: establish that a difficult period is
+          coming, quantify it vaguely, then offer a gemstone, a puja, a yantra or a paid
+          consultation as the way out.
+        </p>
+        <p class="small">
+          The astronomy underneath is not in dispute. Saturn takes about 29.5 years to go round the
+          zodiac, so it spends about seven and a half years in any three consecutive signs. Roughly
+          three of the twelve moon signs are in sade sati at any moment — which means about a
+          quarter of every population on earth is in it right now, including a great many people
+          having an unremarkable decade.
+        </p>
+        <p class="small">
+          Classical sources describe the period in terms of slowing, consolidation, and being made
+          to do things properly. That is a long way from what the market has made of it. shastra
+          computes the dates, tells you which phase you are in, and sells nothing that claims to
+          change any of it — no remedies, ever. That rule is written into the code that generates
+          every reading, not into a values page.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── faq ────────────────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="wrap">
+      <p class="label">sade sati questions, answered</p>
+      <h2 class="display" style="margin-bottom:2.5rem">frequently asked</h2>
+      <div class="faq">
+        <details open>
+          <summary>What is sade sati?</summary>
+          <div><p>Sade sati is the period when Saturn transits the three signs centred on your natal
+            Moon sign — the 12th, the 1st and the 2nd. Saturn takes roughly two and a half years per
+            sign, so the whole passage lasts about seven and a half years, which is what the name
+            means in Hindi.</p>
+            <p>Because Saturn's orbit is eccentric its apparent speed varies, so real episodes run
+            between about six and a half and nine years rather than exactly 7.5. It recurs roughly
+            every 29.5 years — Saturn's orbital period — so most people see it two or three
+            times.</p></div>
+        </details>
+
+        <details>
+          <summary>How do I know if sade sati is running for me?</summary>
+          <div><p>It depends on two things only: your natal Moon sign (your rashi) and where Saturn
+            is now. If Saturn currently occupies the sign before your Moon sign, your Moon sign
+            itself, or the sign after it, sade sati is running.</p>
+            <p>Your lagna, your sun sign and your birth time do not enter this calculation at all,
+            which is why an unknown birth time barely affects the answer.</p></div>
+        </details>
+
+        <details>
+          <summary>What are the three phases?</summary>
+          <div><p>Rising, when Saturn is in the 12th from your Moon; peak, when Saturn is in the same
+            sign as your Moon; and setting, when Saturn is in the 2nd from your Moon. Each lasts
+            roughly two and a half years.</p>
+            <p>Classical texts associate them loosely with different areas — the 12th with
+            expenditure and endings, the 1st with the self and the body, the 2nd with family and
+            resources — but they are phases of a transit, not a schedule of events.</p></div>
+        </details>
+
+        <details>
+          <summary>Is sade sati always bad?</summary>
+          <div><p>No, and the assumption that it is has been commercially useful to a lot of people.
+            Sade sati is a transit — Saturn passing through three particular signs relative to where
+            the Moon was when you were born.</p>
+            <p>Classical texts describe it as a period of slowing, consolidation and demanded
+            discipline rather than a sentence. And it arrives for about a quarter of the population
+            at any given moment, since roughly three of the twelve moon signs are in it at once.
+            shastra reports the dates and declines to grade the years.</p></div>
+        </details>
+
+        <details>
+          <summary>What is dhaiya or small panoti?</summary>
+          <div><p>Dhaiya — also called small panoti or kantak shani — is Saturn transiting the 4th or
+            the 8th sign from your natal Moon. Each lasts about two and a half years; <em>dhai
+            varsh</em> is where the name comes from.</p>
+            <p>It is distinct from sade sati and cannot overlap with it, because the 4th and 8th
+            signs are not among the 12th, 1st and 2nd.</p></div>
+        </details>
+
+        <details>
+          <summary>Do I need remedies for sade sati?</summary>
+          <div><p>shastra does not sell remedies and does not recommend them. The market for
+            gemstones, yantras, pujas and paid rituals aimed at sade sati is large, and it works by
+            first establishing that you should be afraid.</p>
+            <p>A transit is a position of a planet. It is computable, it has dates, and it ends on
+            its own schedule regardless of what is purchased.</p></div>
+        </details>
+
+        <details>
+          <summary>How accurate are these dates?</summary>
+          <div><p>Ingress dates are computed from the Swiss Ephemeris with Lahiri ayanamsa, resolved
+            to the minute, and verified against published panchang values. Saturn's entry into
+            sidereal Capricorn on 24 January 2020, Aquarius on 17 January 2023 and Pisces on 29
+            March 2025 are all asserted as tests that must pass before anything ships.</p>
+            <p>The calculation also captures retrograde re-entries — Saturn entered Aquarius in
+            April 2022, reversed back into Capricorn that July, and re-entered for good in January
+            2023. Lookup tables often flatten that into one date.</p></div>
+        </details>
+
+        <details>
+          <summary>Which sign does sade sati use — my sun sign or my moon sign?</summary>
+          <div><p>Your Moon sign, always. Vedic astrology treats the Moon sign as the primary
+            reference for transits, and sade sati is defined from it specifically. Using a sun sign
+            — or a western tropical sign — will give you the wrong dates, usually off by about a
+            sign, which is two and a half years of Saturn.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="wordmark" href="../">shastra<span>.</span></a>
+        <p class="tiny" style="margin-top:0.75rem;max-width:24rem">the sky, computed. read plainly.<br>made in Bengaluru.</p>
+      </div>
+      <div>
+        <h4>free tools</h4>
+        <ul>
+          <li><a href="../kundli/">free kundli</a></li>
+          <li><a href="../kundli-matching/">kundli matching</a></li>
+          <li><a href="./">sade sati</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>the legal bit</h4>
+        <ul>
+          <li><a href="../privacy/">privacy</a></li>
+          <li><a href="../terms/">terms</a></li>
+          <li><a href="../refunds/">refunds</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>contact</h4>
+        <ul>
+          <li><a href="mailto:adhokshaj.pande@gmail.com">adhokshaj.pande@gmail.com</a></li>
+          <li><span class="tiny">Bengaluru, Karnataka, India</span></li>
+          <li><span class="tiny">UDYAM-KR-03-0737428</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="disclaimer">
+      <p style="margin:0;max-width:44rem">shastra computes real positions and reads them as timing,
+        not fate. it is for reflection. it is not medical, legal or financial advice. you must be 18
+        or older to use it.</p>
+      <p style="margin:0">© 2026 Adhokshaj Wategaonkar</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .tool-grid { display: grid; gap: clamp(2rem, 5vw, 3.5rem); align-items: start; }
+  @media (min-width: 62rem) { .tool-grid { grid-template-columns: 1.25fr 0.75fr; } }
+  .tool-aside { position: sticky; top: 5.5rem; }
+  @media (max-width: 62rem) { .tool-aside { position: static; } }
+
+  .phases { display: grid; gap: 1rem; margin-top: 1.5rem; }
+  @media (min-width: 50rem) { .phases { grid-template-columns: repeat(3, 1fr); } }
+  .phase {
+    border: 1px solid var(--hairline); border-radius: 1rem;
+    padding: 1.25rem; background: var(--elevated); position: relative; overflow: hidden;
+  }
+  .phase[data-live='true'] { border-color: rgba(232, 184, 75, 0.4); }
+  .phase[data-live='true']::before {
+    content: ''; position: absolute; inset: 0 auto 0 0; width: 3px; background: var(--gold);
+  }
+  .phase[data-state='past'] { opacity: 0.5; }
+  .phase h4 {
+    font-family: var(--display); font-weight: 600; font-size: 1.125rem;
+    margin: 0 0 0.35rem; letter-spacing: -0.01em;
+  }
+  .phase .when { font-variant-numeric: tabular-nums; color: var(--muted); font-size: 0.9375rem; margin: 0; }
+  .phase .meta { color: var(--faint); font-size: 0.8125rem; margin: 0.5rem 0 0; }
+
+  .upsell { border-color: rgba(232, 184, 75, 0.22); }
+  table.data#episodes th[scope='row'] { text-transform: none; letter-spacing: 0; font-size: 0.9375rem; color: var(--ink); font-weight: 500; }
+</style>
+
+<script src="../assets/shastra.js" defer></script>
+<script defer>
+window.addEventListener('load', function () {
+  var S = window.shastra;
+  var form = document.getElementById('form');
+  var err = document.getElementById('err');
+  var go = document.getElementById('go');
+  var result = document.getElementById('result');
+  var warnnote = document.getElementById('warmnote');
+  var timeEl = document.getElementById('time');
+  var unknown = document.getElementById('timeUnknown');
+
+  S.placeField(form.querySelector('[name="place"]'));
+
+  unknown.addEventListener('change', function () {
+    timeEl.disabled = unknown.checked;
+    timeEl.style.opacity = unknown.checked ? '0.4' : '1';
+  });
+
+  var warnTimer = setTimeout(function () {
+    if (S.warm === 'warming') warnnote.textContent = 'waking the engine up — first request of the hour is slow.';
+  }, 2500);
+  var poll = setInterval(function () {
+    if (S.warm !== 'warming' && S.warm !== 'cold') { clearInterval(poll); clearTimeout(warnTimer); warnnote.textContent = ''; }
+  }, 700);
+
+  function row(k, v) { return '<div><span class="k">' + k + '</span><span class="v">' + v + '</span></div>'; }
+
+  var PHASE_LABEL = {
+    rising: 'rising · 12th from moon',
+    peak: 'peak · on the moon',
+    setting: 'setting · 2nd from moon',
+  };
+
+  function render(d) {
+    var tc = S.titleCase;
+    var ss = d.sadeSati;
+    var st = ss.status;
+    var now = new Date();
+
+    document.getElementById('headline').textContent = st.active
+      ? 'running now — the ' + st.phase + ' phase'
+      : 'not running right now';
+
+    document.getElementById('subline').textContent =
+      'measured from your ' + tc(d.moon.sign) + ' moon (' + tc(d.moon.nakshatra) + ', pada ' + d.moon.pada + '). ' +
+      (d.timeKnown
+        ? 'sade sati depends only on the moon sign, so this result is exact.'
+        : 'birth time unknown — but sade sati depends only on the moon sign, which the date fixes. this result is unaffected.');
+
+    document.getElementById('status').innerHTML = st.active
+      ? row('phase', tc(st.phase)) +
+        row('saturn is in', tc(ss.signs[st.phase].sign)) +
+        row('started', S.fmtDate(st.startedOn)) +
+        row('ends', S.fmtDate(st.endsOn)) +
+        row('remaining', st.yearsRemaining + ' years')
+      : row('status', 'saturn is not in the 12th, 1st or 2nd from your moon') +
+        (st.previousEndedOn ? row('last one ended', S.fmtDate(st.previousEndedOn)) : '') +
+        (st.nextStartsOn ? row('next one starts', S.fmtDate(st.nextStartsOn)) : '') +
+        (st.yearsUntilNext != null ? row('that is', st.yearsUntilNext + ' years away') : '');
+
+    // phases of the current (or next) episode
+    var ep = st.episode || ss.episodes.find(function (e) { return new Date(e.start) > now; });
+    var wrap = document.getElementById('phases-wrap');
+    if (ep) {
+      document.getElementById('phases').innerHTML = ep.phases.map(function (p) {
+        var s = new Date(p.start), e = new Date(p.end);
+        var live = now >= s && now < e;
+        var state = e < now ? 'past' : live ? 'live' : 'future';
+        return '<div class="phase" data-live="' + live + '" data-state="' + state + '">' +
+          '<h4>' + PHASE_LABEL[p.phase] + '</h4>' +
+          '<p class="when">' + S.fmtDate(p.start) + ' → ' + S.fmtDate(p.end) + '</p>' +
+          '<p class="meta">saturn in ' + tc(p.sign) + ' · ' + p.years + ' years' +
+          (live ? ' · <span class="gold">now</span>' : '') + '</p></div>';
+      }).join('');
+
+      var reentries = ep.phases.reduce(function (n, p) { return n + p.retrogradeReentries; }, 0);
+      document.getElementById('wobble').textContent = reentries
+        ? 'saturn retrogrades back across a sign boundary ' + reentries + ' time' + (reentries > 1 ? 's' : '') +
+          ' during this period, which is why two phases can appear to overlap. each phase is shown from its first entry to its final exit.'
+        : '';
+      wrap.hidden = false;
+    } else {
+      wrap.hidden = true;
+    }
+
+    document.querySelector('#episodes tbody').innerHTML = ss.episodes.map(function (e) {
+      var s = new Date(e.start), en = new Date(e.end);
+      var live = now >= s && now < en;
+      var past = en < now;
+      return '<tr' + (live ? ' style="background:rgba(232,184,75,0.06)"' : past ? ' style="opacity:0.55"' : '') + '>' +
+        '<th scope="row">' + (live ? '<span class="gold">▸ running now</span>' : past ? 'past' : 'upcoming') + '</th>' +
+        '<td>' + S.fmtDate(e.start) + '</td><td>' + S.fmtDate(e.end) + '</td>' +
+        '<td class="num">' + e.years + ' y</td></tr>';
+    }).join('');
+
+    var dh = ss.dhaiya;
+    document.getElementById('dhaiya').innerHTML =
+      row('4th and 8th from your moon', dh.signs.map(function (x) { return tc(x.sign); }).join(' · ')) +
+      (dh.status.active
+        ? row('running now', 'until ' + S.fmtDate(dh.status.endsOn))
+        : (dh.status.nextStartsOn ? row('next', S.fmtDate(dh.status.nextStartsOn) + ' (' + dh.status.yearsUntilNext + ' years away)') : '')) +
+      (dh.status.previousEndedOn ? row('last ended', S.fmtDate(dh.status.previousEndedOn)) : '');
+
+    result.hidden = false;
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    S.clearFail(err);
+    var payload = S.birthFrom(form);
+    if (!payload.date) return S.fail(err, 'a date of birth is needed — it fixes your moon sign.');
+    if (!payload.place && !payload.lat) return S.fail(err, 'a place of birth is needed. type a city and pick from the list.');
+
+    S.busy(go, true, 'scanning saturn…');
+    S.call('/api/sade-sati', { body: payload })
+      .then(function (d) {
+        render(d);
+        result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      })
+      .catch(function (ex) { S.fail(err, ex.message); })
+      .then(function () { S.busy(go, false); });
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B0B0F">
+<title>shastra — vedic astrology, computed honestly</title>
+<meta name="description" content="A free daily vedic reading over WhatsApp, computed from real planetary positions with Swiss Ephemeris. Flat one-time reports from ₹99. No per-minute meters, no fear-selling, no remedies to buy.">
+<link rel="canonical" href="https://adhokshajwategaonkar.github.io/shastra-site/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="shastra">
+<meta property="og:title" content="shastra — vedic astrology, computed honestly">
+<meta property="og:description" content="Real chart maths, plain language, and a price that doesn't run on a meter. Free daily reading over WhatsApp.">
+<meta property="og:url" content="https://adhokshajwategaonkar.github.io/shastra-site/">
+<meta property="og:image" content="https://adhokshajwategaonkar.github.io/shastra-site/assets/og-home.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@600,500&f[]=satoshi@400,500,700&display=swap">
+<link rel="stylesheet" href="assets/shastra.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://adhokshajwategaonkar.github.io/shastra-site/#org",
+      "name": "shastra",
+      "url": "https://adhokshajwategaonkar.github.io/shastra-site/",
+      "logo": "https://adhokshajwategaonkar.github.io/shastra-site/assets/og-home.png",
+      "email": "adhokshaj.pande@gmail.com",
+      "foundingDate": "2026",
+      "address": { "@type": "PostalAddress", "addressLocality": "Bengaluru", "addressRegion": "Karnataka", "addressCountry": "IN" },
+      "description": "Vedic astrology computed deterministically with the Swiss Ephemeris and explained in plain language. Flat one-time pricing, no per-minute consultation."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://adhokshajwategaonkar.github.io/shastra-site/#site",
+      "url": "https://adhokshajwategaonkar.github.io/shastra-site/",
+      "name": "shastra",
+      "publisher": { "@id": "https://adhokshajwategaonkar.github.io/shastra-site/#org" },
+      "inLanguage": "en-IN"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "shastra",
+      "applicationCategory": "LifestyleApplication",
+      "operatingSystem": "Web, Android, iOS",
+      "url": "https://adhokshajwategaonkar.github.io/shastra-site/",
+      "publisher": { "@id": "https://adhokshajwategaonkar.github.io/shastra-site/#org" },
+      "offers": [
+        { "@type": "Offer", "name": "Daily reading", "price": "0", "priceCurrency": "INR", "category": "free" },
+        { "@type": "Offer", "name": "Career reading", "price": "99", "priceCurrency": "INR" },
+        { "@type": "Offer", "name": "Compatibility reading", "price": "149", "priceCurrency": "INR" }
+      ],
+      "featureList": [
+        "Free daily vedic reading delivered over WhatsApp",
+        "Sidereal chart computed with Swiss Ephemeris, Lahiri ayanamsa",
+        "Vimshottari dasha timeline",
+        "36-point ashtakoota guna milan",
+        "Flat one-time report pricing, no subscription"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is shastra?",
+          "acceptedAnswer": { "@type": "Answer", "text": "shastra is a vedic astrology service that computes your chart deterministically with the Swiss Ephemeris and explains it in plain language. The daily reading is free and arrives over WhatsApp when you message first each morning. Deep reports are flat one-time payments — ₹99 for career, ₹149 for compatibility — with no subscription, no per-minute billing, and no remedies for sale." }
+        },
+        {
+          "@type": "Question",
+          "name": "How is shastra different from a per-minute astrology consultation app?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Per-minute apps charge roughly ₹20–₹50 per minute while a human types, so a twenty-minute conversation costs ₹400–₹1,000 and the cost is unknown until it ends. shastra charges a flat one-time price per report, shown before you pay. It also refuses categories the per-minute model depends on: no predictions about death, illness, pregnancy or accidents, no manufactured urgency, and no gemstones, yantras or paid remedies." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does an AI write the astrology, or is the maths real?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Both parts are separated on purpose. Every planetary position, nakshatra, dasha date and guna milan point is computed by the Swiss Ephemeris in code — a language model never calculates a position. A language model only writes the interpretation, and it receives the computed chart as structured data, never your birth date, birth place, email or phone number." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the daily reading really free?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, and it stays free. The daily reading is free because of how WhatsApp billing works: a business-initiated message in India costs the sender about ₹1.09, but a reply to a message you sent costs nothing. So you message shastra each morning and the reading comes back as a free reply. That is why shastra will never push a daily message at you — the economics of the product depend on you starting the conversation." }
+        },
+        {
+          "@type": "Question",
+          "name": "Which ayanamsa and house system does shastra use?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Lahiri (Chitrapaksha) ayanamsa and whole-sign houses, with the mean lunar node. These are the standard conventions in Indian vedic astrology. Lahiri is defined by placing the star Spica at exactly 180° of sidereal longitude, and shastra's test suite asserts that as a hard check — if it ever drifted, the build fails." }
+        },
+        {
+          "@type": "Question",
+          "name": "What does shastra do with my birth details?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Birth date, time and place are stored to compute your chart, and nothing else. They are never sold or shared with advertisers. The language model that writes your reading never receives them — it sees only the computed chart. You can delete your account and every row attached to it at any time." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+
+<body>
+<a class="skip" href="#main">skip to content</a>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="wordmark" href="./">shastra<span>.</span></a>
+    <nav aria-label="primary">
+      <a href="kundli/">free kundli</a>
+      <a href="kundli-matching/" class="hide-sm">kundli matching</a>
+      <a href="sade-sati/" class="hide-sm">sade sati</a>
+      <a class="btn btn-primary" href="https://shastra.onrender.com" data-warm="cold" data-cta>open shastra</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ── hero ──────────────────────────────────────────────────────────── -->
+  <section class="section" style="padding-top:clamp(3rem,8vw,6rem)">
+    <div class="wrap hero">
+      <div>
+        <p class="label">vedic astrology · computed, not guessed</p>
+        <h1 class="display">the sky,<br>computed.<br><span class="gold">read plainly.</span></h1>
+        <p class="lede" style="margin-top:1.75rem">
+          your real chart — sidereal positions, nakshatras, dasha dates — worked out to the
+          arcsecond, then said in a sentence you can use before 9am.
+        </p>
+        <div class="btn-row" style="margin-top:2rem">
+          <a class="btn btn-primary" href="https://shastra.onrender.com" data-warm="cold" data-cta>start free</a>
+          <a class="btn btn-ghost" href="kundli/">see your kundli first</a>
+        </div>
+        <p class="tiny" style="margin-top:1.25rem">
+          free daily reading, forever. reports are ₹99–₹149, once. no subscription, no meter.
+        </p>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <!-- North Indian kundli. Decorative: the real one is computed per person. -->
+        <svg viewBox="0 0 320 320" role="presentation" class="kundli-art">
+          <defs>
+            <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#E8B84B" stop-opacity="0.9"/>
+              <stop offset="100%" stop-color="#FF8A3D" stop-opacity="0.35"/>
+            </linearGradient>
+          </defs>
+          <g fill="none" stroke="url(#g)" stroke-width="1.25" class="draw">
+            <rect x="10" y="10" width="300" height="300" rx="6"/>
+            <path d="M10 10 L310 310 M310 10 L10 310"/>
+            <path d="M160 10 L310 160 L160 310 L10 160 Z"/>
+          </g>
+          <g class="pips" fill="#E8B84B">
+            <circle cx="160" cy="72" r="3.5"/>
+            <circle cx="238" cy="160" r="3.5"/>
+            <circle cx="160" cy="248" r="3.5"/>
+            <circle cx="82" cy="160" r="3.5"/>
+            <circle cx="86" cy="86" r="2.5" opacity="0.6"/>
+            <circle cx="234" cy="234" r="2.5" opacity="0.6"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── the answer block: first thing a crawler or a skimmer reads ────── -->
+  <section class="section">
+    <div class="wrap">
+      <p class="label">what this is</p>
+      <div class="answer-block">
+        <p style="font-size:clamp(1.125rem,2.4vw,1.375rem);color:var(--ink);max-width:52rem;margin:0">
+          <strong>shastra is vedic astrology with the arithmetic done properly and the selling left out.</strong>
+          every position, nakshatra, dasha date and guna milan point is computed in code with the
+          Swiss Ephemeris — sidereal, Lahiri ayanamsa, whole-sign houses. a language model writes the
+          interpretation and never touches the maths. the daily reading is free over WhatsApp. deep
+          reports are flat one-time payments: <span class="gold mono">₹99</span> career,
+          <span class="gold mono">₹149</span> compatibility. no subscription, no per-minute meter,
+          and nothing to buy to "fix" what a reading just told you.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── the morning ritual ─────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="wrap">
+      <p class="label reveal">the morning ritual</p>
+      <h2 class="display reveal" style="max-width:20ch">three steps, and then about eight seconds a day.</h2>
+      <div class="grid grid-3" style="margin-top:3rem">
+        <div class="card reveal">
+          <p class="step-n">01</p>
+          <h3 class="display">give it your birth details, once</h3>
+          <p class="small">date, time, place. that's the whole onboarding. you get your kundli back
+            immediately — positions, nakshatra, lagna, dasha — and a first reading that is longer
+            than any that follow.</p>
+        </div>
+        <div class="card reveal">
+          <p class="step-n">02</p>
+          <h3 class="display">message first, every morning</h3>
+          <p class="small">"gm" works. 🙏 works. anything works. that message is the ritual, and it's
+            also your streak. shastra never messages you first — see the pricing section for the
+            unglamorous reason why.</p>
+        </div>
+        <div class="card reveal">
+          <p class="step-n">03</p>
+          <h3 class="display">read sixty words and get on with it</h3>
+          <p class="small">what's actually moving today, against your chart, in language you can act
+            on. no horoscope-column hedging, no "the universe has a plan for you".</p>
+        </div>
+      </div>
+      <p class="tiny reveal" style="margin-top:1.5rem;max-width:var(--prose)">
+        the deeper stuff — full chart, report reader, compatibility — lives in the web app. install
+        it to your home screen and it behaves like an app, because it is one.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── the maths is real (original, checkable data = GEO gold) ────────── -->
+  <section class="section">
+    <div class="wrap">
+      <p class="label reveal">why the numbers are trustworthy</p>
+      <h2 class="display reveal" style="max-width:22ch">the engine is tested against things it cannot fake.</h2>
+      <p class="lede reveal" style="margin-top:1.5rem">
+        "our astrology is accurate" is a claim anyone can type. so shastra's chart engine ships with
+        a test suite that has to pass before any code does — 149 assertions, and these are the ones
+        that matter:
+      </p>
+
+      <div class="grid grid-2" style="margin-top:2.5rem">
+        <div class="card reveal">
+          <h3 class="display">Spica sits at exactly 180°00′</h3>
+          <p class="small">that <em>is</em> the definition of the Lahiri / Chitrapaksha ayanamsa. if this
+            assertion fails, the ayanamsa isn't Lahiri and every chart computed is quietly wrong.
+            it's the first thing the build checks.</p>
+        </div>
+        <div class="card reveal">
+          <h3 class="display">two NASA eclipse times</h3>
+          <p class="small">sun and moon must conjoin at the 2017-08-21 solar eclipse and oppose at the
+            2018-07-27 lunar eclipse. these checks are independent of any ayanamsa — they test the
+            raw ephemeris itself, against published astronomy.</p>
+        </div>
+        <div class="card reveal">
+          <h3 class="display">three published reference charts</h3>
+          <p class="small">Gandhi, Einstein and Modi, asserted against <em>published</em> values rather
+            than values this engine produced. Gandhi's chart matches on all seven classical grahas —
+            sign, nakshatra and dignity.</p>
+        </div>
+        <div class="card reveal">
+          <h3 class="display">guna milan is 36 points of code</h3>
+          <p class="small">the full ashtakoota — varna, vashya, tara, yoni, graha maitri, gana,
+            bhakoot, nadi — computed arithmetically, with the classical mangal dosha exemptions
+            applied. a language model is never asked to add up to 36.</p>
+        </div>
+      </div>
+
+      <p class="tiny reveal" style="margin-top:1.75rem;max-width:var(--prose)">
+        positions come from the Swiss Ephemeris (Moshier mode), accurate to about 0.1 arcseconds. a
+        nakshatra pada is 3°20′ wide — so the error is roughly four orders of magnitude smaller than
+        anything that could change a single word of a reading.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── free tools ─────────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="wrap">
+      <p class="label reveal">free, no account, no wall</p>
+      <h2 class="display reveal">try the engine before you trust it.</h2>
+      <div class="grid grid-3" style="margin-top:2.5rem">
+        <a class="card reveal" href="kundli/">
+          <h3 class="display gold">free kundli →</h3>
+          <p class="small">your full birth chart: lagna, all nine grahas by sign and nakshatra,
+            house placements, navamsa, and the vimshottari dasha you're running right now.</p>
+        </a>
+        <a class="card reveal" href="kundli-matching/">
+          <h3 class="display gold">kundli matching →</h3>
+          <p class="small">the real 36-point guna milan, broken down koota by koota, with mangal
+            dosha checked from lagna, moon and venus. the number, free. no verdict attached.</p>
+        </a>
+        <a class="card reveal" href="sade-sati/">
+          <h3 class="display gold">sade sati →</h3>
+          <p class="small">whether Saturn is in your 12th, 1st or 2nd from natal moon — and the
+            actual entry and exit dates, computed, not looked up in a table.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── pricing ────────────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="wrap">
+      <p class="label reveal">pricing, stated in full</p>
+      <h2 class="display reveal" style="max-width:18ch">you can read the whole price list in nine seconds.</h2>
+
+      <div class="scroller reveal" style="margin-top:2.5rem">
+        <table class="data price">
+          <caption class="sr-only">shastra pricing</caption>
+          <thead>
+            <tr><th scope="col">what</th><th scope="col">price</th><th scope="col">how often you pay</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">daily reading over WhatsApp</th>
+              <td class="num gold mono">₹0</td>
+              <td>never</td>
+            </tr>
+            <tr>
+              <th scope="row">your kundli, dasha and transits</th>
+              <td class="num gold mono">₹0</td>
+              <td>never</td>
+            </tr>
+            <tr>
+              <th scope="row">guna milan score</th>
+              <td class="num gold mono">₹0</td>
+              <td>never</td>
+            </tr>
+            <tr>
+              <th scope="row">career reading — what you're built to do, and when the doors open</th>
+              <td class="num mono">₹99</td>
+              <td>once</td>
+            </tr>
+            <tr>
+              <th scope="row">compatibility reading — the 36 points, then what they actually mean</th>
+              <td class="num mono">₹149</td>
+              <td>once</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid grid-2" style="margin-top:2.5rem">
+        <div class="card reveal">
+          <p class="label" style="margin-bottom:0.75rem">the alternative</p>
+          <p style="margin:0 0 0.75rem"><strong>₹20–50 a minute, and the meter is running while someone types.</strong></p>
+          <p class="small" style="margin:0">that's the going rate on the big consultation apps. a
+            twenty-minute chat lands between ₹400 and ₹1,000, and you don't know which until it
+            ends. then comes the gemstone.</p>
+        </div>
+        <div class="card reveal">
+          <p class="label" style="margin-bottom:0.75rem">here</p>
+          <p style="margin:0 0 0.75rem"><strong>₹149. once. the price is on the button before you press it.</strong></p>
+          <p class="small" style="margin:0">a human consult runs ₹500–2,000 with the meter running.
+            this is once. no auto-renew, nothing to cancel, and a refund inside 7 days if it wasn't
+            worth it — one email, no reason required.</p>
+        </div>
+      </div>
+
+      <p class="tiny reveal" style="margin-top:1.75rem;max-width:var(--prose)">
+        why the daily reading can be free: in India a business-initiated WhatsApp message costs the
+        sender about ₹1.09 — roughly ₹33 per user per month for a daily send. a <em>reply</em> to a
+        message you sent costs nothing. so you message first, and the free thing stays free. that's
+        the whole trick, and now you know it too.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── ethics ─────────────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="wrap">
+      <p class="label reveal">the promise</p>
+      <h2 class="display reveal" style="max-width:16ch">we will never scare you into paying.</h2>
+      <p class="lede reveal" style="margin-top:1.5rem">
+        the standard playbook is to find something frightening in your chart and then sell you the
+        cure. shastra can't run that play, because these rules are written into the code that
+        generates every single reading — not into a values page nobody reads.
+      </p>
+
+      <ul class="promises reveal">
+        <li><strong>no predictions about death, illness, pregnancy or accidents.</strong> not softened, not hinted at, not "for entertainment". the categories are blocked.</li>
+        <li><strong>no remedies. ever.</strong> no gemstones, no yantras, no pujas, no paid fixes. shastra does not sell relief from a problem it just described to you.</li>
+        <li><strong>no manufactured urgency</strong> and no countdown timers. a transit that matters will still matter tomorrow.</li>
+        <li><strong>at most two mentions of a paid report per week</strong> — enforced by a counter in the database, not by asking a model to show restraint.</li>
+        <li><strong>no medical, legal or financial directives.</strong> timing and reflection. that's the remit.</li>
+        <li><strong>no auto-renew, no subscription, nothing to cancel.</strong></li>
+      </ul>
+
+      <p class="small reveal" style="margin-top:2rem;max-width:var(--prose)">
+        shastra computes real positions and reads them as timing, not fate. it is for reflection. it
+        is not medical, legal or financial advice.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── faq ────────────────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="wrap">
+      <p class="label reveal">questions people actually ask</p>
+      <h2 class="display reveal" style="margin-bottom:2.5rem">frequently asked</h2>
+
+      <div class="faq">
+        <details>
+          <summary>What is shastra?</summary>
+          <div><p>shastra is a vedic astrology service that computes your chart deterministically with
+            the Swiss Ephemeris and explains it in plain language. The daily reading is free and
+            arrives over WhatsApp when you message first each morning. Deep reports are flat one-time
+            payments — ₹99 for career, ₹149 for compatibility — with no subscription, no per-minute
+            billing, and no remedies for sale.</p></div>
+        </details>
+
+        <details>
+          <summary>How is this different from a per-minute astrology consultation app?</summary>
+          <div><p>Per-minute apps charge roughly ₹20–₹50 per minute while a human types, so a
+            twenty-minute conversation costs ₹400–₹1,000 and the total is unknown until it ends.
+            shastra charges a flat one-time price per report, displayed before you pay. It also
+            refuses the categories that model depends on: no predictions about death, illness,
+            pregnancy or accidents, no manufactured urgency, and no gemstones, yantras or paid
+            remedies.</p></div>
+        </details>
+
+        <details>
+          <summary>Does an AI write the astrology, or is the maths real?</summary>
+          <div><p>Both parts are separated on purpose. Every planetary position, nakshatra, dasha date
+            and guna milan point is computed by the Swiss Ephemeris in code — a language model never
+            calculates a position. A language model only writes the interpretation, and it receives
+            the computed chart as structured data, never your birth date, birth place, email or
+            phone number.</p></div>
+        </details>
+
+        <details>
+          <summary>Is the daily reading really free, or free-for-now?</summary>
+          <div><p>Free, and structurally so. In India a business-initiated WhatsApp template message
+            costs the sender about ₹1.09, which is roughly ₹33 per user per month for a daily send —
+            that product could not stay free. A reply sent inside a conversation you started costs
+            nothing. So the reading is a reply, you send the first message, and the economics work at
+            any number of users.</p></div>
+        </details>
+
+        <details>
+          <summary>Which ayanamsa and house system does shastra use?</summary>
+          <div><p>Lahiri (Chitrapaksha) ayanamsa, whole-sign houses, mean lunar node — the standard
+            conventions in Indian vedic astrology. Lahiri is defined by placing the star Spica at
+            exactly 180° of sidereal longitude, and that is asserted as a hard test: if it ever
+            drifted, the build fails before anything ships.</p></div>
+        </details>
+
+        <details>
+          <summary>What happens to my birth details?</summary>
+          <div><p>They're stored to compute your chart, and used for nothing else. They are never sold
+            or shared with advertisers. The language model that writes your reading never receives
+            them — it sees only the computed chart, with the identifying fields stripped before the
+            call is made. You can delete your account and every row attached to it at any time; see
+            the <a href="privacy/">privacy policy</a>.</p></div>
+        </details>
+
+        <details>
+          <summary>Do I need to install an app?</summary>
+          <div><p>No. The daily reading works entirely inside WhatsApp. The web app opens in a browser
+            and can be added to your home screen if you want the full chart, the report reader and
+            compatibility — but nothing requires an install.</p></div>
+        </details>
+
+        <details>
+          <summary>Is shastra available outside India?</summary>
+          <div><p>The chart engine works for any birth location and time zone on earth, and the free
+            tools on this site are open to everyone. Paid reports are currently priced and processed
+            in Indian rupees over UPI; international payment is planned but not live.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── final cta ──────────────────────────────────────────────────────── -->
+  <section class="section center">
+    <div class="wrap">
+      <h2 class="display reveal" style="max-width:16ch;margin-inline:auto">tomorrow morning, say good morning.</h2>
+      <p class="lede reveal" style="margin:1.5rem auto 0;text-align:center">
+        the first reading takes about ninety seconds to set up and costs nothing, now or later.
+      </p>
+      <div class="btn-row reveal" style="justify-content:center;margin-top:2rem">
+        <a class="btn btn-primary" href="https://shastra.onrender.com" data-warm="cold" data-cta>start free</a>
+        <a class="btn btn-ghost" href="kundli/">compute a kundli instead</a>
+      </div>
+      <p class="tiny reveal" data-warm="cold" id="warm-note" style="margin-top:1.25rem"></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="wordmark" href="./">shastra<span>.</span></a>
+        <p class="tiny" style="margin-top:0.75rem;max-width:24rem">
+          the sky, computed. read plainly.<br>
+          made in Bengaluru.
+        </p>
+      </div>
+      <div>
+        <h4>free tools</h4>
+        <ul>
+          <li><a href="kundli/">free kundli</a></li>
+          <li><a href="kundli-matching/">kundli matching</a></li>
+          <li><a href="sade-sati/">sade sati</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>the legal bit</h4>
+        <ul>
+          <li><a href="privacy/">privacy</a></li>
+          <li><a href="terms/">terms</a></li>
+          <li><a href="refunds/">refunds</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>contact</h4>
+        <ul>
+          <li><a href="mailto:adhokshaj.pande@gmail.com">adhokshaj.pande@gmail.com</a></li>
+          <li><span class="tiny">Bengaluru, Karnataka, India</span></li>
+          <li><span class="tiny">UDYAM-KR-03-0737428</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="disclaimer">
+      <p style="margin:0;max-width:44rem">
+        shastra computes real positions and reads them as timing, not fate. it is for reflection. it
+        is not medical, legal or financial advice. you must be 18 or older to use it.
+      </p>
+      <p style="margin:0">© 2026 Adhokshaj Wategaonkar</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* Page-scoped only. Anything reused by a second page belongs in shastra.css. */
+  .hero { display: grid; gap: clamp(2.5rem, 6vw, 4rem); align-items: center; }
+  @media (min-width: 60rem) { .hero { grid-template-columns: 1.15fr 0.85fr; } }
+  .hero-art { justify-self: center; width: min(24rem, 80vw); }
+  .kundli-art { filter: drop-shadow(0 0 42px rgba(232, 184, 75, 0.14)); }
+  .kundli-art .draw path, .kundli-art .draw rect {
+    stroke-dasharray: 1400; stroke-dashoffset: 1400;
+    animation: draw 2.6s var(--spring) forwards;
+  }
+  .kundli-art .draw path:nth-child(2) { animation-delay: 0.35s; }
+  .kundli-art .draw path:nth-child(3) { animation-delay: 0.7s; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  .kundli-art .pips circle { opacity: 0; animation: pop 0.6s var(--spring) forwards; }
+  .kundli-art .pips circle:nth-child(1) { animation-delay: 1.5s; }
+  .kundli-art .pips circle:nth-child(2) { animation-delay: 1.65s; }
+  .kundli-art .pips circle:nth-child(3) { animation-delay: 1.8s; }
+  .kundli-art .pips circle:nth-child(4) { animation-delay: 1.95s; }
+  .kundli-art .pips circle:nth-child(5) { animation-delay: 2.1s; }
+  .kundli-art .pips circle:nth-child(6) { animation-delay: 2.25s; }
+  @keyframes pop { from { opacity: 0; transform: scale(0.4); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    .kundli-art .draw path, .kundli-art .draw rect { stroke-dashoffset: 0; }
+    .kundli-art .pips circle { opacity: 1; }
+  }
+
+  .answer-block {
+    border-left: 2px solid var(--gold);
+    padding: 0.5rem 0 0.5rem clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .step-n {
+    font-family: var(--display); font-size: 2.25rem; line-height: 1;
+    color: var(--gold); opacity: 0.35; margin: 0 0 0.75rem;
+  }
+
+  table.price th[scope='row'] { font-weight: 400; color: var(--muted); text-transform: none; letter-spacing: 0; font-size: 0.9375rem; }
+  table.price td.num { font-size: 1.0625rem; }
+
+  .promises { list-style: none; padding: 0; margin: 2.5rem 0 0; max-width: 52rem; }
+  .promises li {
+    position: relative; padding: 1.15rem 0 1.15rem 2rem;
+    border-bottom: 1px solid var(--hairline); color: var(--muted);
+  }
+  .promises li::before {
+    content: '—'; position: absolute; left: 0; top: 1.15rem; color: var(--gold);
+  }
+  .promises li:last-child { border-bottom: 0; }
+</style>
+
+<script src="assets/shastra.js" defer></script>
+<script defer>
+  // The CTA tells the truth about a sleeping free-tier instance instead of
+  // looking broken for fifty seconds. Runs after shastra.js (both deferred,
+  // execution order is document order).
+  window.addEventListener('load', function () {
+    var note = document.getElementById('warm-note');
+    var ctas = document.querySelectorAll('[data-cta]');
+    var applied = false;
+
+    function say(msg) { if (note) note.textContent = msg; }
+
+    setTimeout(function () {
+      if (window.shastra && window.shastra.warm === 'warming' && !applied) {
+        applied = true;
+        ctas.forEach(function (a) { a.dataset.warm = 'cold'; });
+        say('waking the server up — this takes a moment on the free tier. the button works either way.');
+      }
+    }, 2500);
+
+    var poll = setInterval(function () {
+      if (!window.shastra) return;
+      if (window.shastra.warm === 'warm') {
+        clearInterval(poll);
+        say('');
+      } else if (window.shastra.warm === 'unreachable') {
+        clearInterval(poll);
+        say('the app is not reachable this second. the free tools on this site still work.');
+      }
+    }, 700);
+  });
+</script>
+</body>
+</html>
