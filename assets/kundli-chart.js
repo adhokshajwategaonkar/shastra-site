@@ -17,6 +17,18 @@
 
   var NS = 'http://www.w3.org/2000/svg';
 
+  // Mirrors the tokens in shastra.css. Read once, not per call: a chart is
+  // re-rendered on every submit and these never change inside a page load.
+  var css = getComputedStyle(document.documentElement);
+  function token(name, fallback) {
+    return (css.getPropertyValue(name) || '').trim() || fallback;
+  }
+  var INK   = token('--ink', '#22211C');
+  var SOFT  = token('--ink-soft', '#55524A');
+  var FAINT = token('--ink-faint', '#6F6B60');
+  var MARK  = token('--mark', '#B4342A');
+  var MONO  = token('--mono', 'ui-monospace, monospace');
+
   // Centroids for a 320×320 viewBox with a 10px margin. Order is house 1..12.
   var SEATS = [
     { x: 160, y: 82 },   // 1  top-centre diamond
@@ -73,9 +85,10 @@
       });
     }
 
-    // frame
-    var frame = el('g', { fill: 'none', stroke: 'rgba(232,184,75,0.45)', 'stroke-width': '1' });
-    frame.appendChild(el('rect', { x: 10, y: 10, width: 300, height: 300, rx: 4 }));
+    // frame — a hairline in ink, drawn the way it would be ruled on paper.
+    // No radius: a kundli is not a rounded rectangle.
+    var frame = el('g', { fill: 'none', stroke: INK, 'stroke-width': '0.9', opacity: '0.85' });
+    frame.appendChild(el('rect', { x: 10, y: 10, width: 300, height: 300 }));
     frame.appendChild(el('path', { d: 'M10 10 L310 310 M310 10 L10 310' }));
     frame.appendChild(el('path', { d: 'M160 10 L310 160 L160 310 L10 160 Z' }));
     svg.appendChild(frame);
@@ -89,7 +102,7 @@
       g.appendChild(el('text', {
         x: seat.x, y: seat.y - 13,
         'text-anchor': 'middle',
-        fill: '#6B6B76', 'font-size': '10.5', 'font-weight': '500',
+        fill: FAINT, 'font-family': MONO, 'font-size': '9.5',
       }, String(signIndex + 1)));
 
       var here = placements[house] || [];
@@ -103,25 +116,31 @@
           x: seat.x + (wide ? 0 : col === 0 ? -14 : 14),
           y: seat.y + 3 + row * 14,
           'text-anchor': 'middle',
-          fill: opts.navamsa ? '#A0A0AB' : '#E8B84B',
-          'font-size': '12.5',
-          'font-weight': '600',
+          fill: opts.navamsa ? SOFT : INK,
+          'font-family': MONO,
+          'font-size': '12',
+          'font-weight': '500',
         }, ABBR[key] || key);
         if (!opts.navamsa && chart.grahas[key].retrograde) {
           // Retrograde matters enough to mark, and the classical mark is a
           // trailing (R). Mean nodes are excluded upstream — they are always
           // retrograde, so flagging them alongside true retrogrades misleads.
-          t.textContent += 'ᴿ';
+          //
+          // It is set as its own <tspan> in vermilion: on paper this is the
+          // kind of thing the second plate exists for.
+          t.appendChild(el('tspan', { fill: MARK, 'font-size': '9', dy: '-3' }, 'R'));
         }
         g.appendChild(t);
       }
       svg.appendChild(g);
     }
 
-    // lagna marker
+    // The lagna is the one value the whole chart hangs off, so it is the one
+    // thing here that gets the second plate.
     svg.appendChild(el('text', {
-      x: 160, y: 60, 'text-anchor': 'middle',
-      fill: '#6B6B76', 'font-size': '9', 'letter-spacing': '1.5',
+      x: 160, y: 58, 'text-anchor': 'middle',
+      fill: opts.navamsa ? FAINT : MARK,
+      'font-family': MONO, 'font-size': '8.5', 'letter-spacing': '1.6',
     }, opts.navamsa ? 'D9' : 'ASC'));
   };
 })();

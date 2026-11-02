@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0B0B0F">
+<meta name="theme-color" content="#FAF9F6">
 <title>Free Kundli — birth chart with nakshatra and dasha | shastra</title>
 <meta name="description" content="Generate a free janam kundli instantly. Sidereal positions computed with the Swiss Ephemeris, Lahiri ayanamsa, whole-sign houses — lagna, all nine grahas, nakshatra and pada, navamsa, and your current vimshottari dasha. No signup, no wall.">
 <link rel="canonical" href="https://adhokshajwategaonkar.github.io/shastra-site/kundli/">
@@ -22,9 +22,9 @@
 <link rel="icon" href="../assets/favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 
-<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
-<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
-<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@600,500&f[]=satoshi@400,500,700&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Libre+Caslon+Display&display=swap">
 <link rel="stylesheet" href="../assets/shastra.css">
 
 <script type="application/ld+json">
@@ -203,6 +203,7 @@
     <div class="wrap">
       <p class="label">your kundli</p>
       <h2 class="display" id="summary-line" style="max-width:24ch"></h2>
+      <p class="lede" id="reading-headline" style="margin-top:1rem" hidden></p>
       <p class="small" id="precision" style="margin-top:1rem;max-width:var(--prose)"></p>
 
       <div class="charts" style="margin-top:2.5rem">
@@ -222,7 +223,49 @@
         </div>
       </div>
 
-      <h3 class="display" style="margin-top:3.5rem">the nine grahas</h3>
+      <!-- ── the reading ────────────────────────────────────────────────────
+           Everything below here is composed by server/src/lib/interpret.js
+           from the same numbers rendered above. It is a deterministic lookup,
+           not a generation: free, instant, and incapable of inventing a claim
+           the engine did not compute. The tables used to be the whole result,
+           which made this page a readout off an instrument rather than
+           something a person could use. -->
+      <div id="reading" hidden>
+        <h3 class="display" style="margin-top:3.5rem">what this chart actually says</h3>
+        <p class="small" style="max-width:var(--prose)">
+          read in order of weight — the surface first, then the mind, then the
+          identity. every sentence below is tied to a position computed above.
+        </p>
+        <div id="openers" class="grid" style="margin-top:1.75rem"></div>
+
+        <p class="label" style="margin-top:3rem">where you are now</p>
+        <div id="now-block" class="card" style="margin-top:0.75rem;border-color:rgba(232,184,75,0.28)"></div>
+
+        <div id="tensions-block" hidden>
+          <p class="label" style="margin-top:3rem">what pulls against itself</p>
+          <p class="small" style="max-width:var(--prose);margin-top:0.5rem">
+            every real chart contradicts itself somewhere. these are the places
+            yours does — named rather than smoothed over.
+          </p>
+          <div id="tensions" class="grid" style="margin-top:1.25rem"></div>
+        </div>
+
+        <div id="dosha-block" hidden>
+          <p class="label" style="margin-top:3rem">mangal dosha</p>
+          <div id="dosha" class="card" style="margin-top:0.75rem"></div>
+        </div>
+
+        <h3 class="display" style="margin-top:3.5rem">the other six grahas</h3>
+        <div id="graha-readings" class="grid grid-2" style="margin-top:1.25rem"></div>
+
+        <p class="tiny" id="reading-notes" style="margin-top:2.5rem;max-width:var(--prose)"></p>
+      </div>
+
+      <h3 class="display" style="margin-top:3.5rem">the numbers behind it</h3>
+      <p class="small" style="max-width:var(--prose)">
+        every claim above resolves to one of these rows. check them against any
+        ephemeris you like.
+      </p>
       <div class="scroller" style="margin-top:1.25rem">
         <table class="data" id="grahas">
           <thead>
@@ -549,7 +592,83 @@ window.addEventListener('load', function () {
     return '<div><span class="k">' + k + '</span><span class="v">' + v + '</span></div>';
   }
 
-  function render(chart) {
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  function paras(lines) {
+    return lines.map(function (l) {
+      return '<p class="small" style="color:var(--muted);margin:0 0 0.7rem">' + esc(l) + '</p>';
+    }).join('');
+  }
+
+  /**
+   * The interpretation. Note what this function does NOT do: it does not
+   * decide anything. Ordering, phrasing, which tensions surface and what is
+   * suppressed when the birth time is unknown are all settled server-side in
+   * interpret.js, where there are tests. The page just lays it out.
+   */
+  function renderReading(interp) {
+    var box = document.getElementById('reading');
+    if (!interp) { box.hidden = true; return; }
+
+    var head = document.getElementById('reading-headline');
+    head.textContent = interp.headline;
+    head.hidden = false;
+
+    document.getElementById('openers').innerHTML = interp.openers.map(function (o) {
+      var sub = [o.sign, o.degree].filter(Boolean).join(' ');
+      return '<div class="card">' +
+        '<p class="label">' + esc(o.title) + '</p>' +
+        '<h4 class="display" style="margin:0.35rem 0 0.9rem;font-size:1.25rem">' +
+          esc(sub) + '</h4>' + paras(o.lines) + '</div>';
+    }).join('');
+
+    document.getElementById('now-block').innerHTML =
+      (interp.now.mahadasha
+        ? '<p class="label gold">' + esc(interp.now.mahadasha.lord) + ' mahadasha</p>'
+        : '') + paras(interp.now.lines);
+
+    var tb = document.getElementById('tensions-block');
+    if (interp.tensions.length) {
+      document.getElementById('tensions').innerHTML = interp.tensions.map(function (x) {
+        return '<div class="card">' +
+          '<h4 class="display" style="margin:0 0 0.7rem;font-size:1.0625rem">' +
+            esc(x.title) + '</h4>' +
+          '<p class="small" style="color:var(--muted);margin:0">' + esc(x.text) + '</p></div>';
+      }).join('');
+      tb.hidden = false;
+    } else {
+      tb.hidden = true;
+    }
+
+    var db = document.getElementById('dosha-block');
+    if (interp.dosha) {
+      document.getElementById('dosha').innerHTML =
+        '<p class="label">graded ' + esc(interp.dosha.severity) + '</p>' +
+        '<div style="margin-top:0.75rem">' + paras(interp.dosha.lines) + '</div>';
+      db.hidden = false;
+    } else {
+      db.hidden = true;
+    }
+
+    document.getElementById('graha-readings').innerHTML = interp.grahas.map(function (b) {
+      var bits = [b.sign + ' ' + b.degree];
+      if (b.house) bits.push('house ' + b.house);
+      if (b.dignityLabel) bits.push(b.dignityLabel);
+      if (b.retrograde) bits.push('retrograde');
+      return '<div class="card">' +
+        '<p class="label">' + esc(b.title) + ' <span class="tiny" style="color:var(--faint)">' +
+          esc(b.sa) + '</span></p>' +
+        '<p class="tiny" style="margin:0.35rem 0 0.9rem">' + esc(bits.join(' · ')) + '</p>' +
+        paras(b.lines) + '</div>';
+    }).join('');
+
+    document.getElementById('reading-notes').textContent = interp.notes.join(' ');
+    box.hidden = false;
+  }
+
+  function render(chart, interp) {
     var g = chart.grahas;
     var tc = S.titleCase;
 
@@ -634,6 +753,8 @@ window.addEventListener('load', function () {
       row('karana', tc(p.karana.name)) +
       row('vara', tc(p.vara.name) + ' · ' + tc(p.vara.lord));
 
+    renderReading(interp);
+
     result.hidden = false;
   }
 
@@ -656,7 +777,7 @@ window.addEventListener('load', function () {
     S.busy(go, true);
     S.call('/api/chart', { body: payload })
       .then(function (d) {
-        render(d.chart);
+        render(d.chart, d.interpretation);
         document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'start' });
       })
       .catch(function (ex) { S.fail(err, ex.message); })
