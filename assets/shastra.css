@@ -421,10 +421,11 @@ table.data thead th {
   white-space: nowrap;
 }
 table.data tbody th { color: var(--ink); font-weight: 500; }
-table.data td.num {
-  text-align: right; font-family: var(--mono);
-  padding-right: 0; color: var(--ink);
-}
+table.data td.num { text-align: right; font-family: var(--mono); color: var(--ink); }
+/* Only the final column loses its right padding, so the table ends flush with
+   the measure. A right-aligned number in a MIDDLE column still needs the gap,
+   or it butts straight into the next cell's text. */
+table.data th:last-child, table.data td:last-child { padding-right: 0; }
 table.data .mark, table.data td.num.mark { color: var(--mark); }
 table.data tbody tr:hover td, table.data tbody tr:hover th { background: var(--paper-sunk); }
 table.data tr:last-child td, table.data tr:last-child th { border-bottom: 0; }
@@ -471,12 +472,21 @@ table.data tr:last-child td, table.data tr:last-child th { border-bottom: 0; }
 .nav nav a {
   font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.12em;
   text-transform: uppercase; color: var(--ink-faint); text-decoration: none;
+  white-space: nowrap;
   transition: color var(--fast) linear;
 }
 .nav nav a:hover, .nav nav a[aria-current='page'] { color: var(--ink); }
 .nav nav a.btn { color: var(--paper); }
 .nav .btn { padding: 0.7rem 1.2rem; }
 @media (max-width: 46rem) { .nav .hide-sm { display: none; } }
+/* On a phone the bar is the wordmark and the one action. A tracked mono link
+   cannot shrink, so the last text link is dropped rather than wrapped onto a
+   second line against the wordmark — the tools are in the footer and in the
+   page itself. */
+@media (max-width: 30rem) {
+  .nav nav a:not(.btn) { display: none; }
+  .nav .wrap { gap: 1rem; }
+}
 
 .footer { border-top: 1px solid var(--rule-firm); padding-block: 3.5rem; color: var(--ink-faint); font-size: 0.875rem; }
 .footer a { color: var(--ink-soft); text-decoration: none; }
@@ -545,3 +555,185 @@ html.js .reveal.in {
   transition: top var(--fast) var(--spring);
 }
 .skip:focus { top: 0.5rem; }
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   the live rasi chakra (site/assets/sky-wheel.js)
+
+   It lives here rather than in a page-scoped block because it is a component
+   with its own token set, and because the PWA will draw the same wheel.
+
+   Everything is a hairline on paper except one thing: the ink band, which is
+   the only solid mass of colour anywhere on the site. That contrast is the
+   whole composition — the wheel has to carry a hero on its own.
+   ───────────────────────────────────────────────────────────────────────── */
+.sky-wheel { --sw-band: var(--ink); width: 100%; }
+.sky-wheel .sw { width: 100%; height: auto; overflow: visible; }
+
+/* ── the plate ─────────────────────────────────────────────────────────── */
+.sw-rasi text {
+  fill: var(--paper);
+  font-family: var(--mono);
+  font-size: 12px;
+  /* 500, not 400. Type reversed out of a solid black band optically thins —
+     the same weight that reads correctly as ink on paper reads as grey here. */
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+/* The zodiac glyph a reader already knows, sitting above its Sanskrit name.
+   Upright, never rotated — twelve upright glyphs read as a dial, twelve
+   rotated ones read as a mistake. */
+.sw-rasi-glyph text {
+  fill: var(--paper);
+  font-size: 18.5px;
+  /* These are hairline outline glyphs reversed out of black at ~18px. At
+     anything less than full opacity they stop reading as icons and start
+     reading as smudges. */
+  opacity: 1;
+}
+.sw-div line  { stroke: var(--paper); stroke-width: 1; opacity: 0.45; }
+.sw-nak line  { stroke: var(--ink); stroke-width: 0.7; opacity: 0.3; }
+.sw-hair      { stroke: var(--ink); stroke-width: 0.6; opacity: 0.14; }
+
+/* ── drishti chords ────────────────────────────────────────────────────────
+   Dash pattern by what is casting the aspect, the way a plate would be keyed
+   in a printed chart. Solid is the mutual 7th every graha casts; the rest are
+   the special drishti, which are one-way. */
+.sw-chord {
+  stroke: var(--ink);
+  stroke-width: 0.8;
+  opacity: 0.42;
+  transition: opacity var(--base) linear, stroke var(--base) linear;
+}
+.sw-chord--opp     { stroke-dasharray: none; }
+.sw-chord--mars    { stroke-dasharray: 7 4; }
+.sw-chord--jupiter { stroke-dasharray: 1.5 4; stroke-linecap: round; }
+.sw-chord--saturn  { stroke-dasharray: 9 4 1.5 4; }
+
+/* ── grahas ────────────────────────────────────────────────────────────── */
+.sw-graha { cursor: pointer; transition: opacity var(--base) linear; }
+.sw-graha:focus { outline: none; }
+.sw-graha:focus-visible .sw-glyph { paint-order: stroke; stroke: var(--mark); stroke-width: 3px; }
+/* An invisible target, so the hover area is the glyph's whole cell and not
+   only the pixels its strokes happen to cover. */
+.sw-hit { fill: transparent; }
+.sw-graha-tick { stroke: var(--ink); stroke-width: 0.9; opacity: 0.55; }
+.sw-leader { stroke: var(--ink); stroke-width: 0.5; opacity: 0.3; }
+.sw-glyph { fill: var(--ink); font-size: 19px; }
+.sw-deg {
+  fill: var(--ink-faint); font-family: var(--mono); font-size: 8.5px;
+  letter-spacing: 0.04em;
+}
+.sw-retro { fill: var(--mark); font-family: var(--mono); font-size: 8.5px; }
+
+/* The Moon is the rashi — the headline value in Indian astrology — and it is
+   the one body on here that moves enough to be worth watching. */
+.sw-graha.is-moon .sw-glyph { fill: var(--mark); }
+.sw-graha.is-moon .sw-graha-tick { stroke: var(--mark); opacity: 1; }
+
+/* The lagna depends on where and when you are standing, so it gets the hand. */
+.sw-lagna line   { stroke: var(--mark); stroke-width: 1.1; opacity: 0.8; }
+.sw-lagna circle { fill: var(--mark); }
+
+/* ── the readout ───────────────────────────────────────────────────────── */
+.sw-disc { fill: var(--paper); stroke: var(--rule); stroke-width: 1; }
+.sw-readout text { font-family: var(--mono); text-transform: lowercase; }
+.sw-r-label { fill: var(--ink-faint); font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; }
+.sw-r-big   { fill: var(--ink); font-size: 18px; letter-spacing: 0.02em; }
+.sw-r-mid   { fill: var(--ink); font-size: 10.5px; letter-spacing: 0.08em; }
+.sw-r-small { fill: var(--ink-faint); font-size: 8px; letter-spacing: 0.08em; }
+.sw-tick    { fill: var(--mark); opacity: 0; }
+.sw-tick.is-beat { animation: sw-beat 1.4s steps(1, end) 3; }
+@keyframes sw-beat { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+
+/* ── states ───────────────────────────────────────────────────────────────
+   The snapshot is drawn at reduced contrast so it never reads as the live
+   sky. It brightens when real positions land. */
+.sw-sky { transition: opacity var(--slow) linear; }
+.sw-sky.is-snapshot { opacity: 0.4; }
+
+/* ── hover / focus: one graha's drishti, isolated ───────────────────────── */
+.sw-focused .sw-chord { opacity: 0.07; }
+.sw-focused .sw-chord.is-lit { opacity: 1; stroke: var(--mark); }
+.sw-focused .sw-graha { opacity: 0.28; }
+.sw-focused .sw-graha.is-lit { opacity: 1; }
+
+/* ── the caption under the wheel, which doubles as the hover readout ────── */
+.sky-note {
+  margin: 1.5rem 0 0;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+  min-height: 2.6em;            /* reserve the line so hovering never reflows */
+  transition: color var(--fast) linear;
+}
+.sky-note[data-lit] { color: var(--ink); }
+
+/* ── the legend. The wheel has to explain itself; this is how. ──────────── */
+.sky-legend {
+  list-style: none; margin: 1.75rem 0 0; padding: 0;
+  display: grid; gap: 0;
+  border-top: 1px solid var(--rule);
+  font-size: 0.8125rem;
+}
+.sky-legend li {
+  display: grid; grid-template-columns: 3.25rem 1fr; gap: 0.9rem;
+  align-items: baseline;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink-soft);
+}
+.sky-legend b {
+  font-family: var(--mono); font-weight: 400; font-size: 0.6875rem;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint);
+}
+.sky-legend .key { justify-self: start; }
+
+/* ── the entrance ─────────────────────────────────────────────────────────
+   GSAP drives this when it is on the page and adds .sw-gsap, which switches
+   every keyframe below off. These are the fallback, so the wheel never needs
+   a CDN to become visible. Drawn once, in the order a person would draw it;
+   nothing loops — see the note at the top of sky-wheel.js about not faking
+   motion the sky does not have. */
+html.js .sky-wheel:not(.sw-gsap) .sw-plate > circle { animation: sw-in var(--slow) var(--spring) both; }
+html.js .sky-wheel:not(.sw-gsap) .sw-rasi  { animation: sw-in var(--slow) var(--spring) 0.25s both; }
+html.js .sky-wheel:not(.sw-gsap) .sw-rasi-glyph { animation: sw-in var(--slow) var(--spring) 0.35s both; }
+html.js .sky-wheel:not(.sw-gsap) .sw-div   { animation: sw-in var(--base) linear 0.4s both; }
+html.js .sky-wheel:not(.sw-gsap) .sw-nak line { animation: sw-in var(--base) linear both; animation-delay: calc(0.5s + var(--i) * 18ms); }
+html.js .sky-wheel:not(.sw-gsap) .sw-hair  { animation: sw-in var(--base) linear 0.9s both; }
+html.js .sky-wheel:not(.sw-gsap) .sw-graha {
+  animation: sw-pop var(--base) var(--spring) both;
+  animation-delay: calc(1s + var(--i) * 70ms);
+  transform-box: fill-box; transform-origin: center;
+}
+html.js .sky-wheel:not(.sw-gsap) .sw-chord {
+  animation: sw-chord-in var(--base) linear both;
+  animation-delay: calc(1.6s + var(--i) * 45ms);
+}
+html.js .sky-wheel:not(.sw-gsap) .sw-lagna   { animation: sw-in var(--base) linear 2.2s both; }
+html.js .sky-wheel:not(.sw-gsap) .sw-readout { animation: sw-in var(--base) linear 2.3s both; }
+
+@keyframes sw-in  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes sw-pop { from { opacity: 0; transform: scale(0.72); } to { opacity: 1; transform: none; } }
+@keyframes sw-chord-in { from { opacity: 0; } to { opacity: 0.42; } }
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .sky-wheel * { animation: none !important; }
+}
+
+/* Reading position, under the sticky nav. Scaled from 0 by motion.js. */
+.progress {
+  height: 1px;
+  background: var(--mark);
+  transform: scaleX(0);
+  transform-origin: left center;
+  position: absolute;
+  inset: auto 0 -1px 0;
+}
+
+/* GSAP owns opacity on .reveal once it has loaded, so the CSS fallback has to
+   stand down — otherwise both try to drive the same property and an element
+   can end up stuck at the loser's value. */
+html.has-gsap .reveal { opacity: 1; transform: none; transition: none; }

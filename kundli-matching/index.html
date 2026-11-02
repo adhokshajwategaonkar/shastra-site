@@ -409,29 +409,55 @@
 </footer>
 
 <style>
-  .two-charts { display: grid; gap: 1.25rem; }
+  .two-charts { display: grid; gap: 2rem; }
   @media (min-width: 55rem) { .two-charts { grid-template-columns: 1fr 1fr; } }
-  fieldset.card { border: 1px solid var(--hairline); margin: 0; }
-  fieldset.card legend { padding: 0 0.5rem; }
-
-  .score-head { display: grid; gap: 1.5rem; align-items: end; }
-  @media (min-width: 45rem) { .score-head { grid-template-columns: auto 1fr; gap: 2.5rem; } }
-  .score {
-    font-family: var(--display); font-weight: 600; line-height: 0.9;
-    font-size: clamp(3.5rem, 12vw, 6rem); color: var(--gold); margin: 0;
-    font-variant-numeric: tabular-nums;
+  fieldset.card { border: 1px solid var(--rule); margin: 0; }
+  fieldset.card legend {
+    padding: 0 0.6rem; font-family: var(--mono); font-size: 0.6875rem;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint);
   }
-  .score .of { font-size: 0.3em; color: var(--faint); margin-left: 0.4rem; letter-spacing: 0; }
-  .score-bar { height: 0.5rem; border-radius: 999px; background: var(--elevated); overflow: hidden; border: 1px solid var(--hairline); }
+
+  /* One column, not two. A measuring rule belongs directly under the number
+     it measures and across the full measure — set beside it and bottom-
+     aligned, it floats away from the figure and reads as an unrelated bar. */
+  .score-head { display: grid; gap: 1.25rem; }
+
+  /* The score is a computed number, so it is set in mono, not in the serif,
+     and it is the one thing on the page the second plate marks. */
+  .score {
+    font-family: var(--mono); font-weight: 400; line-height: 0.95;
+    font-size: clamp(3.25rem, 11vw, 5.5rem); color: var(--mark); margin: 0;
+    font-variant-numeric: tabular-nums lining-nums; letter-spacing: -0.02em;
+  }
+  .score .of { font-size: 0.26em; color: var(--ink-faint); margin-left: 0.5rem; letter-spacing: 0.1em; }
+
+  /* A measuring rule, not a progress bar. Ticked every 6 of 36, so the eye
+     can read the score off the scale instead of guessing at a proportion —
+     and the heavy tick at halfway is 18, the conventional floor. */
+  .score-bar {
+    position: relative; height: 0.7rem;
+    background: var(--paper-sunk);
+    border: 1px solid var(--rule-firm);
+    overflow: hidden;
+  }
   .score-bar > div {
-    height: 100%; width: 0;
-    background: linear-gradient(90deg, var(--saffron), var(--gold));
+    height: 100%; width: 0; background: var(--mark);
     transition: width 1.1s var(--spring);
   }
-  .koota-ref th[scope='row'], table.data#kootas th[scope='row'] {
-    text-transform: none; letter-spacing: 0; font-size: 0.9375rem; color: var(--ink); font-weight: 500;
+  .score-bar::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background:
+      linear-gradient(to right, transparent calc(50% - 1px), var(--rule-firm) calc(50% - 1px) 50%, transparent 50%),
+      repeating-linear-gradient(to right,
+        var(--rule-firm) 0 1px, transparent 1px calc(100% / 6));
+    opacity: 0.4;
   }
-  .upsell { border-color: rgba(232, 184, 75, 0.22); }
+
+  .koota-ref th[scope='row'], table.data#kootas th[scope='row'] {
+    text-transform: none; letter-spacing: 0; font-size: 0.9375rem;
+    color: var(--ink); font-weight: 500; font-family: var(--body);
+  }
+  .upsell { border-left: 2px solid var(--mark); }
 </style>
 
 <script src="../assets/shastra.js" defer></script>
@@ -503,7 +529,7 @@ window.addEventListener('load', function () {
       var full = k.score === k.max;
       var zero = k.score === 0;
       return '<tr><th scope="row">' + LABEL[name] + '</th>' +
-        '<td class="num mono" style="color:' + (full ? 'var(--gold)' : zero ? 'var(--faint)' : 'var(--ink)') + '">' +
+        '<td class="num mono" style="color:' + (full ? 'var(--mark)' : zero ? 'var(--ink-faint)' : 'var(--ink)') + '">' +
         k.score + ' / ' + k.max + '</td>' +
         '<td class="small">' + evidence(name, k, tc) + '</td></tr>';
     }).join('');

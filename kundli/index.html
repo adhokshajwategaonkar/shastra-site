@@ -239,7 +239,7 @@
         <div id="openers" class="grid" style="margin-top:1.75rem"></div>
 
         <p class="label" style="margin-top:3rem">where you are now</p>
-        <div id="now-block" class="card" style="margin-top:0.75rem;border-color:rgba(232,184,75,0.28)"></div>
+        <div id="now-block" class="card" style="margin-top:0.75rem;border-left:2px solid var(--mark)"></div>
 
         <div id="tensions-block" hidden>
           <p class="label" style="margin-top:3rem">what pulls against itself</p>
@@ -543,18 +543,28 @@
   .tool-aside { position: sticky; top: 5.5rem; }
   @media (max-width: 62rem) { .tool-aside { position: static; } }
 
+  /* A ruled list, the way an index is set — not bullets. */
   .ticks { list-style: none; padding: 0; margin: 0; }
-  .ticks li { position: relative; padding-left: 1.35rem; font-size: 0.9375rem; color: var(--muted); }
-  .ticks li + li { margin-top: 0.6rem; }
-  .ticks li::before { content: '·'; position: absolute; left: 0.35rem; color: var(--gold); font-weight: 700; }
+  .ticks li {
+    position: relative; padding: 0.6rem 0 0.6rem 1.5rem;
+    font-size: 0.9375rem; color: var(--ink-soft);
+    border-bottom: 1px solid var(--rule);
+  }
+  .ticks li:last-child { border-bottom: 0; }
+  .ticks li::before {
+    content: '\002B'; position: absolute; left: 0; top: 0.6rem;
+    font-family: var(--mono); color: var(--mark); font-size: 0.8125rem;
+  }
 
-  .charts { display: grid; gap: 2rem; align-items: start; }
+  .charts { display: grid; gap: 2.5rem; align-items: start; }
   @media (min-width: 55rem) { .charts { grid-template-columns: repeat(3, 1fr); } }
   .charts figure { margin: 0; }
-  .charts figcaption { margin-bottom: 0.75rem; }
+  .charts figcaption { margin-bottom: 0.9rem; }
   .charts svg { width: 100%; max-width: 22rem; }
 
-  .upsell { border-color: rgba(232, 184, 75, 0.22); }
+  /* The purchase surface. It gets the second plate's rule and nothing else —
+     no fill, no glow, no badge. */
+  .upsell { border-left: 2px solid var(--mark); }
 </style>
 
 <script src="../assets/shastra.js" defer></script>
@@ -732,7 +742,7 @@ window.addEventListener('load', function () {
         maha.years.toFixed(1) + ' y</td></tr>');
       maha.antardashas.forEach(function (a) {
         var live = new Date(a.start) <= now && now < new Date(a.end);
-        rows.push('<tr' + (live ? ' style="background:rgba(232,184,75,0.06)"' : '') +
+        rows.push('<tr' + (live ? ' style="background:var(--mark-wash)"' : '') +
           '><th scope="row" style="padding-left:1.5rem;font-weight:400">' +
           (live ? '▸ ' : '') + tc(a.lord) + '</th><td>' + S.fmtDate(a.start) + '</td><td>' +
           S.fmtDate(a.end) + '</td><td class="num">' + a.years.toFixed(2) + ' y</td></tr>');

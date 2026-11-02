@@ -422,26 +422,38 @@
   .tool-aside { position: sticky; top: 5.5rem; }
   @media (max-width: 62rem) { .tool-aside { position: static; } }
 
-  .phases { display: grid; gap: 1rem; margin-top: 1.5rem; }
+  /* Three ruled cells in a row — the three phases read as one table, because
+     that is what they are: one episode in three parts. */
+  .phases { display: grid; gap: 0; margin-top: 1.75rem; border-top: 1px solid var(--rule-firm); }
   @media (min-width: 50rem) { .phases { grid-template-columns: repeat(3, 1fr); } }
   .phase {
-    border: 1px solid var(--hairline); border-radius: 1rem;
-    padding: 1.25rem; background: var(--elevated); position: relative; overflow: hidden;
+    border-bottom: 1px solid var(--rule);
+    padding: 1.35rem 1.25rem 1.35rem 0; position: relative;
   }
-  .phase[data-live='true'] { border-color: rgba(232, 184, 75, 0.4); }
+  @media (min-width: 50rem) {
+    .phase + .phase { border-left: 1px solid var(--rule); padding-left: 1.25rem; }
+  }
+  /* The phase you are actually in. One mark, on the one live thing. */
+  .phase[data-live='true'] { padding-left: 1rem; }
   .phase[data-live='true']::before {
-    content: ''; position: absolute; inset: 0 auto 0 0; width: 3px; background: var(--gold);
+    content: ''; position: absolute; inset: 0 auto 0 0; width: 2px; background: var(--mark);
   }
-  .phase[data-state='past'] { opacity: 0.5; }
+  .phase[data-state='past'] { opacity: 0.45; }
   .phase h4 {
-    font-family: var(--display); font-weight: 600; font-size: 1.125rem;
-    margin: 0 0 0.35rem; letter-spacing: -0.01em;
+    font-family: var(--display); font-weight: 400; font-size: 1.1875rem;
+    margin: 0 0 0.4rem; letter-spacing: -0.01em; color: var(--ink);
   }
-  .phase .when { font-variant-numeric: tabular-nums; color: var(--muted); font-size: 0.9375rem; margin: 0; }
-  .phase .meta { color: var(--faint); font-size: 0.8125rem; margin: 0.5rem 0 0; }
+  .phase .when {
+    font-family: var(--mono); font-variant-numeric: tabular-nums;
+    color: var(--ink-soft); font-size: 0.8125rem; margin: 0;
+  }
+  .phase .meta { color: var(--ink-faint); font-size: 0.8125rem; margin: 0.5rem 0 0; }
 
-  .upsell { border-color: rgba(232, 184, 75, 0.22); }
-  table.data#episodes th[scope='row'] { text-transform: none; letter-spacing: 0; font-size: 0.9375rem; color: var(--ink); font-weight: 500; }
+  .upsell { border-left: 2px solid var(--mark); }
+  table.data#episodes th[scope='row'] {
+    text-transform: none; letter-spacing: 0; font-size: 0.9375rem;
+    color: var(--ink); font-weight: 500; font-family: var(--body);
+  }
 </style>
 
 <script src="../assets/shastra.js" defer></script>
@@ -534,7 +546,7 @@ window.addEventListener('load', function () {
       var s = new Date(e.start), en = new Date(e.end);
       var live = now >= s && now < en;
       var past = en < now;
-      return '<tr' + (live ? ' style="background:rgba(232,184,75,0.06)"' : past ? ' style="opacity:0.55"' : '') + '>' +
+      return '<tr' + (live ? ' style="background:var(--mark-wash)"' : past ? ' style="opacity:0.55"' : '') + '>' +
         '<th scope="row">' + (live ? '<span class="gold">▸ running now</span>' : past ? 'past' : 'upcoming') + '</th>' +
         '<td>' + S.fmtDate(e.start) + '</td><td>' + S.fmtDate(e.end) + '</td>' +
         '<td class="num">' + e.years + ' y</td></tr>';

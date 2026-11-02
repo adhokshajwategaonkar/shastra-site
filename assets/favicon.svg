@@ -1,9 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="shastra">
-  <!-- The North Indian kundli, reduced to the one shape that survives 16px. -->
-  <rect width="64" height="64" rx="12" fill="#0B0B0F"/>
-  <g fill="none" stroke="#E8B84B" stroke-width="2.4" stroke-linejoin="round">
-    <rect x="11" y="11" width="42" height="42" rx="2"/>
-    <path d="M11 11 L53 53 M53 11 L11 53"/>
-    <path d="M32 11 L53 32 L32 53 L11 32 Z"/>
+  <!-- The North Indian kundli, reduced to the one shape that survives 16px.
+       Ink on paper, square — the same three rules as everything else. -->
+  <rect width="64" height="64" fill="#FAF9F6"/>
+  <g fill="none" stroke="#22211C" stroke-width="2.6" stroke-linejoin="round">
+    <rect x="10" y="10" width="44" height="44"/>
+    <path d="M10 10 L54 54 M54 10 L10 54"/>
+    <path d="M32 10 L54 32 L32 54 L10 32 Z"/>
   </g>
 </svg>
