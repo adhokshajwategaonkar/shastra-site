@@ -59,13 +59,20 @@
     // ── sections arrive as they are reached ────────────────────────────────
     // Batched so that a row of three cards staggers as a row instead of each
     // card firing its own independent tween when it happens to cross the line.
+    // NO STAGGER between batch-mates, on purpose.
+    //
+    // A row of three cards crossing the line together used to fade in one
+    // after another. It is only a seventh of a second, but it means there is
+    // always a moment where card 1 is solid, card 2 is half there and card 3
+    // is nearly invisible — and read as a still, that looks like the second
+    // and third cards have been deliberately dimmed. Adho asked what the
+    // intent was, which is the answer: there was none worth the confusion.
+    // Siblings now arrive together and only the y-offset carries the motion.
     window.ScrollTrigger.batch('.reveal', {
       start: 'top 88%',
       once: true,
       onEnter: function (els) {
-        gsap.from(els, {
-          opacity: 0, y: 22, duration: 0.75, ease: 'power3.out', stagger: 0.07,
-        });
+        gsap.from(els, { opacity: 0, y: 20, duration: 0.7, ease: 'power3.out' });
       },
     });
 

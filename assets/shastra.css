@@ -573,19 +573,23 @@ html.js .reveal.in {
 .sw-rasi text {
   fill: var(--paper);
   font-family: var(--mono);
-  font-size: 12px;
-  /* 500, not 400. Type reversed out of a solid black band optically thins —
-     the same weight that reads correctly as ink on paper reads as grey here. */
+  font-size: 13px;
+  /* 500, not 400. Type reversed out of a solid black band optically thins, so
+     the weight that reads correctly as ink on paper reads as grey here. */
   font-weight: 500;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
+  /* The fix for the clipped names. Centring the glyphs on the arc makes their
+     radial extent symmetrical, so one radius holds for all twelve however long
+     the name is and whichever direction its arc runs. */
+  dominant-baseline: central;
 }
 /* The zodiac glyph a reader already knows, sitting above its Sanskrit name.
    Upright, never rotated — twelve upright glyphs read as a dial, twelve
    rotated ones read as a mistake. */
 .sw-rasi-glyph text {
   fill: var(--paper);
-  font-size: 18.5px;
+  font-size: 19.5px;
   /* These are hairline outline glyphs reversed out of black at ~18px. At
      anything less than full opacity they stop reading as icons and start
      reading as smudges. */
@@ -611,20 +615,47 @@ html.js .reveal.in {
 .sw-chord--saturn  { stroke-dasharray: 9 4 1.5 4; }
 
 /* ── grahas ────────────────────────────────────────────────────────────── */
+/* Clicking the wheel used to draw the browser's own blue focus rectangle
+   around the whole SVG, which is the one colour that does not exist anywhere
+   in this design. Suppressed for pointer input across the component, together
+   with the two neighbouring defaults that produce the same kind of stray box:
+   a drag selecting the diagram, and the grey tap flash on touch.
+
+   Keyboard focus is NOT suppressed — it is restyled below, in ink. */
+.sky-wheel, .sky-wheel * {
+  -webkit-tap-highlight-color: transparent;
+}
+.sky-wheel { -webkit-user-select: none; user-select: none; }
+.sky-wheel :focus { outline: none; }
+
 .sw-graha { cursor: pointer; transition: opacity var(--base) linear; }
-.sw-graha:focus { outline: none; }
-.sw-graha:focus-visible .sw-glyph { paint-order: stroke; stroke: var(--mark); stroke-width: 3px; }
+.sky-wheel .sw-graha:focus-visible {
+  outline: 1.5px solid var(--mark);
+  outline-offset: 2px;
+}
+
+/* A target you can see before you hover it. Without this the glyphs read as
+   printed marks and nobody discovers that they are interactive. */
+.sw-ring {
+  fill: none; stroke: var(--ink); stroke-width: 0.8; opacity: 0;
+  stroke-dasharray: 2 3;
+  transition: opacity var(--fast) linear;
+}
+.sw-graha:hover .sw-ring,
+.sw-graha:focus-visible .sw-ring,
+.sw-graha.is-demo .sw-ring { opacity: 0.5; }
+.sw-graha.is-lit .sw-ring { opacity: 1; stroke: var(--mark); stroke-dasharray: none; }
 /* An invisible target, so the hover area is the glyph's whole cell and not
    only the pixels its strokes happen to cover. */
 .sw-hit { fill: transparent; }
 .sw-graha-tick { stroke: var(--ink); stroke-width: 0.9; opacity: 0.55; }
 .sw-leader { stroke: var(--ink); stroke-width: 0.5; opacity: 0.3; }
-.sw-glyph { fill: var(--ink); font-size: 19px; }
+.sw-glyph { fill: var(--ink); font-size: 22px; }
 .sw-deg {
-  fill: var(--ink-faint); font-family: var(--mono); font-size: 8.5px;
-  letter-spacing: 0.04em;
+  fill: var(--ink-faint); font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.02em;
 }
-.sw-retro { fill: var(--mark); font-family: var(--mono); font-size: 8.5px; }
+.sw-retro { fill: var(--mark); font-family: var(--mono); font-size: 10px; }
 
 /* The Moon is the rashi — the headline value in Indian astrology — and it is
    the one body on here that moves enough to be worth watching. */
@@ -638,10 +669,10 @@ html.js .reveal.in {
 /* ── the readout ───────────────────────────────────────────────────────── */
 .sw-disc { fill: var(--paper); stroke: var(--rule); stroke-width: 1; }
 .sw-readout text { font-family: var(--mono); text-transform: lowercase; }
-.sw-r-label { fill: var(--ink-faint); font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; }
-.sw-r-big   { fill: var(--ink); font-size: 18px; letter-spacing: 0.02em; }
-.sw-r-mid   { fill: var(--ink); font-size: 10.5px; letter-spacing: 0.08em; }
-.sw-r-small { fill: var(--ink-faint); font-size: 8px; letter-spacing: 0.08em; }
+.sw-r-label { fill: var(--ink-faint); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; }
+.sw-r-big   { fill: var(--ink); font-size: 21px; letter-spacing: 0.02em; }
+.sw-r-mid   { fill: var(--ink); font-size: 12px; letter-spacing: 0.06em; }
+.sw-r-small { fill: var(--ink-faint); font-size: 9.5px; letter-spacing: 0.06em; }
 .sw-tick    { fill: var(--mark); opacity: 0; }
 .sw-tick.is-beat { animation: sw-beat 1.4s steps(1, end) 3; }
 @keyframes sw-beat { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
@@ -663,10 +694,10 @@ html.js .reveal.in {
   margin: 1.5rem 0 0;
   text-align: center;
   font-family: var(--mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
   color: var(--ink-faint);
-  min-height: 2.6em;            /* reserve the line so hovering never reflows */
+  min-height: 3.4em;            /* reserve the line so hovering never reflows */
   transition: color var(--fast) linear;
 }
 .sky-note[data-lit] { color: var(--ink); }

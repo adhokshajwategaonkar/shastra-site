@@ -117,7 +117,7 @@
       })
       .catch(function (err) {
         clearTimeout(timer);
-        if (err.name === 'AbortError') throw new Error('the server is taking too long. it may be waking up — try once more.');
+        if (err.name === 'AbortError') throw new Error('the server is taking too long. it may be waking up, so try once more.');
         if (err instanceof TypeError) throw new Error('could not reach shastra. check your connection and try again.');
         throw err;
       });

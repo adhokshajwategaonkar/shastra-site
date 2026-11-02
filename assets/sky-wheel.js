@@ -61,10 +61,10 @@
 
   // ── geometry (viewBox 600×600) ───────────────────────────────────────────
   var C         = 300;
-  var R_BAND_O  = 290;   // outer edge of the ink rasi band
-  var R_BAND_I  = 244;   // inner edge
-  var R_RASI_G  = 276;   // zodiac glyph, upright, inside the band
-  var R_RASI_N  = 252;   // the rasi name, set along the band
+  var R_BAND_O  = 292;   // outer edge of the ink rasi band
+  var R_BAND_I  = 243;   // inner edge
+  var R_RASI_G  = 279;   // zodiac glyph, upright, inside the band
+  var R_RASI_N  = 257;   // the rasi name, CENTRED on this path (see drawPlate)
   var R_NAK_O   = 244;   // nakshatra ticks hang inward from the band
   var R_NAK_I   = 232;
   var R_TICK_O  = 244;   // a graha's exact-degree tick
@@ -228,7 +228,18 @@
         d: top ? arc(R_RASI_N, lon1, lon0, 1) : arc(R_RASI_N, lon0, lon1, 0),
         fill: 'none',
       }));
-      var t = el('text', { 'text-anchor': 'middle', dy: top ? '0.34em' : '-0.04em' });
+      /* No dy. The baseline is centred on the path by `dominant-baseline:
+         central` in the stylesheet, which is what stops the long names
+         clipping.
+
+         With a shifted baseline the glyphs grow in whichever direction the arc
+         happens to run — outward in the top half, inward in the bottom — so a
+         dy that kept `tula` inside the band pushed `vrishabha` and
+         `vrishchika` straight out of it, and the parts that landed on paper
+         were white on white and simply vanished. Centring makes the extent
+         symmetrical and direction-independent, so one radius is correct for
+         all twelve however long the name is. */
+      var t = el('text', { 'text-anchor': 'middle' });
       var tp = el('textPath', { 'text-anchor': 'middle', startOffset: '50%' }, RASI[i].sa);
       tp.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#' + id);
       tp.setAttribute('href', '#' + id);
@@ -349,7 +360,8 @@
       var gp = pt(R_GLYPH, at);
       // A transparent disc, so the whole glyph area is hoverable rather than
       // only the few pixels the glyph's own strokes cover.
-      grp.appendChild(el('circle', { cx: f(gp[0]), cy: f(gp[1]), r: 15, class: 'sw-hit' }));
+      grp.appendChild(el('circle', { cx: f(gp[0]), cy: f(gp[1]), r: 16, class: 'sw-hit' }));
+      grp.appendChild(el('circle', { cx: f(gp[0]), cy: f(gp[1]), r: 15, class: 'sw-ring' }));
       grp.appendChild(el('text', {
         x: f(gp[0]), y: f(gp[1]), 'text-anchor': 'middle', dy: '0.36em',
         class: 'sw-glyph',
@@ -430,6 +442,7 @@
 
   // ── hover / focus: isolate one graha's drishti and name it ───────────────
   function wireHighlight(svg, root, data, out) {
+    // returns `set`, so demo() can drive the same code path a pointer does
     var base = out ? out.textContent : '';
 
     function say(key, litCount) {
@@ -464,6 +477,8 @@
       say(key, lit);
     }
 
+    return set;
+
     ['mouseover', 'focusin'].forEach(function (ev) {
       svg.addEventListener(ev, function (e) {
         var g = e.target.closest ? e.target.closest('.sw-graha') : null;
@@ -476,6 +491,44 @@
         if (!to || !to.closest || !to.closest('.sw-graha')) set(null);
       });
     });
+  }
+
+  /* Demonstrate the hover once, on the Moon, after the entrance settles.
+
+     Telling someone in 8px type that they can hover a graha does not work;
+     nobody reads the caption before they have a reason to. Lighting one up
+     and releasing it shows the mechanic in a second and a half, and the
+     dotted target rings mean the other eight still look clickable afterwards.
+
+     Runs once per page load, is skipped entirely under reduced motion, and
+     cancels the moment a real pointer or keyboard lands on the wheel so it
+     can never fight the person using it. */
+  function demo(svg, set) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    // Re-queried inside the timeout, never captured here: the live fetch
+    // replaces the whole .sw-sky group a moment after the snapshot draws, so
+    // a reference taken now is detached by the time the demo runs and the
+    // ring silently lights a node nobody can see.
+    function moonNow() { return svg.querySelector('.sw-graha[data-graha="moon"]'); }
+    if (!moonNow()) return;
+
+    var cancelled = false;
+    function cancel() { cancelled = true; }
+    ['pointerdown', 'pointermove', 'keydown', 'focusin'].forEach(function (ev) {
+      svg.addEventListener(ev, cancel, { once: true, passive: true });
+    });
+
+    setTimeout(function () {
+      if (cancelled) return;
+      var moon = moonNow();
+      if (moon) moon.classList.add('is-demo');
+      set('moon');
+      setTimeout(function () {
+        var m = moonNow();
+        if (m) m.classList.remove('is-demo');
+        if (!cancelled) set(null);
+      }, 1900);
+    }, 2600);
   }
 
   // ── the entrance, when GSAP is on the page ───────────────────────────────
@@ -531,8 +584,11 @@
     function paint(data, state) {
       drawSky(svg, data, state);
       drawReadout(svg, data, state);
-      wireHighlight(svg, root, data, out);
-      if (!animated) animated = animate(svg, root);
+      var set = wireHighlight(svg, root, data, out);
+      if (!animated) {
+        animated = animate(svg, root);
+        demo(svg, set);
+      }
     }
 
     if (SNAPSHOT) paint(SNAPSHOT, 'snapshot');

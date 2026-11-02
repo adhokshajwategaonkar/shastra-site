@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#FAF9F6">
-<title>shastra — vedic astrology, computed honestly</title>
+<title>shastra · vedic astrology, computed honestly</title>
 <meta name="description" content="A free daily vedic reading over WhatsApp, computed from real planetary positions with Swiss Ephemeris. Flat one-time reports from ₹99. No per-minute meters, no fear-selling, no remedies to buy.">
 <link rel="canonical" href="https://adhokshajwategaonkar.github.io/shastra-site/">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="shastra">
-<meta property="og:title" content="shastra — vedic astrology, computed honestly">
+<meta property="og:title" content="shastra · vedic astrology, computed honestly">
 <meta property="og:description" content="Real chart maths, plain language, and a price that doesn't run on a meter. Free daily reading over WhatsApp.">
 <meta property="og:url" content="https://adhokshajwategaonkar.github.io/shastra-site/">
 <meta property="og:image" content="https://adhokshajwategaonkar.github.io/shastra-site/assets/og-home.png">
@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Libre+Caslon+Display&display=swap">
-<link rel="stylesheet" href="assets/shastra.css?v=2ed729d9">
+<link rel="stylesheet" href="assets/shastra.css?v=21b4aa62">
 
 <script type="application/ld+json">
 {
@@ -76,7 +76,7 @@
         {
           "@type": "Question",
           "name": "What is shastra?",
-          "acceptedAnswer": { "@type": "Answer", "text": "shastra is a vedic astrology service that computes your chart deterministically with the Swiss Ephemeris and explains it in plain language. The daily reading is free and arrives over WhatsApp when you message first each morning. Deep reports are flat one-time payments — ₹99 for career, ₹149 for compatibility — with no subscription, no per-minute billing, and no remedies for sale." }
+          "acceptedAnswer": { "@type": "Answer", "text": "shastra is a vedic astrology service that computes your chart deterministically with the Swiss Ephemeris and explains it in plain language. The daily reading is free and arrives over WhatsApp when you message first each morning. Deep reports are flat one-time payments: ₹99 for career and ₹149 for compatibility, with no subscription, no per-minute billing, and no remedies for sale." }
         },
         {
           "@type": "Question",
@@ -86,7 +86,7 @@
         {
           "@type": "Question",
           "name": "Does an AI write the astrology, or is the maths real?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Both parts are separated on purpose. Every planetary position, nakshatra, dasha date and guna milan point is computed by the Swiss Ephemeris in code — a language model never calculates a position. A language model only writes the interpretation, and it receives the computed chart as structured data, never your birth date, birth place, email or phone number." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Both parts are separated on purpose. Every planetary position, nakshatra, dasha date and guna milan point is computed by the Swiss Ephemeris in code. A language model never calculates a position. A language model only writes the interpretation, and it receives the computed chart as structured data, never your birth date, birth place, email or phone number." }
         },
         {
           "@type": "Question",
@@ -96,7 +96,7 @@
         {
           "@type": "Question",
           "name": "Which ayanamsa and house system does shastra use?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Lahiri (Chitrapaksha) ayanamsa and whole-sign houses, with the mean lunar node. These are the standard conventions in Indian vedic astrology. Lahiri is defined by placing the star Spica at exactly 180° of sidereal longitude, and shastra's test suite asserts that as a hard check — if it ever drifted, the build fails." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Lahiri (Chitrapaksha) ayanamsa and whole-sign houses, with the mean lunar node. These are the standard conventions in Indian vedic astrology. Lahiri is defined by placing the star Spica at exactly 180° of sidereal longitude, and shastra's test suite asserts that as a hard check. if it ever drifted, the build fails." }
         },
         {
           "@type": "Question",
@@ -141,7 +141,7 @@
           <span class="line"><em>read plainly.</em></span>
         </h1>
         <p class="lede" data-intro style="margin-top:1.75rem">
-          your real chart — sidereal positions, nakshatras, dasha dates — worked out to the
+          your real chart (sidereal positions, nakshatras, dasha dates) worked out to the
           arcsecond, then said in a sentence you can use before 9am.
         </p>
         <div class="btn-row" data-intro style="margin-top:2rem">
@@ -189,21 +189,91 @@
     </div>
   </section>
 
-  <!-- ── the answer block: first thing a crawler or a skimmer reads ────── -->
-  <section class="section">
+  <!-- ── the pitch ───────────────────────────────────────────────────────
+       The one section that has to land before anybody reads a word, so it
+       takes the page's single inverted band and draws its argument instead of
+       describing it: what you hand over, what the arithmetic does with it,
+       what comes back, and the exact point where your identifying details
+       stop travelling. That last one is the whole trust claim, so it is a
+       gate on the diagram rather than a sentence further down. -->
+  <section class="section invert pitch">
     <div class="wrap">
       <p class="label">what this is</p>
-      <div class="answer-block">
-        <p style="font-size:clamp(1.125rem,2.4vw,1.375rem);color:var(--ink);max-width:52rem;margin:0">
-          <strong>shastra is vedic astrology with the arithmetic done properly and the selling left out.</strong>
-          every position, nakshatra, dasha date and guna milan point is computed in code with the
-          Swiss Ephemeris — sidereal, Lahiri ayanamsa, whole-sign houses. a language model writes the
-          interpretation and never touches the maths. the daily reading is free over WhatsApp. deep
-          reports are flat one-time payments: <span class="mono">₹99</span> career,
-          <span class="mono">₹149</span> compatibility. no subscription, no per-minute meter,
-          and nothing to buy to "fix" what a reading just told you.
-        </p>
-      </div>
+      <h2 class="display pitch-line">
+        vedic astrology with the arithmetic done properly,<br>
+        and the selling left out.
+      </h2>
+
+      <ol class="pipeline">
+        <li>
+          <div class="pipe-art" aria-hidden="true">
+            <svg viewBox="0 0 150 104" role="presentation">
+              <g fill="none" stroke="var(--ink)" stroke-width="1">
+                <rect x="21" y="12" width="108" height="80"/>
+                <path d="M21 32H129"/>
+                <path d="M38 50H112M38 64H112M38 78H90" opacity="0.5"/>
+              </g>
+              <g fill="var(--ink)" opacity="0.55">
+                <rect x="31" y="19" width="7" height="7"/>
+                <rect x="43" y="19" width="7" height="7"/>
+              </g>
+            </svg>
+          </div>
+          <p class="label">01 &nbsp;you give</p>
+          <h3 class="display">date, time, place</h3>
+          <p class="small">once, at the start. that is the entire signup.</p>
+        </li>
+
+        <li>
+          <div class="pipe-art" aria-hidden="true">
+            <svg viewBox="0 0 150 104" role="presentation">
+              <g fill="none" stroke="var(--ink)" stroke-width="1">
+                <circle cx="75" cy="52" r="40"/>
+                <circle cx="75" cy="52" r="29"/>
+                <path d="M75 12V23M75 81V92M35 52H46M104 52H115
+                         M46.8 23.8L54.6 31.6M95.4 72.4L103.2 80.2
+                         M103.2 23.8L95.4 31.6M54.6 72.4L46.8 80.2" opacity="0.65"/>
+              </g>
+              <g fill="var(--mark)">
+                <circle cx="75" cy="52" r="2.6"/>
+              </g>
+              <g fill="var(--ink)">
+                <circle cx="94" cy="39" r="2"/>
+                <circle cx="61" cy="70" r="2"/>
+                <circle cx="56" cy="43" r="2"/>
+              </g>
+            </svg>
+          </div>
+          <p class="label">02 &nbsp;the engine computes</p>
+          <h3 class="display">every position, to the arcsecond</h3>
+          <p class="small">swiss ephemeris. sidereal, lahiri ayanamsa, whole-sign houses.
+            no language model touches a number.</p>
+        </li>
+
+        <li>
+          <div class="pipe-art" aria-hidden="true">
+            <svg viewBox="0 0 150 104" role="presentation">
+              <g fill="none" stroke="var(--ink)" stroke-width="1">
+                <path d="M30 26H120M30 42H120M30 58H112M30 74H78"/>
+              </g>
+              <g fill="none" stroke="var(--mark)" stroke-width="1.4">
+                <path d="M30 74H78"/>
+              </g>
+            </svg>
+          </div>
+          <p class="label">03 &nbsp;you get words</p>
+          <h3 class="display">sixty of them, before 9am</h3>
+          <p class="small">what is moving today, read against your chart,
+            in language you can use.</p>
+        </li>
+      </ol>
+
+      <p class="gate">
+        <span class="gate-mark" aria-hidden="true"></span>
+        <span>the language model never receives your birth date, your birth place or your
+          phone number. it is handed a chart with the identifying fields already stripped out.
+          that is enforced in code, and the test suite fails if it stops being true.</span>
+      </p>
     </div>
   </section>
 
@@ -217,26 +287,24 @@
           <p class="step-n">01</p>
           <h3 class="display">give it your birth details, once</h3>
           <p class="small">date, time, place. that's the whole onboarding. you get your kundli back
-            immediately — positions, nakshatra, lagna, dasha — and a first reading that is longer
+            immediately (positions, nakshatra, lagna, dasha) and a first reading that is longer
             than any that follow.</p>
         </div>
         <div class="card reveal">
           <p class="step-n">02</p>
           <h3 class="display">message first, every morning</h3>
           <p class="small">"gm" works. 🙏 works. anything works. that message is the ritual, and it's
-            also your streak. shastra never messages you first — see the pricing section for the
-            unglamorous reason why.</p>
+            also your streak. shastra never messages you first. the pricing section says why.</p>
         </div>
         <div class="card reveal">
           <p class="step-n">03</p>
           <h3 class="display">read sixty words and get on with it</h3>
-          <p class="small">what's actually moving today, against your chart, in language you can act
+          <p class="small">what's moving today, against your chart, in language you can act
             on. no horoscope-column hedging, no "the universe has a plan for you".</p>
         </div>
       </div>
       <p class="tiny reveal" style="margin-top:1.5rem;max-width:var(--prose)">
-        the deeper stuff — full chart, report reader, compatibility — lives in the web app. install
-        it to your home screen and it behaves like an app, because it is one.
+        the deeper stuff lives in the web app: full chart, report reader, compatibility. install it to your home screen and it behaves like an app.
       </p>
     </div>
   </section>
@@ -248,8 +316,7 @@
       <h2 class="display reveal" style="max-width:22ch">the engine is tested against things it cannot fake.</h2>
       <p class="lede reveal" style="margin-top:1.5rem">
         "our astrology is accurate" is a claim anyone can type. so shastra's chart engine ships with
-        a test suite that has to pass before any code does — 196 assertions, and these are the ones
-        that matter:
+        a test suite that has to pass before any code does. 196 assertions, and these are the ones that matter:
       </p>
 
       <div class="grid grid-2" style="margin-top:2.5rem">
@@ -262,26 +329,24 @@
         <div class="card reveal">
           <h3 class="display">two NASA eclipse times</h3>
           <p class="small">sun and moon must conjoin at the 2017-08-21 solar eclipse and oppose at the
-            2018-07-27 lunar eclipse. these checks are independent of any ayanamsa — they test the
+            2018-07-27 lunar eclipse. these checks are independent of any ayanamsa. they test the
             raw ephemeris itself, against published astronomy.</p>
         </div>
         <div class="card reveal">
           <h3 class="display">three published reference charts</h3>
           <p class="small">Gandhi, Einstein and Modi, asserted against <em>published</em> values rather
-            than values this engine produced. Gandhi's chart matches on all seven classical grahas —
-            sign, nakshatra and dignity.</p>
+            than values this engine produced. Gandhi's chart matches on all seven classical grahas: sign, nakshatra and dignity.</p>
         </div>
         <div class="card reveal">
           <h3 class="display">guna milan is 36 points of code</h3>
-          <p class="small">the full ashtakoota — varna, vashya, tara, yoni, graha maitri, gana,
-            bhakoot, nadi — computed arithmetically, with the classical mangal dosha exemptions
+          <p class="small">all eight kootas (varna, vashya, tara, yoni, graha maitri, gana, bhakoot, nadi) computed arithmetically, with the classical mangal dosha exemptions
             applied. a language model is never asked to add up to 36.</p>
         </div>
       </div>
 
       <p class="tiny reveal" style="margin-top:1.75rem;max-width:var(--prose)">
         positions come from the Swiss Ephemeris (Moshier mode), accurate to about 0.1 arcseconds. a
-        nakshatra pada is 3°20′ wide — so the error is roughly four orders of magnitude smaller than
+        nakshatra pada is 3°20′ wide, so the error is roughly four orders of magnitude smaller than
         anything that could change a single word of a reading.
       </p>
     </div>
@@ -308,8 +373,7 @@
         <a class="card reveal" href="sade-sati/">
           <h3 class="display">sade sati</h3>
           <p class="go">read it →</p>
-          <p class="small">whether Saturn is in your 12th, 1st or 2nd from natal moon — and the
-            actual entry and exit dates, computed, not looked up in a table.</p>
+          <p class="small">whether Saturn is in your 12th, 1st or 2nd from natal moon, plus the actual entry and exit dates, computed rather than looked up in a table.</p>
         </a>
       </div>
     </div>
@@ -344,12 +408,12 @@
               <td>never</td>
             </tr>
             <tr>
-              <th scope="row">career reading — what you're built to do, and when the doors open</th>
+              <th scope="row">career reading: what you're built to do, and when the doors open</th>
               <td class="num mono">₹99</td>
               <td>once</td>
             </tr>
             <tr>
-              <th scope="row">compatibility reading — the 36 points, then what they actually mean</th>
+              <th scope="row">compatibility reading: the 36 points, then what they mean</th>
               <td class="num mono">₹149</td>
               <td>once</td>
             </tr>
@@ -370,36 +434,38 @@
           <p style="margin:0 0 0.75rem"><strong>₹149. once. the price is on the button before you press it.</strong></p>
           <p class="small" style="margin:0">a human consult runs ₹500–2,000 with the meter running.
             this is once. no auto-renew, nothing to cancel, and a refund inside 7 days if it wasn't
-            worth it — one email, no reason required.</p>
+            worth it. one email, no reason required.</p>
         </div>
       </div>
 
       <p class="tiny reveal" style="margin-top:1.75rem;max-width:var(--prose)">
         why the daily reading can be free: in India a business-initiated WhatsApp message costs the
-        sender about ₹1.09 — roughly ₹33 per user per month for a daily send. a <em>reply</em> to a
-        message you sent costs nothing. so you message first, and the free thing stays free. that's
-        the whole trick, and now you know it too.
+        sender about ₹1.09, which is about ₹33 a month per user for a daily send. a <em>reply</em> to a
+        message you sent costs nothing. so you message first, and the free thing stays free. that's the whole trick.
       </p>
     </div>
   </section>
 
-  <!-- ── ethics: the one inverted band. Punctuation, not a theme. ──────── -->
-  <section class="section invert">
+  <!-- ── ethics ─────────────────────────────────────────────────────────
+       On paper, not inverted: the page gets one dark band and the pitch has
+       it. A ruled list of refusals reads as a printed code of conduct, which
+       is the right register for this anyway. -->
+  <section class="section">
     <div class="wrap">
       <p class="label reveal">the promise</p>
       <h2 class="display reveal" style="max-width:16ch">we will never scare you into paying.</h2>
       <p class="lede reveal" style="margin-top:1.5rem">
         the standard playbook is to find something frightening in your chart and then sell you the
         cure. shastra can't run that play, because these rules are written into the code that
-        generates every single reading — not into a values page nobody reads.
+        generates every reading.
       </p>
 
       <ul class="promises reveal">
-        <li><strong>no predictions about death, illness, pregnancy or accidents.</strong> not softened, not hinted at, not "for entertainment". the categories are blocked.</li>
+        <li><strong>no predictions about death, illness, pregnancy or accidents.</strong> not softened and not hinted at. the categories are blocked.</li>
         <li><strong>no remedies. ever.</strong> no gemstones, no yantras, no pujas, no paid fixes. shastra does not sell relief from a problem it just described to you.</li>
         <li><strong>no manufactured urgency</strong> and no countdown timers. a transit that matters will still matter tomorrow.</li>
-        <li><strong>at most two mentions of a paid report per week</strong> — enforced by a counter in the database, not by asking a model to show restraint.</li>
-        <li><strong>no medical, legal or financial directives.</strong> timing and reflection. that's the remit.</li>
+        <li><strong>at most two mentions of a paid report per week.</strong> a counter in the database enforces it.</li>
+        <li><strong>no medical, legal or financial directives.</strong> timing and reflection, and that is all.</li>
         <li><strong>no auto-renew, no subscription, nothing to cancel.</strong></li>
       </ul>
 
@@ -413,7 +479,7 @@
   <!-- ── faq ────────────────────────────────────────────────────────────── -->
   <section class="section">
     <div class="wrap">
-      <p class="label reveal">questions people actually ask</p>
+      <p class="label reveal">questions people ask</p>
       <h2 class="display reveal" style="margin-bottom:2.5rem">frequently asked</h2>
 
       <div class="faq">
@@ -422,7 +488,7 @@
           <div><p>shastra is a vedic astrology service that computes your chart deterministically with
             the Swiss Ephemeris and explains it in plain language. The daily reading is free and
             arrives over WhatsApp when you message first each morning. Deep reports are flat one-time
-            payments — ₹99 for career, ₹149 for compatibility — with no subscription, no per-minute
+            payments: ₹99 for career and ₹149 for compatibility, with no subscription, no per-minute
             billing, and no remedies for sale.</p></div>
         </details>
 
@@ -439,7 +505,7 @@
         <details>
           <summary>Does an AI write the astrology, or is the maths real?</summary>
           <div><p>Both parts are separated on purpose. Every planetary position, nakshatra, dasha date
-            and guna milan point is computed by the Swiss Ephemeris in code — a language model never
+            and guna milan point is computed by the Swiss Ephemeris in code. A language model never
             calculates a position. A language model only writes the interpretation, and it receives
             the computed chart as structured data, never your birth date, birth place, email or
             phone number.</p></div>
@@ -448,16 +514,14 @@
         <details>
           <summary>Is the daily reading really free, or free-for-now?</summary>
           <div><p>Free, and structurally so. In India a business-initiated WhatsApp template message
-            costs the sender about ₹1.09, which is roughly ₹33 per user per month for a daily send —
-            that product could not stay free. A reply sent inside a conversation you started costs
+            costs the sender about ₹1.09, which is about ₹33 a month per user for a daily send, and that product could not stay free. A reply sent inside a conversation you started costs
             nothing. So the reading is a reply, you send the first message, and the economics work at
             any number of users.</p></div>
         </details>
 
         <details>
           <summary>Which ayanamsa and house system does shastra use?</summary>
-          <div><p>Lahiri (Chitrapaksha) ayanamsa, whole-sign houses, mean lunar node — the standard
-            conventions in Indian vedic astrology. Lahiri is defined by placing the star Spica at
+          <div><p>Lahiri (Chitrapaksha) ayanamsa, whole-sign houses, mean lunar node. These are the standard conventions in Indian vedic astrology. Lahiri is defined by placing the star Spica at
             exactly 180° of sidereal longitude, and that is asserted as a hard test: if it ever
             drifted, the build fails before anything ships.</p></div>
         </details>
@@ -466,7 +530,7 @@
           <summary>What happens to my birth details?</summary>
           <div><p>They're stored to compute your chart, and used for nothing else. They are never sold
             or shared with advertisers. The language model that writes your reading never receives
-            them — it sees only the computed chart, with the identifying fields stripped before the
+            them. It sees only the computed chart, with the identifying fields stripped before the
             call is made. You can delete your account and every row attached to it at any time; see
             the <a href="privacy/">privacy policy</a>.</p></div>
         </details>
@@ -475,7 +539,7 @@
           <summary>Do I need to install an app?</summary>
           <div><p>No. The daily reading works entirely inside WhatsApp. The web app opens in a browser
             and can be added to your home screen if you want the full chart, the report reader and
-            compatibility — but nothing requires an install.</p></div>
+            compatibility, but nothing requires an install.</p></div>
         </details>
 
         <details>
@@ -564,9 +628,14 @@
   .hero-h1 .line > * { display: block; }
 
   .hero-section { padding-block: clamp(2.5rem, 6vw, 4.5rem) clamp(2.5rem, 5vw, 4rem); }
-  .hero { display: grid; gap: clamp(2.5rem, 6vw, 4.5rem); align-items: center; }
-  @media (min-width: 60rem) { .hero { grid-template-columns: 1.1fr 0.9fr; } }
-  .hero-art { justify-self: center; width: min(30rem, 88vw); }
+  /* The hero runs wider than the rest of the page. Everything inside the
+     wheel is sized in viewBox units, so it shrinks with the rendered width —
+     at the old 30rem the degree labels came out around 7px on screen and you
+     had to zoom to read them. */
+  .hero-section .wrap { max-width: 78rem; }
+  .hero { display: grid; gap: clamp(2.5rem, 5vw, 4rem); align-items: center; }
+  @media (min-width: 60rem) { .hero { grid-template-columns: 1fr 1.08fr; } }
+  .hero-art { justify-self: center; width: min(38rem, 100%); }
 
   .hero-art .sky-note {
     margin: 1.25rem 0 0;
@@ -576,10 +645,60 @@
     letter-spacing: 0.08em;
   }
 
-  /* The standfirst, set off by a rule the way a pull-quote is in print. */
-  .answer-block {
-    border-left: 1px solid var(--rule-firm);
-    padding: 0.25rem 0 0.25rem clamp(1.25rem, 3vw, 2rem);
+  /* ── the pitch ──────────────────────────────────────────────────────── */
+  .pitch-line {
+    max-width: 24ch;
+    margin: 0 0 clamp(3rem, 6vw, 4.5rem);
+  }
+  @media (min-width: 48rem) { .pitch-line { max-width: none; } }
+
+  /* Three stages, read left to right, divided by rules rather than boxed.
+     The arrow between them is drawn in the gap so the eye is told the order
+     without a caption asking it to. */
+  .pipeline {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; gap: 0;
+    border-top: 1px solid var(--rule);
+  }
+  .pipeline > li {
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+  @media (min-width: 52rem) {
+    .pipeline { grid-template-columns: repeat(3, 1fr); }
+    .pipeline > li { padding: 2.5rem 2rem 2.5rem 0; }
+    .pipeline > li + li { border-left: 1px solid var(--rule); padding-left: 2rem; }
+    /* The arrow sits on the rule between two stages. */
+    .pipeline > li + li::before {
+      content: '\2192';
+      position: absolute; left: -0.62rem; top: 2.9rem;
+      font-family: var(--mono); font-size: 0.75rem; line-height: 1;
+      color: var(--ink-faint);
+      background: var(--night); padding: 0.35rem 0;
+    }
+  }
+  .pipeline .label { margin-bottom: 0.6rem; }
+  .pipeline h3 { margin: 0 0 0.6rem; max-width: 16ch; }
+  .pipeline .small { max-width: 34ch; margin: 0; }
+
+  .pipe-art { width: 7.5rem; margin-bottom: 1.75rem; }
+  .pipe-art svg { width: 100%; height: auto; overflow: visible; }
+
+  /* The gate. The claim that matters most on this page, so it is set apart
+     from the three stages and marked with the one vermilion rule in the
+     band. */
+  .gate {
+    display: grid; grid-template-columns: auto 1fr; gap: 1.1rem;
+    align-items: start;
+    margin: clamp(2.5rem, 5vw, 3.5rem) 0 0;
+    max-width: 54rem;
+    color: var(--ink);
+    font-size: 0.9375rem;
+  }
+  .gate-mark {
+    display: block; width: 2px; height: 100%; min-height: 2.6rem;
+    background: var(--mark);
   }
 
   /* A column number, not an ornament: mono, small, above a rule. */
@@ -611,8 +730,12 @@
     position: relative; padding: 1.2rem 0 1.2rem 2.25rem;
     border-bottom: 1px solid var(--rule); color: var(--ink-soft);
   }
+  /* A rule, not an em dash character. The six bullets in the one section
+     about honesty were themselves rendering six em dashes, which is the exact
+     tic the rest of this copy just had removed. */
   .promises li::before {
-    content: '\2014'; position: absolute; left: 0; top: 1.2rem; color: var(--mark);
+    content: ''; position: absolute; left: 0; top: 1.95rem;
+    width: 0.8rem; height: 1px; background: var(--mark);
   }
   .promises li strong { color: var(--ink); }
   .promises li:last-child { border-bottom: 0; }
@@ -620,10 +743,10 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-<script src="assets/shastra.js?v=0af3e7a2" defer></script>
-<script src="assets/sky-snapshot.js?v=910e2e78" defer></script>
-<script src="assets/sky-wheel.js?v=09c14406" defer></script>
-<script src="assets/motion.js?v=3b8868e5" defer></script>
+<script src="assets/shastra.js?v=6ec5d4f0" defer></script>
+<script src="assets/sky-snapshot.js?v=836dcf5a" defer></script>
+<script src="assets/sky-wheel.js?v=de8279de" defer></script>
+<script src="assets/motion.js?v=be988735" defer></script>
 <script defer>
   // The CTA tells the truth about a sleeping free-tier instance instead of
   // looking broken for fifty seconds. Runs after shastra.js (both deferred,
@@ -635,9 +758,7 @@
     if (skyNote) {
       // The caption is also the hover target, so it is set before the wheel is
       // built — wireHighlight reads it and restores it on mouseout.
-      skyNote.textContent =
-        'the sky right now \u00B7 sidereal \u00B7 lahiri ayanamsa \u00B7 '
-        + 'hover a graha to read its position';
+      skyNote.textContent = 'the sky right now, over ujjain. point at any symbol.';
     }
     if (sky && window.renderSkyWheel) {
       window.renderSkyWheel(sky, { readout: skyNote });
@@ -653,7 +774,7 @@
       if (window.shastra && window.shastra.warm === 'warming' && !applied) {
         applied = true;
         ctas.forEach(function (a) { a.dataset.warm = 'cold'; });
-        say('waking the server up — this takes a moment on the free tier. the button works either way.');
+        say('waking the server up. this takes a moment on the free tier, and the button works either way.');
       }
     }, 2500);
 
