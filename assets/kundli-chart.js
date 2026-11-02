@@ -120,6 +120,10 @@
           'font-family': MONO,
           'font-size': '12',
           'font-weight': '500',
+          // Tagged so the page can tie a graha in the chart to its paragraph
+          // in the reading, in both directions.
+          'data-graha': key,
+          class: 'kc-graha',
         }, ABBR[key] || key);
         if (!opts.navamsa && chart.grahas[key].retrograde) {
           // Retrograde matters enough to mark, and the classical mark is a

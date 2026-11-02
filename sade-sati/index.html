@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Libre+Caslon+Display&display=swap">
-<link rel="stylesheet" href="../assets/shastra.css?v=350193d5">
+<link rel="stylesheet" href="../assets/shastra.css?v=a4b72d99">
 
 <script type="application/ld+json">
 {
@@ -102,7 +102,7 @@
 
 <header class="nav">
   <div class="wrap">
-    <a class="wordmark" href="../">shastra<span>.</span></a>
+    <a class="wordmark" href="../"><svg class="wordmark-mark" viewBox="0 0 64 64" aria-hidden="true" role="presentation"><g fill="none" stroke="currentColor" stroke-width="5"><rect x="9" y="9" width="46" height="46"/><path d="M9 39h46"/></g><circle cx="23.5" cy="39" r="7.5" fill="var(--mark)"/></svg><span class="wordmark-text">shastra</span></a>
     <nav aria-label="primary">
       <a href="../kundli/">free kundli</a>
       <a href="../kundli-matching/" class="hide-sm">kundli matching</a>
@@ -114,17 +114,43 @@
 
 <main>
 
+  <!-- Heading, then the three rings, then the form. A page that opens on an
+       empty form reads as a utility; the rings say what the thing is before
+       asking for a birth date. -->
   <section class="section" id="tool" style="padding-block:clamp(2.5rem,6vw,4.5rem)">
-    <div class="wrap tool-grid">
-      <div>
-        <p class="label">free · no signup · real dates</p>
-        <h1 class="display">sade sati calculator</h1>
-        <p class="lede" style="margin-top:1.5rem">
-          <strong style="color:var(--ink)">sade sati is the stretch when Saturn passes through the three signs centred on your natal moon: the 12th, the 1st and the 2nd.</strong>
-          this one reads Saturn's real ingress dates from the ephemeris, retrograde re-entries included.
-        </p>
+    <div class="wrap">
+      <p class="label">free · no signup · real dates</p>
+      <h1 class="display">sade sati calculator</h1>
+      <p class="lede" style="margin-top:1.5rem;max-width:46rem">
+        <strong style="color:var(--ink)">sade sati is the stretch when Saturn passes through the three signs centred on your natal moon: the 12th, the 1st and the 2nd.</strong>
+        this one reads Saturn's real ingress dates from the ephemeris, retrograde re-entries included.
+      </p>
+      <p class="label" style="margin:2.75rem 0 0">the three phases</p>
+      <div class="phases-ref grid grid-3" style="margin-top:2.5rem">
+        <div class="card">
+          <svg class="phase-icon" viewBox="0 0 72 72" aria-hidden="true" role="presentation"><g fill="none" stroke="var(--ink)" stroke-width="0.9" opacity="0.35"><circle cx="36" cy="36" r="22"/><path d="M36 11L36 17"/><path d="M48.5 14.3L45.5 19.5"/><path d="M57.7 23.5L52.5 26.5"/><path d="M61 36L55 36"/><path d="M57.7 48.5L52.5 45.5"/><path d="M48.5 57.7L45.5 52.5"/><path d="M36 61L36 55"/><path d="M23.5 57.7L26.5 52.5"/><path d="M14.3 48.5L19.5 45.5"/><path d="M11 36L17 36"/><path d="M14.3 23.5L19.5 26.5"/><path d="M23.5 14.3L26.5 19.5"/></g><g fill="none" stroke="var(--ink)" stroke-width="2.6" stroke-linecap="butt"><path d="M20.4 20.4A22 22 0 0 1 51.6 20.4"/></g><g fill="none" stroke="var(--ink)" stroke-width="1.1"><path d="M36 18.5L36 25"/></g><g fill="none" stroke="var(--ink)" stroke-width="1.1"><circle cx="36" cy="27.5" r="2.8"/></g><g fill="var(--mark)"><circle cx="21.3" cy="10.5" r="3.4"/></g></svg>
+          <p class="label" style="margin-bottom:0.5rem">phase one</p>
+          <h3 class="display">rising · 12th from the moon</h3>
+          <p class="small">saturn enters the sign before your moon sign.</p>
+        </div>
+        <div class="card">
+          <svg class="phase-icon" viewBox="0 0 72 72" aria-hidden="true" role="presentation"><g fill="none" stroke="var(--ink)" stroke-width="0.9" opacity="0.35"><circle cx="36" cy="36" r="22"/><path d="M36 11L36 17"/><path d="M48.5 14.3L45.5 19.5"/><path d="M57.7 23.5L52.5 26.5"/><path d="M61 36L55 36"/><path d="M57.7 48.5L52.5 45.5"/><path d="M48.5 57.7L45.5 52.5"/><path d="M36 61L36 55"/><path d="M23.5 57.7L26.5 52.5"/><path d="M14.3 48.5L19.5 45.5"/><path d="M11 36L17 36"/><path d="M14.3 23.5L19.5 26.5"/><path d="M23.5 14.3L26.5 19.5"/></g><g fill="none" stroke="var(--ink)" stroke-width="2.6" stroke-linecap="butt"><path d="M20.4 20.4A22 22 0 0 1 51.6 20.4"/></g><g fill="none" stroke="var(--ink)" stroke-width="1.1"><path d="M36 18.5L36 25"/></g><g fill="none" stroke="var(--ink)" stroke-width="1.1"><circle cx="36" cy="27.5" r="2.8"/></g><g fill="var(--mark)"><circle cx="36" cy="6.5" r="3.4"/></g></svg>
+          <p class="label" style="margin-bottom:0.5rem">phase two</p>
+          <h3 class="display">peak · on the moon</h3>
+          <p class="small">saturn occupies your moon sign itself.</p>
+        </div>
+        <div class="card">
+          <svg class="phase-icon" viewBox="0 0 72 72" aria-hidden="true" role="presentation"><g fill="none" stroke="var(--ink)" stroke-width="0.9" opacity="0.35"><circle cx="36" cy="36" r="22"/><path d="M36 11L36 17"/><path d="M48.5 14.3L45.5 19.5"/><path d="M57.7 23.5L52.5 26.5"/><path d="M61 36L55 36"/><path d="M57.7 48.5L52.5 45.5"/><path d="M48.5 57.7L45.5 52.5"/><path d="M36 61L36 55"/><path d="M23.5 57.7L26.5 52.5"/><path d="M14.3 48.5L19.5 45.5"/><path d="M11 36L17 36"/><path d="M14.3 23.5L19.5 26.5"/><path d="M23.5 14.3L26.5 19.5"/></g><g fill="none" stroke="var(--ink)" stroke-width="2.6" stroke-linecap="butt"><path d="M20.4 20.4A22 22 0 0 1 51.6 20.4"/></g><g fill="none" stroke="var(--ink)" stroke-width="1.1"><path d="M36 18.5L36 25"/></g><g fill="none" stroke="var(--ink)" stroke-width="1.1"><circle cx="36" cy="27.5" r="2.8"/></g><g fill="var(--mark)"><circle cx="50.8" cy="10.5" r="3.4"/></g></svg>
+          <p class="label" style="margin-bottom:0.5rem">phase three</p>
+          <h3 class="display">setting · 2nd from the moon</h3>
+          <p class="small">saturn moves into the sign after it.</p>
+        </div>
+      </div>
+    </div>
 
-        <form id="form" novalidate style="margin-top:2.25rem">
+    <div class="wrap tool-grid" style="margin-top:clamp(2.5rem,5vw,4rem)">
+      <div>
+        <form id="form" novalidate>
           <div class="error" id="err" hidden role="alert"></div>
           <div class="field-row">
             <label class="field"><span>date of birth</span>
@@ -212,31 +238,7 @@
   </section>
 
   <!-- ── explainer ──────────────────────────────────────────────────────── -->
-  <section class="section">
-    <div class="wrap">
-      <p class="label">the three phases</p>
-      <div class="phases-ref grid grid-3" style="margin-top:2.5rem">
-        <div class="card">
-          <svg class="phase-icon" viewBox="0 0 72 72" aria-hidden="true" role="presentation"><g fill="none" stroke="var(--ink)" stroke-width="0.9" opacity="0.35"><circle cx="36" cy="36" r="22"/><path d="M36 11L36 17"/><path d="M48.5 14.3L45.5 19.5"/><path d="M57.7 23.5L52.5 26.5"/><path d="M61 36L55 36"/><path d="M57.7 48.5L52.5 45.5"/><path d="M48.5 57.7L45.5 52.5"/><path d="M36 61L36 55"/><path d="M23.5 57.7L26.5 52.5"/><path d="M14.3 48.5L19.5 45.5"/><path d="M11 36L17 36"/><path d="M14.3 23.5L19.5 26.5"/><path d="M23.5 14.3L26.5 19.5"/></g><g fill="none" stroke="var(--ink)" stroke-width="2.6" stroke-linecap="butt"><path d="M20.4 20.4A22 22 0 0 1 51.6 20.4"/></g><g fill="none" stroke="var(--ink)" stroke-width="1.1"><path d="M36 18.5L36 25"/></g><g fill="none" stroke="var(--ink)" stroke-width="1.1"><circle cx="36" cy="27.5" r="2.8"/></g><g fill="var(--mark)"><circle cx="21.3" cy="10.5" r="3.4"/></g></svg>
-          <p class="label" style="margin-bottom:0.5rem">phase one</p>
-          <h3 class="display">rising · 12th from the moon</h3>
-          <p class="small">saturn enters the sign before your moon sign.</p>
-        </div>
-        <div class="card">
-          <svg class="phase-icon" viewBox="0 0 72 72" aria-hidden="true" role="presentation"><g fill="none" stroke="var(--ink)" stroke-width="0.9" opacity="0.35"><circle cx="36" cy="36" r="22"/><path d="M36 11L36 17"/><path d="M48.5 14.3L45.5 19.5"/><path d="M57.7 23.5L52.5 26.5"/><path d="M61 36L55 36"/><path d="M57.7 48.5L52.5 45.5"/><path d="M48.5 57.7L45.5 52.5"/><path d="M36 61L36 55"/><path d="M23.5 57.7L26.5 52.5"/><path d="M14.3 48.5L19.5 45.5"/><path d="M11 36L17 36"/><path d="M14.3 23.5L19.5 26.5"/><path d="M23.5 14.3L26.5 19.5"/></g><g fill="none" stroke="var(--ink)" stroke-width="2.6" stroke-linecap="butt"><path d="M20.4 20.4A22 22 0 0 1 51.6 20.4"/></g><g fill="none" stroke="var(--ink)" stroke-width="1.1"><path d="M36 18.5L36 25"/></g><g fill="none" stroke="var(--ink)" stroke-width="1.1"><circle cx="36" cy="27.5" r="2.8"/></g><g fill="var(--mark)"><circle cx="36" cy="6.5" r="3.4"/></g></svg>
-          <p class="label" style="margin-bottom:0.5rem">phase two</p>
-          <h3 class="display">peak · on the moon</h3>
-          <p class="small">saturn occupies your moon sign itself.</p>
-        </div>
-        <div class="card">
-          <svg class="phase-icon" viewBox="0 0 72 72" aria-hidden="true" role="presentation"><g fill="none" stroke="var(--ink)" stroke-width="0.9" opacity="0.35"><circle cx="36" cy="36" r="22"/><path d="M36 11L36 17"/><path d="M48.5 14.3L45.5 19.5"/><path d="M57.7 23.5L52.5 26.5"/><path d="M61 36L55 36"/><path d="M57.7 48.5L52.5 45.5"/><path d="M48.5 57.7L45.5 52.5"/><path d="M36 61L36 55"/><path d="M23.5 57.7L26.5 52.5"/><path d="M14.3 48.5L19.5 45.5"/><path d="M11 36L17 36"/><path d="M14.3 23.5L19.5 26.5"/><path d="M23.5 14.3L26.5 19.5"/></g><g fill="none" stroke="var(--ink)" stroke-width="2.6" stroke-linecap="butt"><path d="M20.4 20.4A22 22 0 0 1 51.6 20.4"/></g><g fill="none" stroke="var(--ink)" stroke-width="1.1"><path d="M36 18.5L36 25"/></g><g fill="none" stroke="var(--ink)" stroke-width="1.1"><circle cx="36" cy="27.5" r="2.8"/></g><g fill="var(--mark)"><circle cx="50.8" cy="10.5" r="3.4"/></g></svg>
-          <p class="label" style="margin-bottom:0.5rem">phase three</p>
-          <h3 class="display">setting · 2nd from the moon</h3>
-          <p class="small">saturn moves into the sign after it.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+
 
 </main>
 
@@ -244,7 +246,7 @@
   <div class="wrap">
     <div class="cols">
       <div>
-        <a class="wordmark" href="../">shastra<span>.</span></a>
+        <a class="wordmark" href="../"><svg class="wordmark-mark" viewBox="0 0 64 64" aria-hidden="true" role="presentation"><g fill="none" stroke="currentColor" stroke-width="5"><rect x="9" y="9" width="46" height="46"/><path d="M9 39h46"/></g><circle cx="23.5" cy="39" r="7.5" fill="var(--mark)"/></svg><span class="wordmark-text">shastra</span></a>
         <p class="tiny" style="margin-top:0.75rem;max-width:24rem">the sky, computed. read plainly.<br>made in Bengaluru.</p>
       </div>
       <div>
@@ -329,6 +331,7 @@
 </style>
 
 <script src="../assets/shastra.js?v=6ec5d4f0" defer></script>
+<script src="../assets/datefield.js?v=84e8ba01" defer></script>
 <script defer>
 window.addEventListener('load', function () {
   var S = window.shastra;

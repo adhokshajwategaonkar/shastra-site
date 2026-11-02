@@ -507,11 +507,28 @@ table.data tr:last-child td, table.data tr:last-child th { border-bottom: 0; }
   .nav .wrap { gap: 1rem; }
 }
 
-.footer { border-top: 1px solid var(--rule-firm); padding-block: 3.5rem; color: var(--ink-faint); font-size: 0.875rem; }
+/* ── footer ────────────────────────────────────────────────────────────────
+   It was four columns of similar weight floating in a lot of air. It now has
+   a shape: the mark and the one-line statement carry the left, the link
+   columns are tight against each other on the right, and a single rule
+   separates the two halves from the legal line. */
+.footer {
+  border-top: 1px solid var(--rule-firm);
+  padding-block: clamp(3rem, 6vw, 4.5rem);
+  color: var(--ink-faint);
+  font-size: 0.875rem;
+}
+.footer .wordmark { font-size: 1.75rem; }
+.footer .wordmark-mark { width: 1em; height: 1em; }
 .footer a { color: var(--ink-soft); text-decoration: none; }
 .footer a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
 .footer .cols { display: grid; gap: 2.5rem; margin-bottom: 3rem; }
-@media (min-width: 48rem) { .footer .cols { grid-template-columns: 2fr 1fr 1fr 1.25fr; } }
+@media (min-width: 52rem) {
+  /* The statement gets the room; the three link columns sit together at the
+     right rather than drifting across the measure. */
+  .footer .cols { grid-template-columns: 1.6fr auto auto auto; gap: clamp(2rem, 5vw, 4.5rem); }
+  .footer .cols > div:first-child { max-width: 24rem; }
+}
 .footer ul { list-style: none; margin: 0; padding: 0; }
 .footer li + li { margin-top: 0.55rem; }
 .footer h4 {
@@ -521,7 +538,7 @@ table.data tr:last-child td, table.data tr:last-child th { border-bottom: 0; }
 }
 .disclaimer {
   border-top: 1px solid var(--rule);
-  padding-top: 1.5rem;
+  padding-top: 1.75rem;
   display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between;
   line-height: 1.55; font-size: 0.8125rem;
 }
@@ -794,3 +811,124 @@ html.has-gsap .reveal { opacity: 1; transform: none; transition: none; }
 }
 .nav-sky:empty { display: none; }
 @media (max-width: 64rem) { .nav-sky { display: none; } }
+
+/* ── the birth date field (site/assets/datefield.js) ────────────────────────
+   Three fields you type into, with the separators drawn in, rather than a
+   calendar you browse. See the note at the top of that file for why a birth
+   date is not a calendar problem. */
+.datefield {
+  display: flex;
+  align-items: baseline;
+  gap: 0.15rem;
+  border-bottom: 1px solid var(--rule-firm);
+  padding: 0.65rem 0.1rem;
+  min-height: 2.9rem;
+  flex-wrap: wrap;
+  transition: border-color var(--fast) linear, background var(--fast) linear;
+}
+.datefield.is-focus { border-bottom-color: var(--mark); background: var(--mark-wash); }
+.datefield.is-bad   { border-bottom-color: var(--mark); }
+
+/* Scoped under .datefield so they beat the global `input[type='text']` rule,
+   which sets width:100% and would stack the three parts vertically. */
+.datefield .df-part {
+  font-family: var(--mono);
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  padding: 0;
+  text-align: center;
+  color: var(--ink);
+  min-height: 0;
+  width: auto;
+}
+.datefield .df-part:focus { outline: none; background: none; border: 0; }
+.datefield .df-part::placeholder { color: var(--ink-faint); opacity: 1; }
+.datefield .df-d, .datefield .df-m { width: 2.4ch; }
+.datefield .df-y { width: 4.6ch; }
+.datefield .df-sep { font-family: var(--mono); color: var(--ink-faint); }
+
+/* The date said back in words. A mistyped month is invisible as 05 and
+   obvious as "may". */
+.df-echo {
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+}
+.df-echo:empty { display: none; }
+.datefield.is-bad .df-echo::after {
+  content: 'check that date';
+  color: var(--mark);
+}
+
+/* ── the reading ───────────────────────────────────────────────────────────
+   The result used to be one flat column of equal-weight paragraphs. It has a
+   shape now: a lead you actually read, and supporting detail that waits. */
+.read-lead {
+  font-size: clamp(1.0625rem, 1.6vw, 1.1875rem);
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 0;
+  max-width: 44rem;
+}
+.read-lead strong { color: var(--ink); font-weight: 600; }
+
+/* Supporting lines. Present, quieter, and out of the way until wanted. */
+.read-more { margin-top: 1rem; }
+.read-more > summary {
+  cursor: pointer; list-style: none;
+  font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--ink-faint);
+  display: inline-flex; align-items: center; gap: 0.4rem;
+}
+.read-more > summary::-webkit-details-marker { display: none; }
+.read-more > summary::after { content: '+'; color: var(--mark); font-size: 0.9rem; line-height: 1; }
+.read-more[open] > summary::after { content: '\2212'; }
+.read-more > div { padding-top: 0.75rem; max-width: 42rem; }
+.read-more p { font-size: 0.875rem; color: var(--ink-faint); margin: 0 0 0.6rem; }
+.read-more p:last-child { margin-bottom: 0; }
+
+/* ── chart and reading, linked ─────────────────────────────────────────────
+   A graha in the diagram and its paragraph are the same object, so pointing
+   at either lights both. This is what makes the chart worth looking at
+   instead of decoration above the text. */
+.kc-graha { cursor: pointer; transition: fill var(--fast) linear; }
+.kc-graha:hover, .kc-graha.is-lit { fill: var(--mark); }
+.read-block { transition: background var(--fast) linear; scroll-margin-top: 6rem; }
+.read-block.is-lit { background: var(--mark-wash); }
+.read-block.is-lit .read-head { color: var(--mark); }
+
+/* ── the logo ──────────────────────────────────────────────────────────────
+   The mark is the lagna: a chart frame, the horizon, and the point rising on
+   it. The wordmark used to be type alone with a vermilion full stop, which
+   is a typographic tic rather than an identity, and the favicon was a ring
+   that meant nothing. One mark now does both jobs. */
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+.wordmark-mark {
+  width: 1.1em;
+  height: 1.1em;
+  flex: none;
+  color: var(--ink);
+  transition: transform var(--base) var(--spring);
+}
+.wordmark:hover .wordmark-mark { transform: translateY(-2px); }
+.wordmark-text { letter-spacing: -0.005em; }
+
+/* Card headings in a row share a height so the paragraphs under them start on
+   the same line. Without this, one heading that wraps to two lines drops its
+   own body text and the row reads as misaligned rather than as a grid. */
+@media (min-width: 48rem) {
+  .grid-2 > .card > h3.display,
+  .grid-3 > .card > h3.display { min-height: 2.4em; }
+}
+
+/* The small marks used across the tool pages and the trust cards. */
+.value-icon { width: 2.5rem; height: 2.5rem; display: block; margin-bottom: 1.1rem; }

@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Libre+Caslon+Display&display=swap">
-<link rel="stylesheet" href="assets/shastra.css?v=350193d5">
+<link rel="stylesheet" href="assets/shastra.css?v=a4b72d99">
 
 <script type="application/ld+json">
 {
@@ -115,7 +115,7 @@
 
 <header class="nav">
   <div class="wrap">
-    <a class="wordmark" href="./">shastra<span>.</span></a>
+    <a class="wordmark" href="./"><svg class="wordmark-mark" viewBox="0 0 64 64" aria-hidden="true" role="presentation"><g fill="none" stroke="currentColor" stroke-width="5"><rect x="9" y="9" width="46" height="46"/><path d="M9 39h46"/></g><circle cx="23.5" cy="39" r="7.5" fill="var(--mark)"/></svg><span class="wordmark-text">shastra</span></a>
     <!-- A live strip instead of a scroll indicator. The product is about what
          the sky is doing right now, so the header says what the sky is doing
          right now. Filled by shastra.js from the same call the hero makes;
@@ -274,26 +274,24 @@
           <h2 class="display reveal" style="max-width:20ch">no app. no notifications.<br>you text, it answers.</h2>
         </div>
         <div class="section-art reveal">
-          <svg viewBox="0 0 320 210" role="img" aria-label="A short message out, a short reading back.">
+          <svg viewBox="0 0 320 196" role="img" aria-label="A two-character message out, and a short reading back.">
           <g class="draw-art">
             <g fill="none" stroke="var(--ink)" stroke-width="1">
-              <path d="M196 14h108v40H196z"/>
-              <path d="M304 54l10 12-22-12"/>
+              <path d="M214 10h92v38h-92z"/>
             </g>
-            <text x="250" y="39" text-anchor="middle" class="chat-say">gm</text>
-            <text x="314" y="70" text-anchor="end" class="chat-time">7:04</text>
+            <text x="260" y="34" text-anchor="middle" class="chat-say">gm</text>
+            <text x="306" y="62" text-anchor="end" class="chat-time">you &#183; 7:04</text>
 
             <g fill="none" stroke="var(--ink)" stroke-width="1">
-              <path d="M16 92h198v96H16z"/>
-              <path d="M16 188L6 200l22-12"/>
+              <path d="M14 80h214v86H14z"/>
             </g>
-            <g fill="none" stroke="var(--ink)" stroke-width="1.4" opacity="0.75">
-              <path d="M36 118h158M36 136h158M36 154h120"/>
+            <g fill="none" stroke="var(--ink)" stroke-width="1.5" opacity="0.8">
+              <path d="M34 102h174M34 120h174M34 138h128"/>
             </g>
-            <g fill="none" stroke="var(--mark)" stroke-width="1.4">
-              <path d="M36 172h88"/>
+            <g fill="none" stroke="var(--mark)" stroke-width="1.5">
+              <path d="M34 156h78"/>
             </g>
-            <text x="16" y="204" class="chat-time">7:04</text>
+            <text x="14" y="182" class="chat-time">shastra &#183; 7:04</text>
           </g>
         </svg>
         </div>
@@ -353,18 +351,21 @@
 
       <div class="grid grid-2" style="margin-top:2.5rem">
         <div class="card reveal">
+          <svg class="value-icon" viewBox="0 0 48 48" aria-hidden="true" role="presentation"><g fill="none" stroke="var(--ink)" stroke-width="1.2"><path d="M8 34h32"/><path d="M14 31v6M24 29v10M34 31v6"/></g><g fill="none" stroke="var(--mark)" stroke-width="1.3"><path d="M24 10v12M18 13l12 6M30 13l-12 6"/></g><g fill="var(--mark)"><circle cx="24" cy="24" r="2.4"/></g></svg>
           <h3 class="display">Spica sits at exactly 180°00′</h3>
           <p class="small">that <em>is</em> the definition of the Lahiri / Chitrapaksha ayanamsa. if this
             assertion fails, the ayanamsa isn't Lahiri and every chart computed is quietly wrong.
             it's the first thing the build checks.</p>
         </div>
         <div class="card reveal">
+          <svg class="value-icon" viewBox="0 0 48 48" aria-hidden="true" role="presentation"><g fill="none" stroke="var(--ink)" stroke-width="1.2"><circle cx="21" cy="24" r="12"/></g><g fill="var(--paper)" stroke="var(--ink)" stroke-width="1.2"><circle cx="30" cy="24" r="12"/></g></svg>
           <h3 class="display">two NASA eclipse times</h3>
           <p class="small">sun and moon must conjoin at the 2017-08-21 solar eclipse and oppose at the
             2018-07-27 lunar eclipse. these checks are independent of any ayanamsa. they test the
             raw ephemeris itself, against published astronomy.</p>
         </div>
         <div class="card reveal">
+          <svg class="value-icon" viewBox="0 0 48 48" aria-hidden="true" role="presentation"><g fill="none" stroke="var(--ink)" stroke-width="1.2"><rect x="7" y="14" width="18" height="18"/><rect x="15" y="20" width="18" height="18"/></g><g fill="none" stroke="var(--mark)" stroke-width="1.4"><rect x="23" y="26" width="18" height="18"/><path d="M28 35l3.5 3.5L37 32"/></g></svg>
           <h3 class="display">three published reference charts</h3>
           <p class="small">Gandhi, Einstein and Modi, asserted against <em>published</em> values rather
             than values this engine produced. Gandhi's chart matches on all seven classical grahas: sign, nakshatra and dignity.</p>
@@ -412,22 +413,29 @@
           <h2 class="display reveal" style="max-width:18ch">nothing here runs on a meter.</h2>
         </div>
         <div class="section-art reveal">
-          <svg viewBox="0 0 320 200" role="img" aria-label="A per-minute bill climbing, against a flat one-time price.">
+          <svg viewBox="0 0 320 200" role="img" aria-label="A per-minute bill passing a flat one-time price after about seven minutes.">
           <g class="draw-art">
             <g fill="none" stroke="var(--ink)" stroke-width="1">
-              <path d="M34 20v150h266"/>
+              <path d="M40 18v150M40 168h266"/>
             </g>
-            <g fill="none" stroke="var(--ink)" stroke-width="0.8" opacity="0.3">
-              <path d="M34 60h266M34 100h266M34 140h266"/>
+
+            <g fill="none" stroke="var(--ink)" stroke-width="1.6" stroke-dasharray="7 5">
+              <path d="M40 162L286 40"/>
             </g>
-            <g fill="none" stroke="var(--ink)" stroke-width="1.6" stroke-dasharray="7 4">
-              <path d="M34 170L300 28"/>
+            <text x="286" y="30" text-anchor="end" class="axis-label">by the minute</text>
+
+            <g fill="none" stroke="var(--mark)" stroke-width="2">
+              <path d="M40 124h250"/>
             </g>
-            <text x="296" y="46" text-anchor="end" class="axis-label">by the minute</text>
-            <g fill="none" stroke="var(--mark)" stroke-width="1.8">
-              <path d="M34 150h266"/>
+            <text x="290" y="114" text-anchor="end" class="axis-label mark">&#8377;149, once</text>
+
+            <g fill="none" stroke="var(--ink)" stroke-width="1" stroke-dasharray="2 3" opacity="0.6">
+              <path d="M116 124v44"/>
             </g>
-            <text x="300" y="166" text-anchor="end" class="axis-label mark">flat, once</text>
+            <text x="116" y="186" text-anchor="middle" class="axis-n">7 min</text>
+
+            <text x="32" y="26" text-anchor="end" class="axis-n">&#8377;</text>
+            <text x="306" y="186" text-anchor="end" class="axis-n">time on the call</text>
           </g>
         </svg>
         </div>
@@ -589,12 +597,12 @@
   <!-- ── final cta ──────────────────────────────────────────────────────── -->
   <section class="section center">
     <div class="wrap">
-      <h2 class="display reveal" style="max-width:16ch;margin-inline:auto">tomorrow morning, say good morning.</h2>
+      <h2 class="display reveal" style="max-width:16ch;margin-inline:auto">start with your chart.</h2>
       <p class="lede reveal" style="margin:1.5rem auto 0;text-align:center">
-        the first reading takes about ninety seconds to set up and costs nothing, now or later.
+        free, and no account. the morning readings start whenever you want them to.
       </p>
       <div class="btn-row reveal" style="justify-content:center;margin-top:2rem">
-        <a class="btn btn-primary" href="kundli/" data-warm="cold" data-cta>compute a kundli</a>
+        <a class="btn btn-primary" href="kundli/" data-warm="cold" data-cta>get my kundli</a>
       </div>
       <p class="tiny reveal" data-warm="cold" id="warm-note" style="margin-top:1.25rem"></p>
     </div>
@@ -606,14 +614,15 @@
   <div class="wrap">
     <div class="cols">
       <div>
-        <a class="wordmark" href="./">shastra<span>.</span></a>
+        <a class="wordmark" href="./"><svg class="wordmark-mark" viewBox="0 0 64 64" aria-hidden="true" role="presentation"><g fill="none" stroke="currentColor" stroke-width="5"><rect x="9" y="9" width="46" height="46"/><path d="M9 39h46"/></g><circle cx="23.5" cy="39" r="7.5" fill="var(--mark)"/></svg><span class="wordmark-text">shastra</span></a>
     <!-- A live strip instead of a scroll indicator. The product is about what
          the sky is doing right now, so the header says what the sky is doing
          right now. Filled by shastra.js from the same call the hero makes;
          stays empty and takes no space if that call never lands. -->
     <p class="nav-sky mono" id="nav-sky" aria-live="polite"></p>
         <p class="tiny" style="margin-top:0.75rem;max-width:24rem">
-          the sky, computed. read plainly.<br>
+          a real reading every morning, worked out from your own chart.
+          free, in WhatsApp, and nothing to buy.<br>
           made in Bengaluru.
         </p>
       </div>
@@ -761,7 +770,7 @@
   /* A column number, not an ornament: mono, small, above a rule. */
   .step-n {
     font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.16em;
-    color: var(--ink-faint); margin: 0 0 1.25rem; padding-bottom: 0.75rem;
+    color: var(--ink-faint); margin: 0 0 1.25rem; padding-bottom: 0.9rem;
     border-bottom: 1px solid var(--rule);
   }
 
@@ -801,7 +810,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="assets/shastra.js?v=6ec5d4f0" defer></script>
-<script src="assets/sky-snapshot.js?v=8854e16e" defer></script>
+<script src="assets/sky-snapshot.js?v=faf02149" defer></script>
 <script src="assets/sky-wheel.js?v=2ead5a30" defer></script>
 <script src="assets/motion.js?v=f9aef2b1" defer></script>
 <script defer>
