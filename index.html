@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Libre+Caslon+Display&display=swap">
-<link rel="stylesheet" href="assets/shastra.css?v=731a8c14">
+<link rel="stylesheet" href="assets/shastra.css?v=350193d5">
 
 <script type="application/ld+json">
 {
@@ -116,6 +116,11 @@
 <header class="nav">
   <div class="wrap">
     <a class="wordmark" href="./">shastra<span>.</span></a>
+    <!-- A live strip instead of a scroll indicator. The product is about what
+         the sky is doing right now, so the header says what the sky is doing
+         right now. Filled by shastra.js from the same call the hero makes;
+         stays empty and takes no space if that call never lands. -->
+    <p class="nav-sky mono" id="nav-sky" aria-live="polite"></p>
     <nav aria-label="primary">
       <a href="kundli/">free kundli</a>
       <a href="kundli-matching/" class="hide-sm">kundli matching</a>
@@ -123,9 +128,6 @@
       <a class="btn btn-primary" href="kundli/" data-warm="cold" data-cta>get your kundli</a>
     </nav>
   </div>
-  <!-- Reading position. The same hairline language as every other rule on the
-       page, and the only thing on it that moves continuously. -->
-  <div class="progress" id="progress" aria-hidden="true"></div>
 </header>
 
 <main id="main">
@@ -141,8 +143,7 @@
           <span class="line"><em>read plainly.</em></span>
         </h1>
         <p class="lede" data-intro style="margin-top:1.75rem">
-          your real chart (sidereal positions, nakshatras, dasha dates) worked out to the
-          arcsecond, then said in a sentence you can use before 9am.
+          a short reading every morning, worked out from your own birth chart. free, in WhatsApp, and it will never try to sell you a gemstone.
         </p>
         <div class="btn-row" data-intro style="margin-top:2rem">
           <a class="btn btn-primary" href="kundli/" data-warm="cold" data-cta>see your kundli</a>
@@ -192,8 +193,7 @@
     <div class="wrap">
       <p class="label">what this is</p>
       <h2 class="display pitch-line">
-        vedic astrology with the arithmetic done properly,<br>
-        and the selling left out.
+        a real reading every morning,<br>and nothing to buy.
       </h2>
 
       <ol class="pipeline">
@@ -238,8 +238,7 @@
           </div>
           <p class="label">02 &nbsp;the engine computes</p>
           <h3 class="display">every position, to the arcsecond</h3>
-          <p class="small">swiss ephemeris. sidereal, lahiri ayanamsa, whole-sign houses.
-            no language model touches a number.</p>
+          <p class="small">the swiss ephemeris, the same tables astronomers use. no language model ever touches a number.</p>
         </li>
 
         <li>
@@ -261,9 +260,7 @@
 
       <p class="gate">
         <span class="gate-mark" aria-hidden="true"></span>
-        <span>the language model never receives your birth date, your birth place or your
-          phone number. it is handed a chart with the identifying fields already stripped out.
-          that is enforced in code, and the test suite fails if it stops being true.</span>
+        <span>the language model never sees your birth date, your birth place or your phone number. it gets the finished chart and nothing else. the tests fail if that ever stops being true.</span>
       </p>
     </div>
   </section>
@@ -271,27 +268,51 @@
   <!-- ── the morning ritual ─────────────────────────────────────────────── -->
   <section class="section">
     <div class="wrap">
-      <p class="label reveal">the morning ritual</p>
-      <h2 class="display reveal" style="max-width:20ch">three steps, and then about eight seconds a day.</h2>
+      <div class="section-head">
+        <div>
+                <p class="label reveal">how it works</p>
+          <h2 class="display reveal" style="max-width:20ch">no app. no notifications.<br>you text, it answers.</h2>
+        </div>
+        <div class="section-art reveal">
+          <svg viewBox="0 0 320 210" role="img" aria-label="A short message out, a short reading back.">
+          <g class="draw-art">
+            <g fill="none" stroke="var(--ink)" stroke-width="1">
+              <path d="M196 14h108v40H196z"/>
+              <path d="M304 54l10 12-22-12"/>
+            </g>
+            <text x="250" y="39" text-anchor="middle" class="chat-say">gm</text>
+            <text x="314" y="70" text-anchor="end" class="chat-time">7:04</text>
+
+            <g fill="none" stroke="var(--ink)" stroke-width="1">
+              <path d="M16 92h198v96H16z"/>
+              <path d="M16 188L6 200l22-12"/>
+            </g>
+            <g fill="none" stroke="var(--ink)" stroke-width="1.4" opacity="0.75">
+              <path d="M36 118h158M36 136h158M36 154h120"/>
+            </g>
+            <g fill="none" stroke="var(--mark)" stroke-width="1.4">
+              <path d="M36 172h88"/>
+            </g>
+            <text x="16" y="204" class="chat-time">7:04</text>
+          </g>
+        </svg>
+        </div>
+      </div>
       <div class="grid grid-3" style="margin-top:3rem">
         <div class="card reveal">
           <p class="step-n">01</p>
-          <h3 class="display">give it your birth details, once</h3>
-          <p class="small">date, time, place. that's the whole onboarding. you get your kundli back
-            immediately (positions, nakshatra, lagna, dasha) and a first reading that is longer
-            than any that follow.</p>
+          <h3 class="display">tell it when you were born</h3>
+          <p class="small">date, time, place. once. your chart comes straight back, with a longer reading than any that follow.</p>
         </div>
         <div class="card reveal">
           <p class="step-n">02</p>
-          <h3 class="display">message first, every morning</h3>
-          <p class="small">"gm" works. 🙏 works. anything works. that message is the ritual, and it's
-            also your streak. shastra never messages you first.</p>
+          <h3 class="display">say good morning</h3>
+          <p class="small">"gm" works. 🙏 works. anything works. shastra never messages you first, which is the reason it can stay free.</p>
         </div>
         <div class="card reveal">
           <p class="step-n">03</p>
-          <h3 class="display">read sixty words and get on with it</h3>
-          <p class="small">what's moving today, against your chart, in language you can act
-            on. no horoscope-column hedging, no "the universe has a plan for you".</p>
+          <h3 class="display">read it and get on with your day</h3>
+          <p class="small">sixty words about today, from your own chart. no hedging, and no "the universe has a plan for you".</p>
         </div>
       </div>
       
@@ -301,12 +322,34 @@
   <!-- ── the maths is real (original, checkable data = GEO gold) ────────── -->
   <section class="section">
     <div class="wrap">
-      <p class="label reveal">why the numbers are trustworthy</p>
-      <h2 class="display reveal" style="max-width:22ch">the engine is tested against things it cannot fake.</h2>
-      <p class="lede reveal" style="margin-top:1.5rem">
-        "our astrology is accurate" is a claim anyone can type. so shastra's chart engine ships with
-        a test suite that has to pass before any code does. 196 assertions, and these are the ones that matter:
-      </p>
+      <div class="section-head">
+        <div>
+                <p class="label reveal">why trust it</p>
+          <h2 class="display reveal" style="max-width:22ch">check the maths yourself.</h2>
+          <p class="lede reveal" style="margin-top:1.5rem">
+            anyone can say their astrology is accurate. so every build has to pass 196 assertions first, and these are the three you can go and check for yourself:
+          </p>
+        </div>
+        <div class="section-art reveal">
+          <svg viewBox="0 0 320 170" role="img" aria-label="Spica sitting at exactly 180 degrees on the sidereal circle.">
+          <g class="draw-art">
+            <g fill="none" stroke="var(--ink)" stroke-width="1">
+              <path d="M20 112h280"/>
+              <path d="M20 104v16M160 98v22M300 104v16"/>
+            </g>
+            <g fill="none" stroke="var(--ink)" stroke-width="0.8" opacity="0.4">
+              <path d="M55 108v8M90 108v8M125 108v8M195 108v8M230 108v8M265 108v8"/>
+            </g>
+            <text x="20" y="136" class="axis-n">0&#176;</text>
+            <text x="300" y="136" text-anchor="end" class="axis-n">360&#176;</text>
+            <text x="160" y="150" text-anchor="middle" class="axis-n">180&#176;00&#8242;</text>
+            <g fill="none" stroke="var(--mark)" stroke-width="1.4"><path d="M160 46v52"/></g>
+            <g fill="var(--mark)"><circle cx="160" cy="46" r="3.6"/></g>
+            <text x="160" y="32" text-anchor="middle" class="axis-label">spica</text>
+          </g>
+        </svg>
+        </div>
+      </div>
 
       <div class="grid grid-2" style="margin-top:2.5rem">
         <div class="card reveal">
@@ -337,7 +380,7 @@
   <section class="section">
     <div class="wrap">
       <p class="label reveal">free, no account, no wall</p>
-      <h2 class="display reveal">try the engine before you trust it.</h2>
+      <h2 class="display reveal">try it before you trust it.</h2>
       <div class="grid grid-3" style="margin-top:2.5rem">
         <a class="card reveal" href="kundli/">
           <h3 class="display">free kundli</h3>
@@ -363,8 +406,32 @@
   <!-- ── pricing ────────────────────────────────────────────────────────── -->
   <section class="section">
     <div class="wrap">
-      <p class="label reveal">pricing, stated in full</p>
-      <h2 class="display reveal" style="max-width:18ch">you can read the whole price list in nine seconds.</h2>
+      <div class="section-head">
+        <div>
+                <p class="label reveal">what it costs</p>
+          <h2 class="display reveal" style="max-width:18ch">nothing here runs on a meter.</h2>
+        </div>
+        <div class="section-art reveal">
+          <svg viewBox="0 0 320 200" role="img" aria-label="A per-minute bill climbing, against a flat one-time price.">
+          <g class="draw-art">
+            <g fill="none" stroke="var(--ink)" stroke-width="1">
+              <path d="M34 20v150h266"/>
+            </g>
+            <g fill="none" stroke="var(--ink)" stroke-width="0.8" opacity="0.3">
+              <path d="M34 60h266M34 100h266M34 140h266"/>
+            </g>
+            <g fill="none" stroke="var(--ink)" stroke-width="1.6" stroke-dasharray="7 4">
+              <path d="M34 170L300 28"/>
+            </g>
+            <text x="296" y="46" text-anchor="end" class="axis-label">by the minute</text>
+            <g fill="none" stroke="var(--mark)" stroke-width="1.8">
+              <path d="M34 150h266"/>
+            </g>
+            <text x="300" y="166" text-anchor="end" class="axis-label mark">flat, once</text>
+          </g>
+        </svg>
+        </div>
+      </div>
 
       <div class="scroller reveal" style="margin-top:2.5rem">
         <table class="data price">
@@ -540,6 +607,11 @@
     <div class="cols">
       <div>
         <a class="wordmark" href="./">shastra<span>.</span></a>
+    <!-- A live strip instead of a scroll indicator. The product is about what
+         the sky is doing right now, so the header says what the sky is doing
+         right now. Filled by shastra.js from the same call the hero makes;
+         stays empty and takes no space if that call never lands. -->
+    <p class="nav-sky mono" id="nav-sky" aria-live="polite"></p>
         <p class="tiny" style="margin-top:0.75rem;max-width:24rem">
           the sky, computed. read plainly.<br>
           made in Bengaluru.
@@ -594,6 +666,24 @@
   }
   .hero-h1 .line > * { display: block; }
 
+  /* ── section heads with a drawing in the right half ───────────────────
+     The headings used to sit alone against an empty half-page. Each drawing
+     makes its own heading's point: a message out and a reading back, Spica
+     landing on exactly 180 degrees, and a meter climbing against a flat
+     price. */
+  .section-head { display: grid; gap: clamp(2rem, 4vw, 3.5rem); align-items: center; }
+  .section-art svg { display: block; }
+  @media (min-width: 58rem) { .section-head { grid-template-columns: 1fr 0.85fr; } }
+  .section-head > div:first-child > :first-child { margin-top: 0; }
+  .section-art { justify-self: center; width: min(22rem, 100%); }
+  .section-art svg { width: 100%; height: auto; overflow: visible; }
+
+  .chat-say  { font-family: var(--mono); font-size: 15px; fill: var(--ink); letter-spacing: 0.08em; }
+  .chat-time { font-family: var(--mono); font-size: 9px; fill: var(--ink-faint); letter-spacing: 0.08em; }
+  .axis-n    { font-family: var(--mono); font-size: 10px; fill: var(--ink-faint); letter-spacing: 0.06em; }
+  .axis-label{ font-family: var(--mono); font-size: 10px; fill: var(--ink-faint); letter-spacing: 0.1em; text-transform: uppercase; }
+  .axis-label.mark { fill: var(--mark); }
+
   .hero-section { padding-block: clamp(2.5rem, 6vw, 4.5rem) clamp(2.5rem, 5vw, 4rem); }
   /* The hero runs wider than the rest of the page. Everything inside the
      wheel is sized in viewBox units, so it shrinks with the rendered width —
@@ -625,7 +715,7 @@
   .pipeline {
     list-style: none; margin: 0; padding: 0;
     display: grid; gap: 0;
-    border-top: 1px solid var(--rule);
+    position: relative;
   }
   .pipeline > li {
     padding: 2rem 0;
@@ -661,7 +751,7 @@
     margin: clamp(2.5rem, 5vw, 3.5rem) 0 0;
     max-width: 54rem;
     color: var(--ink);
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
   }
   .gate-mark {
     display: block; width: 2px; height: 100%; min-height: 2.6rem;
@@ -683,7 +773,7 @@
 
   table.price th[scope='row'] {
     font-weight: 400; color: var(--ink-soft); text-transform: none;
-    letter-spacing: 0; font-size: 0.9375rem; font-family: var(--body);
+    letter-spacing: 0; font-size: 0.875rem; font-family: var(--body);
   }
   table.price td.num { font-size: 1rem; }
   table.price th:last-child { text-align: right; }
@@ -711,9 +801,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="assets/shastra.js?v=6ec5d4f0" defer></script>
-<script src="assets/sky-snapshot.js?v=3146aa4e" defer></script>
-<script src="assets/sky-wheel.js?v=9f070650" defer></script>
-<script src="assets/motion.js?v=be988735" defer></script>
+<script src="assets/sky-snapshot.js?v=8854e16e" defer></script>
+<script src="assets/sky-wheel.js?v=2ead5a30" defer></script>
+<script src="assets/motion.js?v=f9aef2b1" defer></script>
 <script defer>
   // The CTA tells the truth about a sleeping free-tier instance instead of
   // looking broken for fifty seconds. Runs after shastra.js (both deferred,
@@ -729,6 +819,18 @@
     }
     if (sky && window.renderSkyWheel) {
       window.renderSkyWheel(sky, { readout: skyNote });
+    }
+
+    // The header strip. One extra call a minute is not worth it, so it reads
+    // the wheel's own fetch: sky-wheel.js publishes each payload on window.
+    var navSky = document.getElementById('nav-sky');
+    if (navSky) {
+      window.addEventListener('shastra:sky', function (e) {
+        var d = e.detail;
+        if (!d || !d.panchanga) return;
+        navSky.textContent = d.panchanga.nakshatra + ' \u00B7 '
+          + d.panchanga.tithi.name + ' ' + d.panchanga.tithi.paksha;
+      });
     }
 
     var note = document.getElementById('warm-note');

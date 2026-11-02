@@ -614,6 +614,9 @@
           live = true;
           root.classList.add('sw-live');
           paint(d, 'live');
+          // Anything else on the page that wants the current sky can listen
+          // rather than make its own call.
+          window.dispatchEvent(new CustomEvent('shastra:sky', { detail: d }));
           var tick = svg.querySelector('.sw-tick');
           if (tick) { tick.classList.remove('is-beat'); void tick.getBoundingClientRect(); tick.classList.add('is-beat'); }
         })

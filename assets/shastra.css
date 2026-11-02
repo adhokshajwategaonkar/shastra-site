@@ -110,14 +110,9 @@ body {
   margin: 0;
   min-height: 100dvh;
   overflow-x: hidden;
-  /* Graph paper, at the threshold of visible. This is the whole background
-     treatment — there is no image, no noise and no gradient anywhere on the
-     site, and the page weight says so. */
-  background-image:
-    repeating-linear-gradient(to right,  var(--grid) 0 1px, transparent 1px 100%),
-    repeating-linear-gradient(to bottom, var(--grid) 0 1px, transparent 1px 100%);
-  background-size: 56px 56px;
-  --grid: rgba(34, 33, 28, 0.035);
+  /* No background pattern. A faint grid across every page reads as a wireframe
+     rather than as paper, and it is one of the surest marks of a generated
+     site. Texture, where it is wanted, is drawn deliberately: see .invert. */
 }
 
 img, svg { max-width: 100%; display: block; }
@@ -177,7 +172,10 @@ h3.display { font-size: clamp(1.25rem, 2.4vw, 1.5rem); line-height: 1.2; }
 
 /* The body scale, and there are only four steps in it.
    
-   19 lede · 16 body · 14 small · 13 tiny, with tiny always set in --ink-faint
+   19 lede · 16 body · 14 small · 13 tiny, with tiny always set in --ink-faint.
+   There is no 15px and no 17px. Both existed, scattered through page-scoped
+   blocks, and a size one pixel off a real step is what makes a page look
+   assembled rather than designed.
    so the last two steps are separated by colour as well as size. .small used
    to be 15px, which is near enough to the 16px body to read as a mistake
    rather than a step, and new components kept inventing 17px and 13px
@@ -215,7 +213,16 @@ h3.display { font-size: clamp(1.25rem, 2.4vw, 1.5rem); line-height: 1.2; }
    by a background showing through a 1px gap: the children carry .reveal, so
    until they animate in they are transparent, and a container background
    would flash as a solid block behind them. */
-.grid { display: grid; gap: 0; border-top: 1px solid var(--rule); }
+.grid { display: grid; gap: 0; position: relative; }
+/* The top rule is a pseudo-element so it can be drawn from the left rather
+   than simply appearing. --rule-scale is 1 unless motion.js is animating it. */
+.grid::before, .faq::before, .readout::before,
+.kootas-glance::before, .pipeline::before {
+  content: ''; position: absolute; inset: 0 0 auto 0; height: 1px;
+  background: var(--rule);
+  transform: scaleX(var(--rule-scale, 1)); transform-origin: left center;
+}
+.faq::before, .readout::before { background: var(--rule-firm); }
 .grid > * { border-bottom: 1px solid var(--rule); }
 @media (min-width: 48rem) {
   .grid-2 { grid-template-columns: repeat(2, 1fr); }
@@ -368,7 +375,7 @@ input::placeholder { color: var(--ink-faint); opacity: 1; }
 .suggestions button {
   display: block; width: 100%; text-align: left;
   padding: 0.7rem 0.9rem; background: none; border: 0; cursor: pointer;
-  font-size: 0.9375rem; color: var(--ink-soft);
+  font-size: 0.875rem; color: var(--ink-soft);
   border-bottom: 1px solid var(--rule);
 }
 .suggestions button:last-child { border-bottom: 0; }
@@ -382,7 +389,7 @@ input::placeholder { color: var(--ink-faint); opacity: 1; }
   background: var(--mark-wash);
   color: var(--ink);
   padding: 0.85rem 1rem;
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   margin-bottom: 1.25rem;
 }
 .error:empty, .error[hidden] { display: none; }
@@ -396,9 +403,7 @@ input::placeholder { color: var(--ink-faint); opacity: 1; }
 }
 
 /* A key/value readout, set as a ruled list rather than a stack of boxes. */
-.readout {
-  border-top: 1px solid var(--rule-firm);
-}
+.readout { position: relative; }
 .readout > div {
   border-bottom: 1px solid var(--rule);
   padding: 0.8rem 0;
@@ -410,14 +415,14 @@ input::placeholder { color: var(--ink-faint); opacity: 1; }
 }
 .readout dd, .readout .v {
   margin: 0; color: var(--ink); text-align: right;
-  font-size: 0.9375rem; font-weight: 500;
+  font-size: 0.875rem; font-weight: 500;
 }
 
 /* ── tables: the thing this whole design is for ─────────────────────────── */
 table.data {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   font-variant-numeric: tabular-nums lining-nums;
 }
 table.data caption { text-align: left; }
@@ -446,7 +451,7 @@ table.data tr:last-child td, table.data tr:last-child th { border-bottom: 0; }
 .scroller { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
 /* ── faq (also the GEO surface — plain <details>, crawlable without JS) ──── */
-.faq { border-top: 1px solid var(--rule-firm); }
+.faq { position: relative; }
 .faq details { border-bottom: 1px solid var(--rule); }
 .faq summary {
   cursor: pointer; list-style: none;
@@ -540,7 +545,7 @@ table.data tr:last-child td, table.data tr:last-child th { border-bottom: 0; }
   border-left: 2px solid var(--mark); background: none;
 }
 .prose blockquote p:last-child { margin-bottom: 0; }
-.prose table { width: 100%; border-collapse: collapse; font-size: 0.9375rem; margin: 1.75rem 0; }
+.prose table { width: 100%; border-collapse: collapse; font-size: 0.875rem; margin: 1.75rem 0; }
 .prose th, .prose td { padding: 0.6rem 0.6rem 0.6rem 0; border-bottom: 1px solid var(--rule); text-align: left; color: var(--ink-soft); }
 .prose th {
   font-family: var(--mono); color: var(--ink-faint);
@@ -548,13 +553,12 @@ table.data tr:last-child td, table.data tr:last-child th { border-bottom: 0; }
   border-bottom-color: var(--rule-firm);
 }
 
-/* ── reveal on scroll (progressive enhancement; visible without JS) ─────── */
-.reveal { opacity: 1; }
-html.js .reveal { opacity: 0; transform: translateY(12px); }
-html.js .reveal.in {
-  opacity: 1; transform: none;
-  transition: opacity var(--slow) var(--spring), transform var(--slow) var(--spring);
-}
+/* ── reveal ────────────────────────────────────────────────────────────────
+   `.reveal` marks a block for motion.js and styles NOTHING. It used to hold
+   blocks at opacity 0 until they scrolled in, which meant a fast scroll, a
+   full-page screenshot or a throttled background tab could leave a whole
+   section blank: a heading, then nothing. Content is never hidden by script
+   here. See the note at the top of motion.js. */
 
 .sr-only {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
@@ -768,17 +772,25 @@ html.js .sky-wheel:not(.sw-gsap) .sw-readout { animation: sw-in var(--base) line
   html.js .sky-wheel * { animation: none !important; }
 }
 
-/* Reading position, under the sticky nav. Scaled from 0 by motion.js. */
-.progress {
-  height: 1px;
-  background: var(--mark);
-  transform: scaleX(0);
-  transform-origin: left center;
-  position: absolute;
-  inset: auto 0 -1px 0;
-}
+
 
 /* GSAP owns opacity on .reveal once it has loaded, so the CSS fallback has to
    stand down — otherwise both try to drive the same property and an element
    can end up stuck at the loser's value. */
 html.has-gsap .reveal { opacity: 1; transform: none; transition: none; }
+
+/* The header's live strip. It replaced a scroll-progress bar, which told the
+   reader something their own scrollbar already told them, and which is the
+   single most recognisable ornament on a generated site. This says what the
+   sky is doing, which is the product. */
+.nav-sky {
+  margin: 0 0 0 1.25rem;
+  padding-left: 1.25rem;
+  border-left: 1px solid var(--rule);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+.nav-sky:empty { display: none; }
+@media (max-width: 64rem) { .nav-sky { display: none; } }
