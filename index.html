@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Libre+Caslon+Display&display=swap">
-<link rel="stylesheet" href="assets/shastra.css?v=21b4aa62">
+<link rel="stylesheet" href="assets/shastra.css?v=731a8c14">
 
 <script type="application/ld+json">
 {
@@ -91,7 +91,7 @@
         {
           "@type": "Question",
           "name": "Is the daily reading really free?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes, and it stays free. The daily reading is free because of how WhatsApp billing works: a business-initiated message in India costs the sender about ₹1.09, but a reply to a message you sent costs nothing. So you message shastra each morning and the reading comes back as a free reply. That is why shastra will never push a daily message at you — the economics of the product depend on you starting the conversation." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, and it stays free. The daily reading is free because of how WhatsApp billing works: a business-initiated message in India costs the sender about ₹1.09, but a reply to a message you sent costs nothing. So you message shastra each morning and the reading comes back as a free reply. That is why shastra will never push a daily message at you. the economics of the product depend on you starting the conversation." }
         },
         {
           "@type": "Question",
@@ -101,7 +101,7 @@
         {
           "@type": "Question",
           "name": "What does shastra do with my birth details?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Birth date, time and place are stored to compute your chart, and nothing else. They are never sold or shared with advertisers. The language model that writes your reading never receives them — it sees only the computed chart. You can delete your account and every row attached to it at any time." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Birth date, time and place are stored to compute your chart, and nothing else. They are never sold or shared with advertisers. The language model that writes your reading never receives them. It sees only the computed chart. You can delete your account and every row attached to it at any time." }
         }
       ]
     }
@@ -163,26 +163,18 @@
       <div class="hero-art">
         <div class="sky-wheel" id="sky"></div>
         <p class="sky-note" id="sky-note" aria-live="polite"></p>
-        <ul class="sky-legend">
+        <ul class="sky-legend" aria-label="how to read the wheel">
           <li>
             <svg class="key" width="44" height="12" viewBox="0 0 44 12" aria-hidden="true"><rect x="0" y="2" width="44" height="8" fill="var(--ink)"/></svg>
-            <span><b>the band</b> the twelve rasi, 30&deg; each &mdash; sidereal, so roughly 24&deg; behind a western chart</span>
-          </li>
-          <li>
-            <svg class="key" width="44" height="12" viewBox="0 0 44 12" aria-hidden="true"><g stroke="var(--ink)" stroke-width="1" opacity="0.55"><path d="M4 1V11M15 1V11M26 1V11M37 1V11"/></g></svg>
-            <span><b>the ticks</b> the twenty-seven nakshatra, 13&deg;20&prime; each. a pada is a quarter of one</span>
+            <span><b>the band</b> the twelve rasi</span>
           </li>
           <li>
             <svg class="key" width="44" height="14" viewBox="0 0 44 14" aria-hidden="true"><text x="22" y="11" text-anchor="middle" font-size="13" fill="var(--ink)">&#9790;&#xFE0E;</text></svg>
-            <span><b>the glyphs</b> the nine grahas, where they actually are this minute. the tick beside each is its exact degree</span>
+            <span><b>the glyphs</b> the nine grahas, where they are this minute</span>
           </li>
           <li>
             <svg class="key" width="44" height="12" viewBox="0 0 44 12" aria-hidden="true"><g stroke="var(--ink)" stroke-width="1" opacity="0.6"><path d="M0 4H44"/><path d="M0 9H44" stroke-dasharray="6 4"/></g></svg>
-            <span><b>the lines</b> graha drishti &mdash; which graha is looking at which. hover one to see it alone</span>
-          </li>
-          <li>
-            <svg class="key" width="44" height="12" viewBox="0 0 44 12" aria-hidden="true"><g stroke="var(--mark)" stroke-width="1.4"><path d="M2 6H34"/></g><circle cx="38" cy="6" r="3" fill="var(--mark)"/></svg>
-            <span><b>in red</b> the lagna rising over Ujjain right now, and the Moon &mdash; the two things that move while you watch</span>
+            <span><b>the lines</b> which graha is looking at which</span>
           </li>
         </ul>
       </div>
@@ -262,9 +254,8 @@
             </svg>
           </div>
           <p class="label">03 &nbsp;you get words</p>
-          <h3 class="display">sixty of them, before 9am</h3>
-          <p class="small">what is moving today, read against your chart,
-            in language you can use.</p>
+          <h3 class="display">enough to change one decision</h3>
+          <p class="small">what is moving today, set against your chart.</p>
         </li>
       </ol>
 
@@ -294,7 +285,7 @@
           <p class="step-n">02</p>
           <h3 class="display">message first, every morning</h3>
           <p class="small">"gm" works. 🙏 works. anything works. that message is the ritual, and it's
-            also your streak. shastra never messages you first. the pricing section says why.</p>
+            also your streak. shastra never messages you first.</p>
         </div>
         <div class="card reveal">
           <p class="step-n">03</p>
@@ -303,9 +294,7 @@
             on. no horoscope-column hedging, no "the universe has a plan for you".</p>
         </div>
       </div>
-      <p class="tiny reveal" style="margin-top:1.5rem;max-width:var(--prose)">
-        the deeper stuff lives in the web app: full chart, report reader, compatibility. install it to your home screen and it behaves like an app.
-      </p>
+      
     </div>
   </section>
 
@@ -337,18 +326,10 @@
           <p class="small">Gandhi, Einstein and Modi, asserted against <em>published</em> values rather
             than values this engine produced. Gandhi's chart matches on all seven classical grahas: sign, nakshatra and dignity.</p>
         </div>
-        <div class="card reveal">
-          <h3 class="display">guna milan is 36 points of code</h3>
-          <p class="small">all eight kootas (varna, vashya, tara, yoni, graha maitri, gana, bhakoot, nadi) computed arithmetically, with the classical mangal dosha exemptions
-            applied. a language model is never asked to add up to 36.</p>
-        </div>
+
       </div>
 
-      <p class="tiny reveal" style="margin-top:1.75rem;max-width:var(--prose)">
-        positions come from the Swiss Ephemeris (Moshier mode), accurate to about 0.1 arcseconds. a
-        nakshatra pada is 3°20′ wide, so the error is roughly four orders of magnitude smaller than
-        anything that could change a single word of a reading.
-      </p>
+      
     </div>
   </section>
 
@@ -421,28 +402,14 @@
         </table>
       </div>
 
-      <div class="grid grid-2" style="margin-top:2.5rem">
-        <div class="card reveal">
-          <p class="label" style="margin-bottom:0.75rem">the alternative</p>
-          <p style="margin:0 0 0.75rem"><strong>₹20–50 a minute, and the meter is running while someone types.</strong></p>
-          <p class="small" style="margin:0">that's the going rate on the big consultation apps. a
-            twenty-minute chat lands between ₹400 and ₹1,000, and you don't know which until it
-            ends. then comes the gemstone.</p>
-        </div>
-        <div class="card reveal">
-          <p class="label" style="margin-bottom:0.75rem">here</p>
-          <p style="margin:0 0 0.75rem"><strong>₹149. once. the price is on the button before you press it.</strong></p>
-          <p class="small" style="margin:0">a human consult runs ₹500–2,000 with the meter running.
-            this is once. no auto-renew, nothing to cancel, and a refund inside 7 days if it wasn't
-            worth it. one email, no reason required.</p>
-        </div>
+      <div class="card reveal" style="margin-top:2.5rem">
+        <p class="label" style="margin-bottom:0.75rem">what you pay</p>
+        <p style="margin:0 0 0.75rem"><strong>&#8377;149. once. the price is on the button before you press it.</strong></p>
+        <p class="small" style="margin:0">no auto-renew, nothing to cancel, and a refund inside
+          7 days if it wasn't worth it. one email, no reason required.</p>
       </div>
 
-      <p class="tiny reveal" style="margin-top:1.75rem;max-width:var(--prose)">
-        why the daily reading can be free: in India a business-initiated WhatsApp message costs the
-        sender about ₹1.09, which is about ₹33 a month per user for a daily send. a <em>reply</em> to a
-        message you sent costs nothing. so you message first, and the free thing stays free. that's the whole trick.
-      </p>
+      
     </div>
   </section>
 
@@ -461,7 +428,7 @@
       </p>
 
       <ul class="promises reveal">
-        <li><strong>no predictions about death, illness, pregnancy or accidents.</strong> not softened and not hinted at. the categories are blocked.</li>
+        <li><strong>no predictions about death, illness, pregnancy or accidents.</strong> the categories are blocked.</li>
         <li><strong>no remedies. ever.</strong> no gemstones, no yantras, no pujas, no paid fixes. shastra does not sell relief from a problem it just described to you.</li>
         <li><strong>no manufactured urgency</strong> and no countdown timers. a transit that matters will still matter tomorrow.</li>
         <li><strong>at most two mentions of a paid report per week.</strong> a counter in the database enforces it.</li>
@@ -744,8 +711,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="assets/shastra.js?v=6ec5d4f0" defer></script>
-<script src="assets/sky-snapshot.js?v=836dcf5a" defer></script>
-<script src="assets/sky-wheel.js?v=de8279de" defer></script>
+<script src="assets/sky-snapshot.js?v=3146aa4e" defer></script>
+<script src="assets/sky-wheel.js?v=9f070650" defer></script>
 <script src="assets/motion.js?v=be988735" defer></script>
 <script defer>
   // The CTA tells the truth about a sleeping free-tier instance instead of

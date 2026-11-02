@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Libre+Caslon+Display&display=swap">
-<link rel="stylesheet" href="../assets/shastra.css?v=21b4aa62">
+<link rel="stylesheet" href="../assets/shastra.css?v=731a8c14">
 
 <script type="application/ld+json">
 {
@@ -60,7 +60,7 @@
       "totalTime": "PT1M",
       "step": [
         { "@type": "HowToStep", "position": 1, "name": "Enter your date of birth", "text": "Enter the calendar date you were born, as day, month and year." },
-        { "@type": "HowToStep", "position": 2, "name": "Enter your time of birth", "text": "Enter the clock time from your birth certificate or hospital record. If you do not know it, tick the unknown box — the chart is then computed from sunrise and the sign positions remain accurate, while the lagna, houses and dasha dates become approximate." },
+        { "@type": "HowToStep", "position": 2, "name": "Enter your time of birth", "text": "Enter the clock time from your birth certificate or hospital record. If you do not know it, tick the unknown box. The chart is then computed from sunrise and the sign positions remain accurate, while the lagna, houses and dasha dates become approximate." },
         { "@type": "HowToStep", "position": 3, "name": "Enter your place of birth", "text": "Start typing the city or town. Latitude, longitude and the historical time zone are resolved automatically." },
         { "@type": "HowToStep", "position": 4, "name": "Read the chart", "text": "The kundli is computed instantly: lagna, all nine grahas with sign, house, nakshatra and pada, the navamsa chart, and the vimshottari dasha period running now." }
       ]
@@ -71,7 +71,7 @@
         {
           "@type": "Question",
           "name": "What is a kundli?",
-          "acceptedAnswer": { "@type": "Answer", "text": "A kundli, also called a janam kundli or birth chart, is a diagram of where the planets stood in the sky at the moment and place you were born. In vedic astrology it records the twelve houses, the twelve zodiac signs, the nine grahas (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu and Ketu), and the nakshatra — one of 27 lunar mansions — occupied by each. It is computed arithmetically from astronomical data, so two correct kundlis for the same birth details will always be identical." }
+          "acceptedAnswer": { "@type": "Answer", "text": "A kundli, also called a janam kundli or birth chart, is a diagram of where the planets stood in the sky at the moment and place you were born. In vedic astrology it records the twelve houses, the twelve zodiac signs, the nine grahas (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu and Ketu), and the nakshatra, one of 27 lunar mansions, occupied by each. It is computed arithmetically from astronomical data, so two correct kundlis for the same birth details will always be identical." }
         },
         {
           "@type": "Question",
@@ -86,17 +86,17 @@
         {
           "@type": "Question",
           "name": "Why is my vedic Sun sign different from my western one?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Because the two systems measure from different starting points. Western astrology uses the tropical zodiac, anchored to the March equinox. Vedic astrology uses the sidereal zodiac, anchored to the fixed stars. The Earth's axis wobbles, so those two reference points have drifted about 24° apart over the last two millennia — a little under one full sign. That is why someone born in late March is Aries in a western horoscope and usually Pisces in a vedic one. Neither is a mistake; they answer to different definitions of where the zodiac begins." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Because the two systems measure from different starting points. Western astrology uses the tropical zodiac, anchored to the March equinox. Vedic astrology uses the sidereal zodiac, anchored to the fixed stars. The Earth's axis wobbles, so those two reference points have drifted about 24° apart over the last two millennia, a little under one full sign. That is why someone born in late March is Aries in a western horoscope and usually Pisces in a vedic one. Neither is a mistake; they answer to different definitions of where the zodiac begins." }
         },
         {
           "@type": "Question",
           "name": "What is a nakshatra?",
-          "acceptedAnswer": { "@type": "Answer", "text": "A nakshatra is one of 27 equal divisions of the zodiac, each 13°20' wide, sometimes called a lunar mansion — it is roughly the distance the Moon travels in a day. Each nakshatra is divided into four padas of 3°20' each, and each has a ruling planet that drives the vimshottari dasha system. In practice the nakshatra of your Moon is the single most used value in Indian astrology: it sets your dasha sequence, it is what kundli matching actually compares, and it is traditionally used to choose the first syllable of a child's name." }
+          "acceptedAnswer": { "@type": "Answer", "text": "A nakshatra is one of 27 equal divisions of the zodiac, each 13°20' wide, sometimes called a lunar mansion. It is roughly the distance the Moon travels in a day. Each nakshatra is divided into four padas of 3°20' each, and each has a ruling planet that drives the vimshottari dasha system. In practice the nakshatra of your Moon is the single most used value in Indian astrology: it sets your dasha sequence, it is what kundli matching actually compares, and it is traditionally used to choose the first syllable of a child's name." }
         },
         {
           "@type": "Question",
           "name": "What is vimshottari dasha?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Vimshottari dasha is the vedic timing system that divides life into planetary periods totalling 120 years. Each of the nine grahas rules a mahadasha of fixed length — Ketu 7 years, Venus 20, Sun 6, Moon 10, Mars 7, Rahu 18, Jupiter 16, Saturn 19, Mercury 17 — and the sequence you start on, plus how much of it was already elapsed at birth, is determined by the exact position of your Moon within its nakshatra. Each mahadasha subdivides into antardashas in the same proportion and the same order." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Vimshottari dasha is the vedic timing system that divides life into planetary periods totalling 120 years. Each of the nine grahas rules a mahadasha of fixed length: Ketu 7 years, Venus 20, Sun 6, Moon 10, Mars 7, Rahu 18, Jupiter 16, Saturn 19, Mercury 17. The sequence you start on, plus how much of it was already elapsed at birth, is determined by the exact position of your Moon within its nakshatra. Each mahadasha subdivides into antardashas in the same proportion and the same order." }
         },
         {
           "@type": "Question",
@@ -137,10 +137,7 @@
         <!-- The answer-first block. A crawler that reads nothing else should
              still come away with a correct definition. -->
         <p class="lede" style="margin-top:1.5rem">
-          <strong style="color:var(--ink)">A kundli is a diagram of where the planets stood at the
-          moment and place you were born.</strong> This one is computed with the Swiss Ephemeris (sidereal positions, Lahiri ayanamsa, whole-sign houses) and shows your lagna, all nine
-          grahas with nakshatra and pada, the navamsa, and the vimshottari dasha you are running
-          right now. Free, no account, nothing held back.
+          <strong style="color:var(--ink)">a kundli is where the planets stood at the minute and place you were born.</strong> this one is computed with the Swiss Ephemeris: sidereal, Lahiri ayanamsa, whole-sign houses.
         </p>
 
         <form id="form" novalidate style="margin-top:2.25rem">
@@ -233,7 +230,7 @@
         <h3 class="display" style="margin-top:3.5rem">what this chart says</h3>
         <p class="small" style="max-width:var(--prose)">
           read in order of weight: the surface first, then the mind, then the
-          identity. every sentence below is tied to a position computed above.
+          identity.
         </p>
         <div id="openers" class="grid" style="margin-top:1.75rem"></div>
 
@@ -243,8 +240,7 @@
         <div id="tensions-block" hidden>
           <p class="label" style="margin-top:3rem">what pulls against itself</p>
           <p class="small" style="max-width:var(--prose);margin-top:0.5rem">
-            every real chart contradicts itself somewhere. these are the places
-            yours does.
+            every real chart contradicts itself somewhere.
           </p>
           <div id="tensions" class="grid" style="margin-top:1.25rem"></div>
         </div>
@@ -262,7 +258,7 @@
 
       <h3 class="display" style="margin-top:3.5rem">the numbers behind it</h3>
       <p class="small" style="max-width:var(--prose)">
-        every claim above resolves to one of these rows. check them against any
+        check them against any
         ephemeris you like.
       </p>
       <div class="scroller" style="margin-top:1.25rem">
@@ -279,10 +275,7 @@
       </div>
 
       <h3 class="display" style="margin-top:3.5rem">vimshottari dasha</h3>
-      <p class="small" style="max-width:var(--prose)">
-        the mahadasha you are in, and the antardashas inside it. dates are computed from your moon's
-        exact position in its nakshatra.
-      </p>
+      
       <div class="scroller" style="margin-top:1.25rem">
         <table class="data" id="dasha">
           <thead>
@@ -315,51 +308,22 @@
   <!-- ── explainer: static, crawlable, quotable ─────────────────────────── -->
   <section class="section">
     <div class="wrap">
-      <p class="label">how to read what you just got</p>
-      <h2 class="display" style="max-width:20ch">five values do most of the work.</h2>
-
-      <div class="grid grid-2" style="margin-top:2.5rem">
+      <p class="label">three words worth knowing</p>
+      <div class="grid grid-3" style="margin-top:2.5rem">
         <div class="card">
           <svg class="value-icon" viewBox="0 0 48 48" aria-hidden="true" role="presentation"><g fill="none" stroke="var(--ink)" stroke-width="1.2"><path d="M6 30h36"/><circle cx="24" cy="30" r="9"/></g><g fill="none" stroke="var(--mark)" stroke-width="1.4"><path d="M24 30 33 21"/></g><g fill="none" stroke="var(--ink)" stroke-width="1" opacity="0.4"><path d="M11 30a13 13 0 0 1 26 0"/></g></svg>
-          <h3 class="display">lagna (ascendant)</h3>
-          <p class="small">The sign rising on the eastern horizon at your birth minute. It fixes
-            house 1, and therefore every other house. It moves through a full sign roughly every two
-            hours, which is why birth time matters more for this than for anything else in the
-            chart.</p>
-        </div>
-        <div class="card">
-          <svg class="value-icon" viewBox="0 0 48 48" aria-hidden="true" role="presentation"><g fill="none" stroke="var(--ink)" stroke-width="1.2"><rect x="9" y="9" width="30" height="30"/><path d="M28 15a11 11 0 1 0 0 18 9 9 0 1 1 0-18z"/></g></svg>
-          <h3 class="display">moon sign (rashi)</h3>
-          <p class="small">In Indian astrology this, not the Sun, is the headline. It is what
-            "my rashi" means in ordinary conversation, it is what kundli matching compares, and it
-            is what sade sati is measured from.</p>
+          <h3 class="display">lagna</h3>
+          <p class="small">the sign rising at your birth minute. it fixes house 1, and so every other house.</p>
         </div>
         <div class="card">
           <svg class="value-icon" viewBox="0 0 48 48" aria-hidden="true" role="presentation"><g fill="none" stroke="var(--ink)" stroke-width="1.2"><path d="M7 19h34v10H7z"/></g><g fill="none" stroke="var(--ink)" stroke-width="1" opacity="0.55"><path d="M15.5 19v10M24 19v10M32.5 19v10"/></g><g fill="var(--mark)"><rect x="24" y="19" width="8.5" height="10"/></g></svg>
-          <h3 class="display">nakshatra and pada</h3>
-          <p class="small">One of 27 lunar mansions, each 13°20' wide and split into four padas.
-            Your Moon's nakshatra sets your entire vimshottari dasha sequence, and traditionally
-            supplies the first syllable of a name.</p>
-        </div>
-        <div class="card">
-          <svg class="value-icon" viewBox="0 0 48 48" aria-hidden="true" role="presentation"><g fill="none" stroke="var(--ink)" stroke-width="1.2"><circle cx="24" cy="24" r="15"/></g><g fill="none" stroke="var(--ink)" stroke-width="0.9" opacity="0.5"><path d="M24 9v30M9 24h30M13.4 13.4l21.2 21.2M34.6 13.4L13.4 34.6"/></g></svg>
-          <h3 class="display">house placements</h3>
-          <p class="small">Which of the twelve areas of life each graha sits in, counted from your
-            lagna. shastra uses whole-sign houses, the vedic default, where one sign is exactly one house. the western systems divide them unequally.</p>
+          <h3 class="display">nakshatra</h3>
+          <p class="small">one of 27 lunar mansions, each 13°20' wide. your moon's sets your whole dasha sequence.</p>
         </div>
         <div class="card">
           <svg class="value-icon" viewBox="0 0 48 48" aria-hidden="true" role="presentation"><g fill="none" stroke="var(--ink)" stroke-width="1.2"><path d="M7 36h34"/></g><g fill="none" stroke="var(--ink)" stroke-width="2.4"><path d="M11 36v-5M18 36v-9M25 36v-13M39 36v-21"/></g><g fill="none" stroke="var(--mark)" stroke-width="2.4"><path d="M32 36v-17"/></g></svg>
           <h3 class="display">dignity</h3>
-          <p class="small">Whether a graha is exalted, in its own sign, friendly, neutral, inimical
-            or debilitated in the sign it occupies. It is a classical strength label, computed from
-            fixed tables, not a verdict about your life.</p>
-        </div>
-        <div class="card">
-          <svg class="value-icon" viewBox="0 0 48 48" aria-hidden="true" role="presentation"><g fill="none" stroke="var(--ink)" stroke-width="1.2"><path d="M7 24h34"/></g><g fill="none" stroke="var(--ink)" stroke-width="1"><path d="M7 19v10M16 20v8M30 20v8M41 19v10"/></g><g fill="var(--mark)"><rect x="16" y="22.4" width="14" height="3.2"/></g></svg>
-          <h3 class="display">the dasha you are in</h3>
-          <p class="small">Vimshottari divides 120 years among the nine grahas. Which mahadasha and
-            antardasha is running is the vedic answer to "why does this period feel the way it
-            does". and it is a date range, computable in advance.</p>
+          <p class="small">how well placed a graha is in the sign it occupies. a classical strength label, from fixed tables.</p>
         </div>
       </div>
     </div>
@@ -370,8 +334,8 @@
       <p class="label">the settings this chart uses</p>
       <h2 class="display" style="max-width:22ch">stated plainly. they change the answer.</h2>
       <p class="lede" style="margin-top:1.5rem">
-        Two kundli sites can disagree about your lagna and both be arithmetically correct, because
-        they made different choices here. shastra's choices are fixed and published, and the tests are in the repo:
+        two kundli sites can disagree about your lagna and both be arithmetically correct, because
+        they made different choices here. shastra's choices are fixed and published:
       </p>
       <div class="readout" style="margin-top:2rem;max-width:38rem">
         <div><span class="k">zodiac</span><span class="v">sidereal</span></div>
@@ -383,10 +347,7 @@
         <div><span class="k">vimshottari year</span><span class="v">365.25 days</span></div>
         <div><span class="k">unknown birth time</span><span class="v">sunrise, and we say so</span></div>
       </div>
-      <p class="tiny" style="margin-top:1.5rem;max-width:var(--prose)">
-        for scale: 0.1 arcseconds of error against a nakshatra pada 3°20′ wide is about four orders
-        of magnitude of headroom. the ayanamsa is verified against its own definition on every build: Spica at exactly 180°00′.
-      </p>
+      
     </div>
   </section>
 

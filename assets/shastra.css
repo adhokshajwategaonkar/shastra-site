@@ -175,9 +175,23 @@ h3.display { font-size: clamp(1.25rem, 2.4vw, 1.5rem); line-height: 1.2; }
   margin: 0 0 1.25rem;
 }
 
+/* The body scale, and there are only four steps in it.
+   
+   19 lede · 16 body · 14 small · 13 tiny, with tiny always set in --ink-faint
+   so the last two steps are separated by colour as well as size. .small used
+   to be 15px, which is near enough to the 16px body to read as a mistake
+   rather than a step, and new components kept inventing 17px and 13px
+   headings beside it. Anything that needs a size should take one of these. */
 .lede  { font-size: clamp(1.0625rem, 1.8vw, 1.1875rem); color: var(--ink-soft); max-width: var(--prose); }
-.small { font-size: 0.9375rem; color: var(--ink-soft); }
+.small { font-size: 0.875rem; color: var(--ink-soft); }
 .tiny  { font-size: 0.8125rem; color: var(--ink-faint); line-height: 1.55; }
+
+/* The fourth display step, below h3. Card headings across the tool pages use
+   this so they agree with each other. */
+.display-sm {
+  font-family: var(--display); font-weight: 400; font-size: 1.1875rem;
+  letter-spacing: -0.008em; line-height: 1.25; color: var(--ink); margin: 0;
+}
 
 /* The second plate. Sparingly — see rule 3 at the top of this file. */
 .mark, .gold { color: var(--mark); }

@@ -441,10 +441,14 @@
   }
 
   // ── hover / focus: isolate one graha's drishti and name it ───────────────
-  function wireHighlight(svg, root, data, out) {
-    // returns `set`, so demo() can drive the same code path a pointer does
-    var base = out ? out.textContent : '';
+  /* Hover and focus: isolate one graha's drishti and name it.
 
+     Called again on every repaint, so it is split in two. `bind` attaches the
+     delegated listeners ONCE, against a reference that later repaints swap
+     out; `wireHighlight` only produces the new `set` for the current data.
+     Attaching inside the repaint instead would stack a fresh pair of
+     listeners every sixty seconds, each closed over a stale chart. */
+  function wireHighlight(svg, root, data, out, base) {
     function say(key, litCount) {
       if (!out) return;
       if (!key || !data.grahas[key]) { out.textContent = base; out.removeAttribute('data-lit'); return; }
@@ -457,13 +461,13 @@
         (g.retrograde ? ' · retrograde' : '') +
         ' · aspects the ' + houses.map(function (h) { return ORDINAL[h] || h; }).join(', ') +
         // Drishti falls on SIGNS, and a sign is often empty. Saturn can be
-        // aspecting three houses with no graha standing in any of them — so
+        // aspecting three houses with no graha standing in any of them, and
         // without this the wheel dims everything, draws no chord and looks
         // broken rather than correct.
-        (litCount ? '' : ' — no graha in any of them right now');
+        (litCount ? '' : ', and no graha is standing in any of them');
     }
 
-    function set(key) {
+    return function set(key) {
       root.classList.toggle('sw-focused', !!key);
       var lit = 0;
       svg.querySelectorAll('.sw-chord').forEach(function (c) {
@@ -475,20 +479,21 @@
         gr.classList.toggle('is-lit', gr.dataset.graha === key);
       });
       say(key, lit);
-    }
+    };
+  }
 
-    return set;
-
+  /** Attach the delegated listeners once. `get()` returns the live `set`. */
+  function bind(svg, get) {
     ['mouseover', 'focusin'].forEach(function (ev) {
       svg.addEventListener(ev, function (e) {
         var g = e.target.closest ? e.target.closest('.sw-graha') : null;
-        if (g) set(g.dataset.graha);
+        if (g) get()(g.dataset.graha);
       });
     });
     ['mouseout', 'focusout'].forEach(function (ev) {
       svg.addEventListener(ev, function (e) {
         var to = e.relatedTarget;
-        if (!to || !to.closest || !to.closest('.sw-graha')) set(null);
+        if (!to || !to.closest || !to.closest('.sw-graha')) get()(null);
       });
     });
   }
@@ -581,13 +586,20 @@
     var live = false;
     var animated = false;
 
+    // The caption doubles as the hover readout, so its original text is
+    // captured once here. Reading it at paint time would pick up whatever a
+    // hover had just written into it and make that the new resting state.
+    var base = out ? out.textContent : '';
+    var set = function () {};
+    bind(svg, function () { return set; });
+
     function paint(data, state) {
       drawSky(svg, data, state);
       drawReadout(svg, data, state);
-      var set = wireHighlight(svg, root, data, out);
+      set = wireHighlight(svg, root, data, out, base);
       if (!animated) {
         animated = animate(svg, root);
-        demo(svg, set);
+        demo(svg, function (k) { set(k); });
       }
     }
 
