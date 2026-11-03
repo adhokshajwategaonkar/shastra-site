@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Libre+Caslon+Display&display=swap">
-<link rel="stylesheet" href="../assets/shastra.css?v=69723c3d">
+<link rel="stylesheet" href="../assets/shastra.css?v=59cde691">
 
 <script type="application/ld+json">
 {
@@ -222,14 +222,23 @@
     <div class="wrap">
       <p class="label">your kundli</p>
       <h2 class="display" id="summary-line" style="max-width:24ch"></h2>
-      <p class="lede" id="reading-headline" style="margin-top:1rem" hidden></p>
+      <div class="shortver" id="reading-headline" hidden></div>
       <p class="small" id="precision" style="margin-top:1rem;max-width:var(--prose)"></p>
 
       <div id="verdict-block" hidden>
-        <p class="label" style="margin-top:2.5rem">what this says about you</p>
+        <p class="label" style="margin-top:2.75rem">the nine, sorted</p>
+        <p class="small sect-how">
+          each line is one planet: what it governs, where it landed, and what
+          that does to you. the four groups run from the parts of you that
+          need no effort to the parts you have had to build.
+        </p>
         <div class="verdict" id="verdict"></div>
 
-        <p class="label" style="margin-top:2.5rem">what to do with it</p>
+        <p class="label" style="margin-top:2.75rem">what to do with it</p>
+        <p class="small sect-how">
+          five situations you will recognise, and what your chart says about
+          how you handle each one.
+        </p>
         <div class="dodont" id="dodont"></div>
       </div>
 
@@ -243,7 +252,12 @@
           <svg id="navamsa" viewBox="0 0 320 320" role="img" aria-label="North Indian navamsa chart"></svg>
         </figure>
         <div>
-          <p class="label">the three that matter most</p>
+          <p class="chart-key">
+            Su sun · Mo moon · Ma mars · Me mercury · Ju jupiter · Ve venus ·
+            Sa saturn · Ra rahu · Ke ketu · ASC the rising point.
+            the small numbers are the twelve houses.
+          </p>
+          <p class="label" style="margin-top:1.5rem">your chart in four lines</p>
           <div class="readout" id="bigthree"></div>
           <p class="label" style="margin-top:2rem">running now</p>
           <div class="readout" id="dasha-now"></div>
@@ -669,30 +683,33 @@ window.addEventListener('load', function () {
         '<div>' +
           '<div class="band-head">' + mark(g.band) +
             '<span class="band-name">' + esc(g.label) + '</span></div>' +
-          '<p class="band-note">' + esc(g.note) + '</p>' +
+          '<p class="band-note">' + esc(g.short || g.note) + '</p>' +
         '</div>' +
         '<ul class="band-items">' +
           g.items.map(function (i) {
+            // One sentence per planet, with the reason and the consequence
+            // in it. The old row put a label and a technical fragment on
+            // either side of a gap and left the reader to join them.
             return '<li><span class="bi-name">' + esc(i.plain) + '</span>' +
-              '<span class="bi-note">' + esc(i.note) + '</span></li>';
+              '<span class="bi-say">' + esc(i.sentence || i.note) + '</span></li>';
           }).join('') +
         '</ul>' +
       '</div>';
     }).join('');
 
     var dd = interp.doDont || [];
-    document.getElementById('dodont').innerHTML = dd.length
-      ? '<div class="dd-row dd-head"><span class="dd-cell"></span>' +
-        '<span class="dd-cell">do</span>' +
-        '<span class="dd-cell">don\u2019t</span></div>' +
-        dd.map(function (d) {
-          return '<div class="dd-row">' +
-            '<span class="dd-who">' + esc(d.plain) + '</span>' +
-            '<span class="dd-cell dd-do">' + esc(d.do) + '</span>' +
-            '<span class="dd-cell dd-dont">' + esc(d.dont) + '</span>' +
-          '</div>';
-        }).join('')
-      : '';
+    document.getElementById('dodont').innerHTML = dd.map(function (d) {
+      return '<div class="dd-item">' +
+        '<p class="dd-when">' + esc(d.when || d.plain) + '</p>' +
+        '<div class="dd-pair">' +
+          '<p class="dd-do"><b>do</b>' + esc(d.do) + '</p>' +
+          '<p class="dd-dont"><b>don\u2019t</b>' + esc(d.dont) + '</p>' +
+        '</div>' +
+        (d.because
+          ? '<p class="dd-because">' + esc(d.because) + '</p>'
+          : '') +
+      '</div>';
+    }).join('');
 
     box.hidden = false;
   }
@@ -727,7 +744,13 @@ window.addEventListener('load', function () {
     if (!interp) { box.hidden = true; return; }
 
     var head = document.getElementById('reading-headline');
-    head.textContent = interp.headline;
+    var says = interp.summary && interp.summary.length
+      ? interp.summary
+      : [interp.headline];
+    head.innerHTML = '<p class="label">the short version</p>' +
+      says.map(function (t) {
+        return '<p class="shortver-p">' + esc(t) + '</p>';
+      }).join('');
     head.hidden = false;
 
     document.getElementById('openers').innerHTML = interp.openers.map(function (o) {
