@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Libre+Caslon+Display&display=swap">
-<link rel="stylesheet" href="../assets/shastra.css?v=a4b72d99">
+<link rel="stylesheet" href="../assets/shastra.css?v=69723c3d">
 
 <script type="application/ld+json">
 {
@@ -140,22 +140,22 @@
         <strong style="color:var(--ink)">a kundli is where the planets stood at the minute and place you were born.</strong>
         this one is worked out from the same tables astronomers use.
       </p>
-      <p class="label" style="margin:2.75rem 0 0">three words worth knowing</p>
+      <p class="label" style="margin:2.75rem 0 0">what a kundli actually tells you</p>
       <div class="grid grid-3" style="margin-top:2.5rem">
         <div class="card">
           <svg class="value-icon" viewBox="0 0 48 48" aria-hidden="true" role="presentation"><g fill="none" stroke="var(--ink)" stroke-width="1.2"><path d="M6 30h36"/><circle cx="24" cy="30" r="9"/></g><g fill="none" stroke="var(--mark)" stroke-width="1.4"><path d="M24 30 33 21"/></g><g fill="none" stroke="var(--ink)" stroke-width="1" opacity="0.4"><path d="M11 30a13 13 0 0 1 26 0"/></g></svg>
-          <h3 class="display">lagna</h3>
-          <p class="small">the sign rising at your birth minute. it fixes house 1, and so every other house.</p>
+          <h3 class="display">how you come across</h3>
+          <p class="small">the sign climbing over the horizon at your birth minute, called the lagna. it decides where everything else in the chart lands.</p>
         </div>
         <div class="card">
           <svg class="value-icon" viewBox="0 0 48 48" aria-hidden="true" role="presentation"><g fill="none" stroke="var(--ink)" stroke-width="1.2"><path d="M7 19h34v10H7z"/></g><g fill="none" stroke="var(--ink)" stroke-width="1" opacity="0.55"><path d="M15.5 19v10M24 19v10M32.5 19v10"/></g><g fill="var(--mark)"><rect x="24" y="19" width="8.5" height="10"/></g></svg>
-          <h3 class="display">nakshatra</h3>
-          <p class="small">one of 27 lunar mansions, each 13°20' wide. your moon's sets your whole dasha sequence.</p>
+          <h3 class="display">what you were born under</h3>
+          <p class="small">your birth star, one of 27. the moon's sets the running order of every chapter of your life.</p>
         </div>
         <div class="card">
           <svg class="value-icon" viewBox="0 0 48 48" aria-hidden="true" role="presentation"><g fill="none" stroke="var(--ink)" stroke-width="1.2"><path d="M7 36h34"/></g><g fill="none" stroke="var(--ink)" stroke-width="2.4"><path d="M11 36v-5M18 36v-9M25 36v-13M39 36v-21"/></g><g fill="none" stroke="var(--mark)" stroke-width="2.4"><path d="M32 36v-17"/></g></svg>
-          <h3 class="display">dignity</h3>
-          <p class="small">how well placed a graha is in the sign it occupies. a classical strength label, from fixed tables.</p>
+          <h3 class="display">what comes easily</h3>
+          <p class="small">how well each planet sits where it landed. it is what separates the parts of you that run on their own from the parts you build.</p>
         </div>
       </div>
     </div>
@@ -203,11 +203,11 @@
         <div class="card">
           <p class="label" style="margin-bottom:0.75rem">what you get, free</p>
           <ul class="ticks">
-            <li>lagna with exact degree and nakshatra</li>
-            <li>all nine grahas: sign, house, nakshatra, pada, dignity, retrograde</li>
-            <li>navamsa (D9) chart</li>
-            <li>vimshottari mahadasha and antardasha, with dates</li>
-            <li>panchanga for your birth day</li>
+            <li>what each of the nine planets means for you, in plain english</li>
+            <li>what comes easily, what runs hot, what takes work</li>
+            <li>your rising sign, to the exact degree</li>
+            <li>the chapter you are in now, and what it is good for</li>
+            <li>every number behind it, checkable against any ephemeris</li>
           </ul>
           <p class="tiny" style="margin-top:1.25rem;margin-bottom:0">
             no result is held back behind a signup. the account only saves it.
@@ -225,13 +225,21 @@
       <p class="lede" id="reading-headline" style="margin-top:1rem" hidden></p>
       <p class="small" id="precision" style="margin-top:1rem;max-width:var(--prose)"></p>
 
-      <div class="charts" style="margin-top:2.5rem">
+      <div id="verdict-block" hidden>
+        <p class="label" style="margin-top:2.5rem">what this says about you</p>
+        <div class="verdict" id="verdict"></div>
+
+        <p class="label" style="margin-top:2.5rem">what to do with it</p>
+        <div class="dodont" id="dodont"></div>
+      </div>
+
+      <div class="charts" style="margin-top:3rem">
         <figure>
-          <figcaption class="label">rasi (D1) · birth chart</figcaption>
+          <figcaption class="label">birth chart (rasi, D1)</figcaption>
           <svg id="rasi" viewBox="0 0 320 320" role="img" aria-label="North Indian rasi chart"></svg>
         </figure>
         <figure>
-          <figcaption class="label">navamsa (D9)</figcaption>
+          <figcaption class="label">depth chart (navamsa, D9)</figcaption>
           <svg id="navamsa" viewBox="0 0 320 320" role="img" aria-label="North Indian navamsa chart"></svg>
         </figure>
         <div>
@@ -252,8 +260,8 @@
       <div id="reading" hidden>
         <h3 class="display" style="margin-top:3.5rem">what this chart says</h3>
         <p class="small" style="max-width:var(--prose)">
-          read in order of weight: the surface first, then the mind, then the
-          identity.
+          in order of weight: how you come across, then how you feel, then who
+          you are.
         </p>
         <div id="openers" class="grid" style="margin-top:1.75rem"></div>
 
@@ -261,22 +269,30 @@
         <div id="now-block" class="card" style="margin-top:0.75rem;border-left:2px solid var(--mark)"></div>
 
         <div id="tensions-block" hidden>
-          <p class="label" style="margin-top:3rem">what pulls against itself</p>
+          <p class="label" style="margin-top:3rem">where you disagree with yourself</p>
           <p class="small" style="max-width:var(--prose);margin-top:0.5rem">
-            every real chart contradicts itself somewhere.
+            every real chart contradicts itself somewhere. these are the places
+            yours does.
           </p>
           <div id="tensions" class="grid" style="margin-top:1.25rem"></div>
         </div>
 
         <div id="dosha-block" hidden>
-          <p class="label" style="margin-top:3rem">mangal dosha</p>
+          <p class="label" style="margin-top:3rem">the mars and marriage question (mangal dosha)</p>
           <div id="dosha" class="card" style="margin-top:0.75rem"></div>
         </div>
 
-        <h3 class="display" style="margin-top:3.5rem">the other six grahas</h3>
+        <h3 class="display" style="margin-top:3.5rem">the other six</h3>
         <div id="graha-readings" class="grid grid-2" style="margin-top:1.25rem"></div>
 
         <p class="tiny" id="reading-notes" style="margin-top:2.5rem;max-width:var(--prose)"></p>
+
+        <details class="glossary" id="glossary">
+          <summary class="label" style="cursor:pointer">
+            the words, in plain english
+          </summary>
+          <dl id="glossary-list"></dl>
+        </details>
       </div>
 
       <h3 class="display" style="margin-top:3.5rem">the numbers behind it</h3>
@@ -288,9 +304,9 @@
         <table class="data" id="grahas">
           <thead>
             <tr>
-              <th scope="col">graha</th><th scope="col">sign</th><th scope="col">degree</th>
-              <th scope="col">house</th><th scope="col">nakshatra</th><th scope="col">pada</th>
-              <th scope="col">dignity</th>
+              <th scope="col">planet</th><th scope="col">sign</th><th scope="col">degree</th>
+              <th scope="col">house</th><th scope="col">birth star</th><th scope="col">quarter</th>
+              <th scope="col">placement</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -602,15 +618,83 @@ window.addEventListener('load', function () {
   }
 
   function body(block) {
-    if (!block.lead) return paras(block.lines);
-    var out = '<p class="read-lead">' + rich(block.lead) + '</p>';
-    var rest = block.detail || [];
-    if (rest.length) {
-      out += '<details class="read-more"><summary>more</summary><div>' +
-             rest.map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('') +
-             '</div></details>';
+    var out;
+    if (!block.lead) {
+      out = paras(block.lines);
+    } else {
+      out = '<p class="read-lead">' + rich(block.lead) + '</p>';
+      var rest = block.detail || [];
+      if (rest.length) {
+        out += '<details class="read-more"><summary>more</summary><div>' +
+               rest.map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('') +
+               '</div></details>';
+      }
+    }
+    // The answer to "so what do I do". One line, on every card, and the only
+    // vermilion on it, because it is where the eye should land.
+    if (block.action) {
+      out += '<p class="read-action"><b>what to do with this</b>' +
+             esc(block.action) + '</p>';
     }
     return out;
+  }
+
+  /* The three bands are told apart by a drawn mark, never by colour: red on
+     one band and not the others would turn the second plate into a severity
+     scale. Filled is well placed, half-filled is awkward, outline is the one
+     you build, a rule is the one with nothing much to say. */
+  var BAND_MARK = {
+    power:    '<rect x="1" y="1" width="9" height="9" fill="currentColor"/>',
+    pressure: '<rect x="1" y="1" width="9" height="9" fill="none" ' +
+              'stroke="currentColor"/><path d="M1.5 6h8v4h-8z" fill="currentColor"/>',
+    trouble:  '<rect x="1.5" y="1.5" width="8" height="8" fill="none" ' +
+              'stroke="currentColor"/>',
+    steady:   '<path d="M1 5.5h9" stroke="currentColor"/>'
+  };
+
+  function mark(band) {
+    return '<svg viewBox="0 0 11 11" aria-hidden="true">' +
+      (BAND_MARK[band] || BAND_MARK.steady) + '</svg>';
+  }
+
+  function renderVerdict(interp) {
+    var box = document.getElementById('verdict-block');
+    if (!interp || !interp.scorecard || !interp.scorecard.length) {
+      box.hidden = true;
+      return;
+    }
+
+    document.getElementById('verdict').innerHTML = interp.scorecard.map(function (g) {
+      return '<div class="band">' +
+        '<div>' +
+          '<div class="band-head">' + mark(g.band) +
+            '<span class="band-name">' + esc(g.label) + '</span></div>' +
+          '<p class="band-note">' + esc(g.note) + '</p>' +
+        '</div>' +
+        '<ul class="band-items">' +
+          g.items.map(function (i) {
+            return '<li><span class="bi-name">' + esc(i.plain) + '</span>' +
+              '<span class="bi-note">' + esc(i.note) + '</span></li>';
+          }).join('') +
+        '</ul>' +
+      '</div>';
+    }).join('');
+
+    var dd = interp.doDont || [];
+    document.getElementById('dodont').innerHTML = dd.length
+      ? '<div class="dd-row dd-head"><span class="dd-cell"></span>' +
+        '<span class="dd-cell">do</span>' +
+        '<span class="dd-cell">don\u2019t</span></div>' +
+        dd.map(function (d) {
+          return '<div class="dd-row">' +
+            '<span class="dd-who">' + esc(d.plain) + '</span>' +
+            '<span class="dd-cell dd-do">' + esc(d.do) + '</span>' +
+            '<span class="dd-cell dd-dont">' + esc(d.dont) + '</span>' +
+          '</div>';
+        }).join('')
+      : '';
+
+    box.hidden = false;
   }
 
   /** A graha in the diagram and its paragraph are the same thing. */
@@ -648,16 +732,21 @@ window.addEventListener('load', function () {
 
     document.getElementById('openers').innerHTML = interp.openers.map(function (o) {
       var sub = [o.sign, o.degree].filter(Boolean).join(' ');
+      var head = esc(o.title) + (o.plain ? ' · ' + esc(o.plain) : '');
       return '<div class="card read-block">' +
-        '<p class="label read-head">' + esc(o.title) + '</p>' +
+        '<p class="label read-head">' + head + '</p>' +
         '<h4 class="display" style="margin:0.35rem 0 0.9rem;font-size:1.25rem">' +
           esc(sub) + '</h4>' + body(o) + '</div>';
     }).join('');
 
     document.getElementById('now-block').innerHTML =
-      (interp.now.mahadasha
-        ? '<p class="label gold">' + esc(interp.now.mahadasha.lord) + ' mahadasha</p>'
-        : '') + paras(interp.now.lines);
+      (interp.now.plain
+        ? '<p class="label gold">' + esc(interp.now.plain) + '</p>'
+        : '') + paras(interp.now.lines) +
+      (interp.now.action
+        ? '<p class="read-action"><b>what this stretch is good for</b>' +
+          esc(interp.now.action) + '</p>'
+        : '');
 
     var tb = document.getElementById('tensions-block');
     if (interp.tensions.length) {
@@ -687,15 +776,28 @@ window.addEventListener('load', function () {
       if (b.house) bits.push('house ' + b.house);
       if (b.dignityLabel) bits.push(b.dignityLabel);
       if (b.retrograde) bits.push('retrograde');
+      // The plain name is the heading a stranger can read; the Sanskrit name
+      // and the technical placement stay beside it as reference.
+      var head = esc(b.title) + (b.plain ? ' · ' + esc(b.plain) : '') +
+        ' <span class="tiny" style="color:var(--ink-faint)">(' + esc(b.sa) + ')</span>';
       return '<div class="card read-block" id="read-' + esc(b.key) + '" data-graha="' +
           esc(b.key) + '">' +
-        '<p class="label read-head">' + esc(b.title) + ' <span class="tiny" style="color:var(--ink-faint)">' +
-          esc(b.sa) + '</span></p>' +
-        '<p class="tiny" style="margin:0.35rem 0 0.9rem">' + esc(bits.join(' · ')) + '</p>' +
+        '<p class="label read-head">' + head + '</p>' +
+        '<p class="tiny" style="margin:0.35rem 0 0.9rem;display:flex;' +
+          'gap:0.5rem;align-items:baseline;flex-wrap:wrap">' +
+          (b.bandLabel ? '<span class="band-tag">' + esc(b.bandLabel) + '</span>' : '') +
+          '<span>' + esc(bits.join(' · ')) + '</span></p>' +
         body(b) + '</div>';
     }).join('');
 
     document.getElementById('reading-notes').textContent = interp.notes.join(' ');
+
+    var gl = interp.glossary || [];
+    document.getElementById('glossary').hidden = !gl.length;
+    document.getElementById('glossary-list').innerHTML = gl.map(function (t) {
+      return '<div><dt>' + esc(t.term) + '</dt><dd>' + esc(t.meaning) + '</dd></div>';
+    }).join('');
+
     box.hidden = false;
     linkChartToReading();
   }
@@ -705,7 +807,7 @@ window.addEventListener('load', function () {
     var tc = S.titleCase;
 
     document.getElementById('summary-line').textContent =
-      tc(chart.lagna.sign) + ' lagna · ' + tc(g.moon.sign) + ' moon · ' + tc(g.moon.nakshatra);
+      tc(chart.lagna.sign) + ' rising · ' + tc(g.moon.sign) + ' moon · ' + tc(g.moon.nakshatra);
 
     var note = document.getElementById('precision');
     if (chart.meta.precisionNote) {
@@ -721,9 +823,9 @@ window.addEventListener('load', function () {
     renderKundli(document.getElementById('navamsa'), chart, { navamsa: true });
 
     document.getElementById('bigthree').innerHTML =
-      row('lagna', tc(chart.lagna.sign) + ' ' + chart.lagna.degInSignStr) +
+      row('rising sign', tc(chart.lagna.sign) + ' ' + chart.lagna.degInSignStr) +
       row('moon sign', tc(g.moon.sign)) +
-      row('nakshatra', tc(g.moon.nakshatra) + ' · pada ' + g.moon.pada) +
+      row('birth star', tc(g.moon.nakshatra) + ' · quarter ' + g.moon.pada) +
       row('sun sign', tc(g.sun.sign));
 
     // dasha: find the mahadasha and antardasha covering today
@@ -732,10 +834,10 @@ window.addEventListener('load', function () {
     var antar = maha && maha.antardashas.find(function (a) { return new Date(a.start) <= now && now < new Date(a.end); });
 
     document.getElementById('dasha-now').innerHTML = maha
-      ? row('mahadasha', tc(maha.lord) + ' → ' + S.fmtDate(maha.end)) +
-        (antar ? row('antardasha', tc(antar.lord) + ' → ' + S.fmtDate(antar.end)) : '') +
+      ? row('long chapter', tc(maha.lord) + ' → ' + S.fmtDate(maha.end)) +
+        (antar ? row('within it', tc(antar.lord) + ' → ' + S.fmtDate(antar.end)) : '') +
         row('started on', tc(chart.dasha.startLord) + ', at birth')
-      : row('mahadasha', 'outside the computed range');
+      : row('long chapter', 'outside the computed range');
 
     // grahas
     var tb = document.querySelector('#grahas tbody');
@@ -785,6 +887,7 @@ window.addEventListener('load', function () {
       row('karana', tc(p.karana.name)) +
       row('vara', tc(p.vara.name) + ' · ' + tc(p.vara.lord));
 
+    renderVerdict(interp);
     renderReading(interp);
 
     result.hidden = false;

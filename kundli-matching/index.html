@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Libre+Caslon+Display&display=swap">
-<link rel="stylesheet" href="../assets/shastra.css?v=a4b72d99">
+<link rel="stylesheet" href="../assets/shastra.css?v=69723c3d">
 
 <script type="application/ld+json">
 {
@@ -114,7 +114,7 @@
       <p class="label">free · no signup · the full 36</p>
       <h1 class="display">kundli matching</h1>
       <p class="lede" style="margin-top:1.5rem">
-        <strong style="color:var(--ink)">guna milan scores eight factors out of 36, all of them from the two moon positions.</strong> you get the value behind every score, plus mangal dosha checked from lagna, moon and Venus. nothing here turns that into a verdict.
+        <strong style="color:var(--ink)">guna milan scores eight things out of 36, all of them worked out from where the two moons stood.</strong> you get what each score is measuring and the value behind it, plus the mars and marriage question checked three ways. nothing here turns that into a verdict.
       </p>
 
 
@@ -249,7 +249,7 @@
           <div class="readout" id="profiles"></div>
         </div>
         <div class="card">
-          <p class="label" style="margin-bottom:0.75rem">mangal dosha, all three references</p>
+          <p class="label" style="margin-bottom:0.75rem">the mars and marriage question (mangal dosha)</p>
           <div class="readout" id="mangal"></div>
           <p class="tiny" id="mangal-framing" style="margin-top:1rem;margin-bottom:0"></p>
         </div>
@@ -499,6 +499,16 @@
     opacity: 0.4;
   }
 
+  .koota-plain {
+    display: block;
+    font-family: var(--body);
+    font-size: 0.75rem;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--ink-faint);
+    margin-top: 0.15rem;
+  }
   .koota-ref th[scope='row'], table.data#kootas th[scope='row'] {
     text-transform: none; letter-spacing: 0; font-size: 0.875rem;
     color: var(--ink); font-weight: 500; font-family: var(--body);
@@ -562,6 +572,17 @@ window.addEventListener('load', function () {
     grahaMaitri: 'graha maitri', gana: 'gana', bhakoot: 'bhakoot', nadi: 'nadi',
   };
 
+  var PLAIN = {
+    varna: 'work and temperament',
+    vashya: 'who holds more sway',
+    tara: 'how the two birth stars fall apart',
+    yoni: 'physical and instinctive fit',
+    grahaMaitri: 'whether the two minds get on',
+    gana: 'temperament: gentle, driven, or blunt',
+    bhakoot: 'how the two moon signs sit together',
+    nadi: 'constitution, and the one worth most points',
+  };
+
   function render(m) {
     var tc = S.titleCase;
 
@@ -575,7 +596,8 @@ window.addEventListener('load', function () {
       var k = m.kootas[name];
       var full = k.score === k.max;
       var zero = k.score === 0;
-      return '<tr><th scope="row">' + LABEL[name] + '</th>' +
+      return '<tr><th scope="row">' + LABEL[name] +
+        '<span class="koota-plain">' + PLAIN[name] + '</span></th>' +
         '<td class="num mono" style="color:' + (full ? 'var(--mark)' : zero ? 'var(--ink-faint)' : 'var(--ink)') + '">' +
         k.score + ' / ' + k.max + '</td>' +
         '<td class="small">' + evidence(name, k, tc) + '</td></tr>';
@@ -583,8 +605,8 @@ window.addEventListener('load', function () {
 
     var p = m.profiles;
     document.getElementById('profiles').innerHTML =
-      row('first · moon', tc(p.groom.moonSign) + ' · ' + tc(p.groom.nakshatra) + ' pada ' + p.groom.nakshatraPada) +
-      row('second · moon', tc(p.bride.moonSign) + ' · ' + tc(p.bride.nakshatra) + ' pada ' + p.bride.nakshatraPada) +
+      row('first · moon', tc(p.groom.moonSign) + ' · ' + tc(p.groom.nakshatra) + ' quarter ' + p.groom.nakshatraPada) +
+      row('second · moon', tc(p.bride.moonSign) + ' · ' + tc(p.bride.nakshatra) + ' quarter ' + p.bride.nakshatraPada) +
       row('gana', tc(p.groom.gana) + ' / ' + tc(p.bride.gana)) +
       row('nadi', tc(p.groom.nadi) + ' / ' + tc(p.bride.nadi)) +
       row('yoni', tc(p.groom.yoni) + ' / ' + tc(p.bride.yoni));
@@ -592,10 +614,10 @@ window.addEventListener('load', function () {
     var mg = m.doshas.mangal;
     function refs(x) {
       var on = [];
-      if (x.fromLagna) on.push('lagna');
-      if (x.fromMoon) on.push('moon');
+      if (x.fromLagna) on.push('the rising sign');
+      if (x.fromMoon) on.push('the moon');
       if (x.fromVenus) on.push('venus');
-      return on.length ? 'from ' + on.join(', ') : 'from none of the three';
+      return on.length ? 'counted from ' + on.join(', ') : 'from none of the three';
     }
     document.getElementById('mangal').innerHTML =
       row('first person', refs(mg.groom)) +

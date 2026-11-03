@@ -932,3 +932,169 @@ html.has-gsap .reveal { opacity: 1; transform: none; transition: none; }
 
 /* The small marks used across the tool pages and the trust cards. */
 .value-icon { width: 2.5rem; height: 2.5rem; display: block; margin-bottom: 1.1rem; }
+
+/* ─── the verdict ────────────────────────────────────────────────────────────
+   Before any prose: what is working, what is awkward, what takes work, and
+   what to do. A reader who does not know the vocabulary cannot tell from a
+   correct paragraph whether they have been told something good or something
+   worrying, and will assume the worse of the two.
+
+   The bands are told apart by a DRAWN MARK, never by colour. Red for one band
+   and not the others would make the second plate a severity scale, which is
+   both a misuse of it and the exact fear-coding this product exists without.
+   Vermilion appears once per card, on the action, because the action is the
+   line we want the eye to land on. */
+.verdict { margin-top: 2rem; }
+
+.band {
+  display: grid;
+  grid-template-columns: 15rem 1fr;
+  gap: 1.5rem 2.5rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+}
+.band:last-child { border-bottom: 1px solid var(--rule); }
+
+.band-head { display: flex; gap: 0.6rem; align-items: baseline; }
+.band-head svg { flex: none; width: 11px; height: 11px; transform: translateY(1px); }
+.band-name {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+}
+.band-note {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--ink-faint);
+  margin: 0.45rem 0 0;
+}
+.band-items { list-style: none; margin: 0; padding: 0; }
+.band-items li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.6rem;
+  align-items: baseline;
+  padding: 0.3rem 0;
+}
+.band-items .bi-name {
+  font-family: var(--display);
+  font-size: 1.0625rem;
+  color: var(--ink);
+}
+.band-items .bi-note {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+}
+
+/* ─── do and don't ───────────────────────────────────────────────────────── */
+.dodont { margin-top: 1.5rem; border-top: 1px solid var(--rule); }
+.dd-row {
+  display: grid;
+  grid-template-columns: 13rem 1fr 1fr;
+  gap: 1.5rem;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: baseline;
+}
+.dd-head .dd-cell {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+}
+.dd-who { font-family: var(--display); font-size: 1rem; color: var(--ink); }
+.dd-cell { font-size: 0.9375rem; color: var(--ink-soft); }
+.dd-row .dd-do { color: var(--ink); }
+.dd-row .dd-dont { color: var(--ink-faint); }
+
+/* ─── the one line that says what to do about it ─────────────────────────── */
+.read-action {
+  margin: 1rem 0 0;
+  padding-left: 1.1rem;
+  position: relative;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--ink);
+}
+.read-action::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.52em;
+  width: 7px;
+  height: 7px;
+  background: var(--mark);
+}
+.read-action b {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 400;
+  color: var(--ink-faint);
+  display: block;
+  margin-bottom: 0.15rem;
+}
+
+/* The band tag on a card, beside the placement line. */
+.band-tag {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  border: 1px solid var(--rule-firm);
+  padding: 0.1rem 0.4rem;
+  white-space: nowrap;
+}
+
+/* ─── the glossary ───────────────────────────────────────────────────────── */
+.glossary { margin-top: 2rem; }
+.glossary > summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  list-style: none;
+  padding-bottom: 0.6rem;
+}
+.glossary > summary::-webkit-details-marker { display: none; }
+.glossary > summary::after { content: '+'; color: var(--mark); line-height: 1; }
+.glossary[open] > summary::after { content: '\2212'; }
+.glossary dl { margin: 0; border-top: 1px solid var(--rule); }
+.glossary div {
+  display: grid;
+  grid-template-columns: 14rem 1fr;
+  gap: 1.5rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.glossary dt {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+.glossary dd { margin: 0; font-size: 0.875rem; color: var(--ink-soft); }
+
+@media (max-width: 720px) {
+  .band, .dd-row, .glossary div { grid-template-columns: 1fr; gap: 0.5rem; }
+  .band-note { grid-column: 1; }
+  .dd-head { display: none; }
+  .dd-row .dd-cell::before {
+    font-family: var(--mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    margin-right: 0.5rem;
+  }
+  .dd-row .dd-do::before { content: 'do'; }
+  .dd-row .dd-dont::before { content: 'don\2019t'; }
+}
