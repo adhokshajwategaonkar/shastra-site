@@ -22,10 +22,9 @@
 <link rel="icon" href="../assets/favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Libre+Caslon+Display&display=swap">
-<link rel="stylesheet" href="../assets/shastra.css?v=1f838a3c">
+<link rel="preload" href="../assets/fonts/geistserif-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/switzer-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/shastra.css?v=ceea2c4c">
 
 <script type="application/ld+json">
 {
@@ -111,6 +110,7 @@
 </head>
 
 <body>
+<svg class="bp-defs" aria-hidden="true" focusable="false"><defs><pattern id="bp-hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0V5"/></pattern><pattern id="bp-hatch-s" width="2.6" height="2.6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0V2.6"/></pattern><pattern id="bp-dots" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="0.55"/></pattern><marker id="bp-arrow" viewBox="0 0 8 8" refX="7.5" refY="4" markerWidth="5" markerHeight="5" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0 1 8 4 0 7z"/></marker></defs></svg>
 <a class="skip" href="#tool">skip to the calculator</a>
 
 <header class="nav">
@@ -143,17 +143,17 @@
       <p class="label" style="margin:2.75rem 0 0">what a kundli actually tells you</p>
       <div class="grid grid-3" style="margin-top:2.5rem">
         <div class="card">
-          <svg class="value-icon" viewBox="0 0 48 48" aria-hidden="true" role="presentation"><g fill="none" stroke="var(--ink)" stroke-width="1.2"><path d="M6 30h36"/><circle cx="24" cy="30" r="9"/></g><g fill="none" stroke="var(--mark)" stroke-width="1.4"><path d="M24 30 33 21"/></g><g fill="none" stroke="var(--ink)" stroke-width="1" opacity="0.4"><path d="M11 30a13 13 0 0 1 26 0"/></g></svg>
+          <svg class="value-icon bp" viewBox="0 0 48 48" aria-hidden="true" role="presentation"><rect class="hxs" x="4" y="30" width="40" height="8"/><path class="ln dash" d="M10 30a14 14 0 0 1 28 0"/><path class="t2" d="M15 30a9 9 0 0 1 18 0Z"/><path class="mks" d="M24 30L33 21"/><circle class="mkd" cx="33" cy="21" r="1.6"/></svg>
           <h3 class="display">how you come across</h3>
           <p class="small">the sign climbing over the horizon at your birth minute, called the lagna. it decides where everything else in the chart lands.</p>
         </div>
         <div class="card">
-          <svg class="value-icon" viewBox="0 0 48 48" aria-hidden="true" role="presentation"><g fill="none" stroke="var(--ink)" stroke-width="1.2"><path d="M7 19h34v10H7z"/></g><g fill="none" stroke="var(--ink)" stroke-width="1" opacity="0.55"><path d="M15.5 19v10M24 19v10M32.5 19v10"/></g><g fill="var(--mark)"><rect x="24" y="19" width="8.5" height="10"/></g></svg>
+          <svg class="value-icon bp" viewBox="0 0 48 48" aria-hidden="true" role="presentation"><path class="hxs" d="M40 18L43 21V31L40 28Z"/><path class="hxs" d="M6 28H40L43 31H9Z"/><rect class="pl" x="6" y="18" width="34" height="10"/><rect class="mk" x="23" y="18" width="8.5" height="10"/><path class="ln" d="M14.5 18v10M23 18v10M31.5 18v10"/></svg>
           <h3 class="display">what you were born under</h3>
           <p class="small">your birth star, one of 27. the moon's sets the running order of every chapter of your life.</p>
         </div>
         <div class="card">
-          <svg class="value-icon" viewBox="0 0 48 48" aria-hidden="true" role="presentation"><g fill="none" stroke="var(--ink)" stroke-width="1.2"><path d="M7 36h34"/></g><g fill="none" stroke="var(--ink)" stroke-width="2.4"><path d="M11 36v-5M18 36v-9M25 36v-13M39 36v-21"/></g><g fill="none" stroke="var(--mark)" stroke-width="2.4"><path d="M32 36v-17"/></g></svg>
+          <svg class="value-icon bp" viewBox="0 0 48 48" aria-hidden="true" role="presentation"><rect class="hxs" x="5" y="38" width="38" height="3"/><rect class="t1" x="7" y="32" width="5" height="6"/><rect class="t1" x="14" y="28" width="5" height="10"/><rect class="t1" x="21" y="24" width="5" height="14"/><rect class="mk" x="28" y="20" width="5" height="18"/><rect class="t2" x="35" y="16" width="5" height="22"/></svg>
           <h3 class="display">what comes easily</h3>
           <p class="small">how well each planet sits where it landed. it is what separates the parts of you that run on their own from the parts you build.</p>
         </div>

@@ -85,8 +85,19 @@
        touched, so nothing here can leave a label invisible. */
     gsap.utils.toArray('.section-art .draw-art').forEach(function (art) {
       var strokes = art.querySelectorAll('path, circle, rect');
+      // Each stroke draws over its OWN length. The drawings use non-scaling
+      // strokes, so the dash is measured in screen pixels: geometric length
+      // times the element's on-screen scale. One fixed dash for everything
+      // either cuts long outlines short (600px against a 900px phone) or, at
+      // 2400px, keeps short strokes like the tick row invisible until the
+      // tail of the ease, where they pop in last.
+      var len = function (i, el) {
+        if (!el.getTotalLength) return 600;
+        var m = el.getScreenCTM();
+        return Math.ceil(el.getTotalLength() * (m ? Math.hypot(m.a, m.b) : 1)) + 2;
+      };
       gsap.fromTo(strokes,
-        { strokeDasharray: 600, strokeDashoffset: 600 },
+        { strokeDasharray: len, strokeDashoffset: len },
         {
           strokeDashoffset: 0, duration: 1.2, ease: 'power2.out', stagger: 0.06,
           clearProps: 'strokeDasharray,strokeDashoffset',

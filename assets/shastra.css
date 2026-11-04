@@ -28,41 +28,159 @@
    here — they are two renderings of one decision, not two choices.
    ───────────────────────────────────────────────────────────────────────── */
 
+/* ── the faces, self-hosted ──────────────────────────────────────────────
+   Switzer is on Fontshare and Geist Serif only in Vercel's own release, so
+   using the two CDNs would have put three third-party font hosts in front of
+   a page whose pitch is that it keeps nothing it does not need. These are the
+   latin subsets, 132KB for six faces, and `build-assets.py` renders the share
+   cards from the same families in site/tools/fonts. One source of truth for
+   the typography, and no runtime dependency on anyone.
+   Geist Serif: OFL. Switzer: ITF Free Font License. IBM Plex Mono: OFL.
+   Licence texts sit beside the files in site/tools/fonts/.
+   ──────────────────────────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Geist Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/geistserif-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Switzer';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/switzer-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Switzer';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/switzer-400i.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Switzer';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('fonts/switzer-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Switzer';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('fonts/switzer-600.woff2') format('woff2');
+}
+/* THE RUPEE. Neither Switzer nor Geist Serif draws U+20B9, and this product
+   prints prices on every page. Left alone, each ₹ falls back to whatever the
+   OS has (SF on a Mac, Roboto on Android, Segoe on Windows), so the same
+   price renders in a different typeface per device. These single-glyph faces
+   join each family for that one codepoint only: Archivo's rupee for the
+   grotesque, Libre Caslon's for the serif. ~800 bytes each, fetched only on
+   a page that actually shows a price. */
+@font-face {
+  font-family: 'Switzer';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/rupee-sans-400.woff2') format('woff2');
+  unicode-range: U+20B9;
+}
+@font-face {
+  font-family: 'Switzer';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('fonts/rupee-sans-500.woff2') format('woff2');
+  unicode-range: U+20B9;
+}
+@font-face {
+  font-family: 'Switzer';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('fonts/rupee-sans-600.woff2') format('woff2');
+  unicode-range: U+20B9;
+}
+@font-face {
+  font-family: 'Geist Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/rupee-serif-400.woff2') format('woff2');
+  unicode-range: U+20B9;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/ibmplexmono-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('fonts/ibmplexmono-500.woff2') format('woff2');
+}
+
 :root {
   /* ── paper ──────────────────────────────────────────────────────────────
-     Warm, not blue-white. #FFFFFF reads as "screen"; this reads as stock. */
+     Warm, not blue-white. #FFFFFF reads as "screen"; this reads as stock.
+     The sunk tints carry a trace of the ink hue, the way a red plate ghosts
+     into the stock around it. */
   --paper:      #FAF9F6;
-  --paper-sunk: #F2F0E9;   /* inset panels, alternate rows — barely there    */
-  --paper-edge: #EDEAE0;
+  --paper-sunk: #F6EFEE;   /* inset panels, alternate rows — barely there    */
+  --paper-edge: #F0E4E3;
 
   /* ── ink ────────────────────────────────────────────────────────────────
-     Three weights, all of them AA on paper. --ink-faint is the floor: do not
-     go lighter for anything a reader has to read. */
-  --ink:       #22211C;    /* headings, strong text            15:1          */
-  --ink-soft:  #55524A;    /* body                              7.3:1        */
-  --ink-faint: #6F6B60;    /* labels, captions, table heads     4.9:1        */
+     ONE HUE, FIVE TINTS. Every ratio below is measured against --paper, not
+     guessed: a red text ramp is the easiest thing in the world to ship at
+     3:1 because it looks fine on the author's monitor. --ink-faint is the
+     floor for anything a reader has to read; nothing lighter carries text.
+     The ceiling is real too — pure red tops out around 9:1 where black
+     reached 15:1, so --ink is as dark as it can be and still read as red. */
+  --ink:       #81251E;    /* headings, strong text, strokes    9.0:1        */
+  --ink-soft:  #9D2D25;    /* body                              7.0:1        */
+  --ink-faint: #B4342A;    /* labels, captions, table heads     5.8:1        */
 
-  /* ── rules ──────────────────────────────────────────────────────────────
-     Hairlines are warm grey; structural frames are ink. */
-  --rule:      #DAD6C8;
-  --rule-firm: #22211C;
+  /* ── rules ──────────────────────────────────────────────────────────── */
+  --rule:      #E7D1D0;
+  --rule-firm: #81251E;
 
-  /* ── the second plate ───────────────────────────────────────────────────
-     Sindoor. Old Indian almanacs print the auspicious entries in red against
-     black, on a separate pass of the press. Same discipline here. */
-  --mark:      #B4342A;
-  --mark-wash: rgba(180, 52, 42, 0.08);
+  /* ── the mark ───────────────────────────────────────────────────────────
+     Was a second plate in a different colour; now that the whole page prints
+     in one hue that distinction is gone, so the mark is the most SATURATED
+     red available that still carries text (99% chroma, 4.5:1). It reads as
+     lit against the browner ink rather than as another colour.
+     Emphasis inside an illustration is carried by flat tints and hatching
+     instead, which is how a real blueprint does it. */
+  --mark:      #E41101;
+  --mark-wash: rgba(228, 17, 1, 0.07);
+
+  /* ── flat tints, for illustration fills ─────────────────────────────────
+     Three steps of the same red. A drawing is built from these plus a single
+     --ink hairline: no gradients, no second hue, no shadow. */
+  --tint-1:    #F1DCDA;
+  --tint-2:    #E8B4B0;
+  --tint-3:    #E28A83;
 
   /* ── the inverted band ──────────────────────────────────────────────── */
-  --night:      #1B1A17;
-  --night-ink:  #F2F0E9;
-  --night-soft: #A5A094;
-  --night-rule: rgba(242, 240, 233, 0.16);
+  --night:      #1C1210;
+  --night-ink:  #F7EDEC;
+  --night-soft: #D2A7A2;
+  --night-rule: rgba(247, 237, 236, 0.18);
 
   /* ── type ───────────────────────────────────────────────────────────────
-     Caslon says printed. Archivo says neutral. Plex Mono says measured. */
-  --display: 'Libre Caslon Display', 'Libre Caslon Text', Georgia, 'Times New Roman', serif;
-  --body:    'Archivo', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+     Geist Serif says printed. Switzer says neutral. Plex Mono says measured.
+     GEIST SERIF HAS ONE WEIGHT. There is no bold and no medium, so nothing
+     set in --display may ask for 500 or 600: it silently synthesises a
+     smeared faux-bold. Size and case do the work instead. */
+  --display: 'Geist Serif', 'Libre Caslon Display', Georgia, 'Times New Roman', serif;
+  --body:    'Switzer', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
   --mono:    'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* ── motion ─────────────────────────────────────────────────────────── */
@@ -94,6 +212,7 @@
 *, *::before, *::after { box-sizing: border-box; }
 
 html {
+  font-synthesis: none;
   background: var(--paper);
   color: var(--ink-soft);
   font-family: var(--body);
@@ -157,7 +276,10 @@ h3.display { font-size: clamp(1.25rem, 2.4vw, 1.5rem); line-height: 1.2; }
 /* Italic is the serif's own emphasis. Caslon's italic is a different design,
    not a slanted roman, and it is the right way to stress a word in a headline
    without reaching for colour. */
-.display em, .display i { font-style: italic; }
+/* Geist Serif ships no italic, so `font-style: italic` here makes the
+   browser shear the upright, which is the one typographic tell everyone can
+   spot. The emphasis moves to the mark instead: same face, lit red. */
+.display em, .display i { font-style: normal; color: var(--mark); }
 
 /* The micro-label. Mono, uppercase, tracked — the ephemeris column heading. */
 .label {
@@ -236,17 +358,20 @@ h3.display { font-size: clamp(1.25rem, 2.4vw, 1.5rem); line-height: 1.2; }
   background: var(--night);
   color: var(--night-soft);
   --paper: var(--night);
-  --paper-sunk: #232119;
+  --paper-sunk: #271714;
+  --tint-1: #2B1916;
+  --tint-2: #4A2420;
+  --tint-3: #7A3129;
   --ink: var(--night-ink);
   --ink-soft: var(--night-soft);
-  --ink-faint: #827D71;
+  --ink-faint: #C08D88;
   --rule: var(--night-rule);
   --rule-firm: var(--night-ink);
-  --mark: #E2705F;             /* lightened: #B4342A is 2.4:1 on night       */
+  --mark: #FF6A5A;             /* lightened: #E41101 is 3.0:1 on night       */
   /* It paints over body's graph paper, so it carries its own. */
   background-image:
-    repeating-linear-gradient(to right,  rgba(242,240,233,0.035) 0 1px, transparent 1px 100%),
-    repeating-linear-gradient(to bottom, rgba(242,240,233,0.035) 0 1px, transparent 1px 100%);
+    repeating-linear-gradient(to right,  rgba(247,237,236,0.035) 0 1px, transparent 1px 100%),
+    repeating-linear-gradient(to bottom, rgba(247,237,236,0.035) 0 1px, transparent 1px 100%);
   background-size: 56px 56px;
 }
 .invert + .section, .section + .invert { border-top: 0; }
@@ -931,7 +1056,7 @@ html.has-gsap .reveal { opacity: 1; transform: none; transition: none; }
 }
 
 /* The small marks used across the tool pages and the trust cards. */
-.value-icon { width: 2.5rem; height: 2.5rem; display: block; margin-bottom: 1.1rem; }
+.value-icon { width: 3.5rem; height: 3.5rem; display: block; margin-bottom: 1.1rem; }
 
 /* ─── the verdict ────────────────────────────────────────────────────────────
    Before any prose: what is working, what is awkward, what takes work, and
@@ -1158,3 +1283,75 @@ html.has-gsap .reveal { opacity: 1; transform: none; transition: none; }
   .dd-pair { grid-template-columns: 1fr; gap: 0.7rem; }
   .band-items .bi-name { flex: 1 1 100%; }
 }
+
+
+/* ─── the blueprint idiom ────────────────────────────────────────────────────
+   Every illustration on the site is drawn the same way, on the model of a
+   technical drawing: one hairline in --ink, planes filled with flat tints of
+   the same red, cut surfaces and material shown as 45° hatching, and parts
+   named in mono capitals at the end of a leader with an arrowhead. Figures
+   large enough to carry it sit on a dot field inside a dotted frame with a
+   FIG number in the margin.
+
+   What it rules out: gradients, shadows, a second hue, stock icons, and any
+   mark that decorates instead of naming a part. Each drawing still draws the
+   thing its caption is about.
+
+   Strokes are non-scaling, so a hairline is one pixel whether the drawing is
+   a 40px icon or a 480px figure. That is what makes the small marks and the
+   large figures read as one set.
+
+   PATTERNS RESOLVE THEIR COLOUR WHERE THEY ARE DEFINED, not where they are
+   used. A hatch defined at the top of <body> and used inside the dark band
+   paints dark-red lines on a dark ground. So the band carries its own copy of
+   every pattern (`-n` ids) inside the section, and `.invert` points at them.
+   ──────────────────────────────────────────────────────────────────────── */
+.bp-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+svg.bp { overflow: visible; }
+.bp :is(path, circle, rect, ellipse, line, polygon, polyline) {
+  vector-effect: non-scaling-stroke;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.bp .ln   { fill: none; stroke: var(--ink); stroke-width: 1; }
+.bp .pl   { fill: var(--paper); stroke: var(--ink); stroke-width: 1; }
+.bp .t1   { fill: var(--tint-1); stroke: var(--ink); stroke-width: 1; }
+.bp .t2   { fill: var(--tint-2); stroke: var(--ink); stroke-width: 1; }
+.bp .t3   { fill: var(--tint-3); stroke: var(--ink); stroke-width: 1; }
+.bp .hx   { fill: url(#bp-hatch);   stroke: var(--ink); stroke-width: 1; }
+.bp .hxs  { fill: url(#bp-hatch-s); stroke: var(--ink); stroke-width: 1; }
+.bp .hxf  { fill: url(#bp-hatch);   stroke: none; }
+.bp .mk   { fill: var(--mark); stroke: var(--ink); stroke-width: 1; }
+.bp .mkd  { fill: var(--mark); stroke: none; }
+.bp .mks  { fill: none; stroke: var(--mark); stroke-width: 1.75; }
+.bp .soft { opacity: 0.45; }
+.bp .dash { stroke-dasharray: 4 3; }
+.bp .dot  { stroke-dasharray: 1 3; }
+.bp .field { fill: url(#bp-dots); stroke: none; }
+.bp .frame { fill: none; stroke: var(--tint-2); stroke-width: 1; stroke-dasharray: 1 3; }
+.bp .lead  { fill: none; stroke: var(--ink); stroke-width: 1; marker-end: url(#bp-arrow); }
+.bp .lab {
+  font-family: var(--mono); font-size: 8.5px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase; fill: var(--ink);
+}
+.bp .lab.mark { fill: var(--mark); }
+.bp .num {
+  font-family: var(--mono); font-size: 8px; letter-spacing: 0.06em; fill: var(--ink-faint);
+}
+.bp .say { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; fill: var(--ink); }
+.bp .fig {
+  font-family: var(--mono); font-size: 7px; letter-spacing: 0.16em;
+  text-transform: uppercase; fill: var(--ink-faint);
+}
+
+.invert .bp .hx, .invert .bp .hxf { fill: url(#bp-hatch-n); }
+.invert .bp .hxs  { fill: url(#bp-hatch-sn); }
+.invert .bp .field { fill: url(#bp-dots-n); }
+.invert .bp .lead  { marker-end: url(#bp-arrow-n); }
+
+/* Pattern contents. These inherit from the defs block's own position. */
+#bp-hatch path, #bp-hatch-s path, #bp-hatch-n path, #bp-hatch-sn path {
+  stroke: var(--ink-faint); stroke-width: 0.7;
+}
+#bp-dots circle, #bp-dots-n circle { fill: var(--tint-2); }
+#bp-arrow path, #bp-arrow-n path { fill: var(--ink); }

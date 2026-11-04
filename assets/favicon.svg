@@ -10,9 +10,9 @@
        in India already uses and which turns to mush below 24px. A frame, a
        line and a disc survive 16px and say something only this product says. -->
   <rect width="64" height="64" fill="#FAF9F6"/>
-  <g fill="none" stroke="#22211C" stroke-width="3.2">
+  <g fill="none" stroke="#81251E" stroke-width="3.2">
     <rect x="11" y="11" width="42" height="42"/>
     <path d="M11 38h42"/>
   </g>
-  <circle cx="24" cy="38" r="6.5" fill="#B4342A"/>
+  <circle cx="24" cy="38" r="6.5" fill="#E41101"/>
 </svg>

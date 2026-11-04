@@ -22,10 +22,9 @@
 <link rel="icon" href="../assets/favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Libre+Caslon+Display&display=swap">
-<link rel="stylesheet" href="../assets/shastra.css?v=1f838a3c">
+<link rel="preload" href="../assets/fonts/geistserif-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/switzer-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/shastra.css?v=ceea2c4c">
 
 <script type="application/ld+json">
 {
@@ -98,6 +97,7 @@
 </head>
 
 <body>
+<svg class="bp-defs" aria-hidden="true" focusable="false"><defs><pattern id="bp-hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0V5"/></pattern><pattern id="bp-hatch-s" width="2.6" height="2.6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0V2.6"/></pattern><pattern id="bp-dots" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="0.55"/></pattern><marker id="bp-arrow" viewBox="0 0 8 8" refX="7.5" refY="4" markerWidth="5" markerHeight="5" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0 1 8 4 0 7z"/></marker></defs></svg>
 <a class="skip" href="#tool">skip to the calculator</a>
 
 <header class="nav">
@@ -128,19 +128,19 @@
       <p class="label" style="margin:2.75rem 0 0">the three phases</p>
       <div class="phases-ref grid grid-3" style="margin-top:2.5rem">
         <div class="card">
-          <svg class="phase-icon" viewBox="0 0 72 72" aria-hidden="true" role="presentation"><g fill="none" stroke="var(--ink)" stroke-width="0.9" opacity="0.35"><circle cx="36" cy="36" r="22"/><path d="M36 11L36 17"/><path d="M48.5 14.3L45.5 19.5"/><path d="M57.7 23.5L52.5 26.5"/><path d="M61 36L55 36"/><path d="M57.7 48.5L52.5 45.5"/><path d="M48.5 57.7L45.5 52.5"/><path d="M36 61L36 55"/><path d="M23.5 57.7L26.5 52.5"/><path d="M14.3 48.5L19.5 45.5"/><path d="M11 36L17 36"/><path d="M14.3 23.5L19.5 26.5"/><path d="M23.5 14.3L26.5 19.5"/></g><g fill="none" stroke="var(--ink)" stroke-width="2.6" stroke-linecap="butt"><path d="M20.4 20.4A22 22 0 0 1 51.6 20.4"/></g><g fill="none" stroke="var(--ink)" stroke-width="1.1"><path d="M36 18.5L36 25"/></g><g fill="none" stroke="var(--ink)" stroke-width="1.1"><circle cx="36" cy="27.5" r="2.8"/></g><g fill="var(--mark)"><circle cx="21.3" cy="10.5" r="3.4"/></g></svg>
+          <svg class="phase-icon bp" viewBox="0 0 72 72" aria-hidden="true" role="presentation"><circle class="ln dot" cx="36" cy="36" r="30"/><path class="pl" fill-rule="evenodd" d="M11 36a25 25 0 1 0 50 0a25 25 0 1 0 -50 0ZM17 36a19 19 0 1 0 38 0a19 19 0 1 0 -38 0Z"/><path class="hx" d="M18.32 18.32A25 25 0 0 1 53.68 18.32L49.44 22.56A19 19 0 0 0 22.56 22.56Z"/><path class="ln" d="M40.92 17.65L42.47 11.85M49.44 22.56L53.68 18.32M54.35 31.08L60.15 29.53M54.35 40.92L60.15 42.47M49.44 49.44L53.68 53.68M40.92 54.35L42.47 60.15M31.08 54.35L29.53 60.15M22.56 49.44L18.32 53.68M17.65 40.92L11.85 42.47M17.65 31.08L11.85 29.53M22.56 22.56L18.32 18.32M31.08 17.65L29.53 11.85"/><circle class="t3" cx="36" cy="14" r="2.4"/><circle class="pl" cx="36" cy="36" r="5"/><path class="t2" d="M38.25 37.3 L36 38.6 L33.75 37.3 L33.75 34.7 L36 33.4 L38.25 34.7Z"/><circle class="pl" cx="21.3" cy="10.5" r="3.8"/><circle class="mkd" cx="21.3" cy="10.5" r="1.6"/></svg>
           <p class="label" style="margin-bottom:0.5rem">phase one</p>
           <h3 class="display">rising · 12th from the moon</h3>
           <p class="small">saturn enters the sign before your moon sign.</p>
         </div>
         <div class="card">
-          <svg class="phase-icon" viewBox="0 0 72 72" aria-hidden="true" role="presentation"><g fill="none" stroke="var(--ink)" stroke-width="0.9" opacity="0.35"><circle cx="36" cy="36" r="22"/><path d="M36 11L36 17"/><path d="M48.5 14.3L45.5 19.5"/><path d="M57.7 23.5L52.5 26.5"/><path d="M61 36L55 36"/><path d="M57.7 48.5L52.5 45.5"/><path d="M48.5 57.7L45.5 52.5"/><path d="M36 61L36 55"/><path d="M23.5 57.7L26.5 52.5"/><path d="M14.3 48.5L19.5 45.5"/><path d="M11 36L17 36"/><path d="M14.3 23.5L19.5 26.5"/><path d="M23.5 14.3L26.5 19.5"/></g><g fill="none" stroke="var(--ink)" stroke-width="2.6" stroke-linecap="butt"><path d="M20.4 20.4A22 22 0 0 1 51.6 20.4"/></g><g fill="none" stroke="var(--ink)" stroke-width="1.1"><path d="M36 18.5L36 25"/></g><g fill="none" stroke="var(--ink)" stroke-width="1.1"><circle cx="36" cy="27.5" r="2.8"/></g><g fill="var(--mark)"><circle cx="36" cy="6.5" r="3.4"/></g></svg>
+          <svg class="phase-icon bp" viewBox="0 0 72 72" aria-hidden="true" role="presentation"><circle class="ln dot" cx="36" cy="36" r="30"/><path class="pl" fill-rule="evenodd" d="M11 36a25 25 0 1 0 50 0a25 25 0 1 0 -50 0ZM17 36a19 19 0 1 0 38 0a19 19 0 1 0 -38 0Z"/><path class="hx" d="M18.32 18.32A25 25 0 0 1 53.68 18.32L49.44 22.56A19 19 0 0 0 22.56 22.56Z"/><path class="ln" d="M40.92 17.65L42.47 11.85M49.44 22.56L53.68 18.32M54.35 31.08L60.15 29.53M54.35 40.92L60.15 42.47M49.44 49.44L53.68 53.68M40.92 54.35L42.47 60.15M31.08 54.35L29.53 60.15M22.56 49.44L18.32 53.68M17.65 40.92L11.85 42.47M17.65 31.08L11.85 29.53M22.56 22.56L18.32 18.32M31.08 17.65L29.53 11.85"/><circle class="t3" cx="36" cy="14" r="2.4"/><circle class="pl" cx="36" cy="36" r="5"/><path class="t2" d="M38.25 37.3 L36 38.6 L33.75 37.3 L33.75 34.7 L36 33.4 L38.25 34.7Z"/><circle class="pl" cx="36" cy="6.5" r="3.8"/><circle class="mkd" cx="36" cy="6.5" r="1.6"/></svg>
           <p class="label" style="margin-bottom:0.5rem">phase two</p>
           <h3 class="display">peak · on the moon</h3>
           <p class="small">saturn occupies your moon sign itself.</p>
         </div>
         <div class="card">
-          <svg class="phase-icon" viewBox="0 0 72 72" aria-hidden="true" role="presentation"><g fill="none" stroke="var(--ink)" stroke-width="0.9" opacity="0.35"><circle cx="36" cy="36" r="22"/><path d="M36 11L36 17"/><path d="M48.5 14.3L45.5 19.5"/><path d="M57.7 23.5L52.5 26.5"/><path d="M61 36L55 36"/><path d="M57.7 48.5L52.5 45.5"/><path d="M48.5 57.7L45.5 52.5"/><path d="M36 61L36 55"/><path d="M23.5 57.7L26.5 52.5"/><path d="M14.3 48.5L19.5 45.5"/><path d="M11 36L17 36"/><path d="M14.3 23.5L19.5 26.5"/><path d="M23.5 14.3L26.5 19.5"/></g><g fill="none" stroke="var(--ink)" stroke-width="2.6" stroke-linecap="butt"><path d="M20.4 20.4A22 22 0 0 1 51.6 20.4"/></g><g fill="none" stroke="var(--ink)" stroke-width="1.1"><path d="M36 18.5L36 25"/></g><g fill="none" stroke="var(--ink)" stroke-width="1.1"><circle cx="36" cy="27.5" r="2.8"/></g><g fill="var(--mark)"><circle cx="50.8" cy="10.5" r="3.4"/></g></svg>
+          <svg class="phase-icon bp" viewBox="0 0 72 72" aria-hidden="true" role="presentation"><circle class="ln dot" cx="36" cy="36" r="30"/><path class="pl" fill-rule="evenodd" d="M11 36a25 25 0 1 0 50 0a25 25 0 1 0 -50 0ZM17 36a19 19 0 1 0 38 0a19 19 0 1 0 -38 0Z"/><path class="hx" d="M18.32 18.32A25 25 0 0 1 53.68 18.32L49.44 22.56A19 19 0 0 0 22.56 22.56Z"/><path class="ln" d="M40.92 17.65L42.47 11.85M49.44 22.56L53.68 18.32M54.35 31.08L60.15 29.53M54.35 40.92L60.15 42.47M49.44 49.44L53.68 53.68M40.92 54.35L42.47 60.15M31.08 54.35L29.53 60.15M22.56 49.44L18.32 53.68M17.65 40.92L11.85 42.47M17.65 31.08L11.85 29.53M22.56 22.56L18.32 18.32M31.08 17.65L29.53 11.85"/><circle class="t3" cx="36" cy="14" r="2.4"/><circle class="pl" cx="36" cy="36" r="5"/><path class="t2" d="M38.25 37.3 L36 38.6 L33.75 37.3 L33.75 34.7 L36 33.4 L38.25 34.7Z"/><circle class="pl" cx="50.8" cy="10.5" r="3.8"/><circle class="mkd" cx="50.8" cy="10.5" r="1.6"/></svg>
           <p class="label" style="margin-bottom:0.5rem">phase three</p>
           <h3 class="display">setting · 2nd from the moon</h3>
           <p class="small">saturn moves into the sign after it.</p>
@@ -291,7 +291,7 @@
      without animating anything, which is the only honest way to show
      something that takes seven and a half years. */
   .phase-icon {
-    width: 4.5rem; height: 4.5rem; display: block; margin-bottom: 1.25rem;
+    width: 5.5rem; height: 5.5rem; display: block; margin-bottom: 1.25rem;
   }
 
   .tool-grid { display: grid; gap: clamp(2rem, 5vw, 3.5rem); align-items: start; }
