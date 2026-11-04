@@ -1087,6 +1087,29 @@ html.has-gsap .reveal { opacity: 1; transform: none; transition: none; }
   margin-bottom: 0.15rem;
 }
 
+/* The placement, the way it would be said out loud, as the card's heading.
+   Co-Star's natal chart does this and it is the right call: "Saturn in
+   Capricorn" is the one line a reader wants, and it used to be buried in a
+   run of dot-separated data under a label starting with the Sanskrit name. */
+.placement {
+  font-family: var(--display);
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--ink);
+  margin: 0.35rem 0 0.3rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+.placement-meta {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  margin: 0 0 1rem;
+}
+
 /* The band tag on a card, beside the placement line. */
 .band-tag {
   font-family: var(--mono);

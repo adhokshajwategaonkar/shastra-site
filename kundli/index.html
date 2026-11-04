@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Libre+Caslon+Display&display=swap">
-<link rel="stylesheet" href="../assets/shastra.css?v=59cde691">
+<link rel="stylesheet" href="../assets/shastra.css?v=1f838a3c">
 
 <script type="application/ld+json">
 {
@@ -627,6 +627,9 @@ window.addEventListener('load', function () {
 
      Falls back to the old flat list if a block has no lead, which keeps this
      working against an older engine response. */
+  var ORD = ['', 'first', 'second', 'third', 'fourth', 'fifth', 'sixth',
+    'seventh', 'eighth', 'ninth', 'tenth', 'eleventh', 'twelfth'];
+
   function rich(text) {
     return esc(text).replace(/\*([^*]+)\*/g, '<strong>$1</strong>');
   }
@@ -754,12 +757,16 @@ window.addEventListener('load', function () {
     head.hidden = false;
 
     document.getElementById('openers').innerHTML = interp.openers.map(function (o) {
-      var sub = [o.sign, o.degree].filter(Boolean).join(' ');
-      var head = esc(o.title) + (o.plain ? ' · ' + esc(o.plain) : '');
+      var name = o.key === 'lagna'
+        ? 'Rising sign in ' + S.titleCase(o.sign)
+        : S.titleCase(o.key) + ' in ' + S.titleCase(o.sign);
+      var meta = [o.degree];
+      if (o.house) meta.push(ORD[o.house] + ' house');
       return '<div class="card read-block">' +
-        '<p class="label read-head">' + head + '</p>' +
-        '<h4 class="display" style="margin:0.35rem 0 0.9rem;font-size:1.25rem">' +
-          esc(sub) + '</h4>' + body(o) + '</div>';
+        '<p class="label read-head">' + esc(o.plain || o.title) + '</p>' +
+        '<h4 class="placement">' + esc(name) + '</h4>' +
+        '<p class="placement-meta">' + esc(meta.join(' · ')) + '</p>' +
+        body(o) + '</div>';
     }).join('');
 
     document.getElementById('now-block').innerHTML =
@@ -795,21 +802,22 @@ window.addEventListener('load', function () {
     }
 
     document.getElementById('graha-readings').innerHTML = interp.grahas.map(function (b) {
-      var bits = [b.sign + ' ' + b.degree];
-      if (b.house) bits.push('house ' + b.house);
-      if (b.dignityLabel) bits.push(b.dignityLabel);
-      if (b.retrograde) bits.push('retrograde');
-      // The plain name is the heading a stranger can read; the Sanskrit name
-      // and the technical placement stay beside it as reference.
-      var head = esc(b.title) + (b.plain ? ' · ' + esc(b.plain) : '') +
-        ' <span class="tiny" style="color:var(--ink-faint)">(' + esc(b.sa) + ')</span>';
+      // The placement is the heading, the way an astrologer would say it
+      // out loud. The plain name sits above it as the label, the Sanskrit
+      // name and the technical detail below as reference.
+      var meta = [b.degree];
+      if (b.house) meta.push(ORD[b.house] + ' house');
+      if (b.dignityLabel) meta.push(b.dignityLabel);
+      if (b.retrograde) meta.push('retrograde');
+      meta.push(b.sa);
       return '<div class="card read-block" id="read-' + esc(b.key) + '" data-graha="' +
           esc(b.key) + '">' +
-        '<p class="label read-head">' + head + '</p>' +
-        '<p class="tiny" style="margin:0.35rem 0 0.9rem;display:flex;' +
-          'gap:0.5rem;align-items:baseline;flex-wrap:wrap">' +
-          (b.bandLabel ? '<span class="band-tag">' + esc(b.bandLabel) + '</span>' : '') +
-          '<span>' + esc(bits.join(' · ')) + '</span></p>' +
+        '<p class="label read-head">' + esc(b.plain || b.title) + '</p>' +
+        '<h4 class="placement">' + esc(b.title + ' in ' + S.titleCase(b.sign)) +
+          (b.bandLabel
+            ? ' <span class="band-tag">' + esc(b.bandLabel) + '</span>'
+            : '') + '</h4>' +
+        '<p class="placement-meta">' + esc(meta.join(' · ')) + '</p>' +
         body(b) + '</div>';
     }).join('');
 
