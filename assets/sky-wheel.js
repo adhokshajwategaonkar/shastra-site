@@ -68,11 +68,23 @@
   var R_NAK_O   = 244;   // nakshatra ticks hang inward from the band
   var R_NAK_I   = 232;
   var R_TICK_O  = 244;   // a graha's exact-degree tick
-  var R_TICK_I  = 222;
+  var R_TICK_I  = 232;   // short, so a leader leaving it drops at a steep angle
   var R_GLYPH   = 206;   // glyph centres
-  var R_DEG     = 182;   // the degree label
-  var R_CHORD   = 164;   // where drishti chords terminate
+  var RING      = 15;    // the ring drawn round a glyph, in viewBox units
+  var DEG_GAP   = 4;     // clear space between the ring and the degree label
+  var DEG_CHAR  = 6.2;   // width of one 10px mono character, with its tracking
+  var DEG_H     = 10;    // height of the label
+  var R_CHORD   = 156;   // where drishti chords terminate, clear of the labels
   var R_INNER   = 80;    // the readout disc
+
+  /* On a phone the 600-unit wheel renders about 335px wide, so every unit
+     is 0.56px and the 13-unit rasi names come out at 7px. Nothing that small
+     can be read, so the phone wheel is a simpler drawing rather than a
+     smaller one: rasi glyphs without their names, bigger planets, no degree
+     labels (a tap prints the exact position in the caption), a bigger centre. */
+  var PHONE = window.matchMedia('(max-width: 34rem)');
+  function ring() { return PHONE.matches ? 24 : RING; }
+  function inner() { return PHONE.matches ? 96 : R_INNER; }
 
   /* Every glyph below carries U+FE0E, VARIATION SELECTOR-15, and it is not
      optional.
@@ -248,7 +260,7 @@
 
       // The glyph stays UPRIGHT rather than following the curve. A rotated
       // zodiac glyph reads as a mistake; twelve upright ones read as a dial.
-      var gp = pt(R_RASI_G, lon0 + 15);
+      var gp = pt(PHONE.matches ? (R_BAND_O + R_BAND_I) / 2 : R_RASI_G, lon0 + 15);
       var g = el('text', {
         x: f(gp[0]), y: f(gp[1]), 'text-anchor': 'middle', dy: '0.36em',
       }, RASI[i].glyph);
@@ -338,7 +350,7 @@
                (g.retrograde ? ' is-retro' : ''),
         'data-graha': key, tabindex: '0', role: 'img',
         'aria-label': key + ' in ' + g.sign + ', ' + (g.degInSignStr || '') +
-                      ', nakshatra ' + g.nakshatra + (g.retrograde ? ', retrograde' : ''),
+                      ', birth star ' + g.nakshatra + (g.retrograde ? ', retrograde' : ''),
       });
       grp.style.setProperty('--i', String(i));
 
@@ -348,36 +360,46 @@
         x1: f(t1[0]), y1: f(t1[1]), x2: f(t2[0]), y2: f(t2[1]), class: 'sw-graha-tick',
       }));
 
-      // If the glyph had to move to stay legible, say so with a leader.
-      var drift = Math.abs(((at - g.lon + 540) % 360) - 180);
-      if (drift > 1.2) {
-        var lp = pt(R_TICK_I, g.lon), lq = pt(R_GLYPH + 11, at);
-        grp.appendChild(el('line', {
-          x1: f(lp[0]), y1: f(lp[1]), x2: f(lq[0]), y2: f(lq[1]), class: 'sw-leader',
-        }));
-      }
-
       var gp = pt(R_GLYPH, at);
+
+      // The leader joins the tick to the ring and stops ON the ring, measured
+      // along its own line, so it can never poke inside whichever way it
+      // arrives. Every graha has one: a glyph that did not move just gets a
+      // straight radial line.
+      var lp = pt(R_TICK_I, g.lon);
+      var ldx = lp[0] - gp[0], ldy = lp[1] - gp[1], ld = Math.hypot(ldx, ldy) || 1;
+      grp.appendChild(el('line', {
+        x1: f(lp[0]), y1: f(lp[1]),
+        x2: f(gp[0] + ldx / ld * ring()), y2: f(gp[1] + ldy / ld * ring()),
+        class: 'sw-leader',
+      }));
+
       // A transparent disc, so the whole glyph area is hoverable rather than
       // only the few pixels the glyph's own strokes cover.
-      grp.appendChild(el('circle', { cx: f(gp[0]), cy: f(gp[1]), r: 16, class: 'sw-hit' }));
-      grp.appendChild(el('circle', { cx: f(gp[0]), cy: f(gp[1]), r: 15, class: 'sw-ring' }));
+      grp.appendChild(el('circle', { cx: f(gp[0]), cy: f(gp[1]), r: ring() + (PHONE.matches ? 12 : 1), class: 'sw-hit' }));
+      grp.appendChild(el('circle', { cx: f(gp[0]), cy: f(gp[1]), r: ring(), class: 'sw-ring' }));
       grp.appendChild(el('text', {
         x: f(gp[0]), y: f(gp[1]), 'text-anchor': 'middle', dy: '0.36em',
         class: 'sw-glyph',
       }, GLYPH[key]));
 
-      var dp = pt(R_DEG, at);
-      grp.appendChild(el('text', {
+      // The label's reach toward the ring depends on which way it faces: side
+      // on, that is half its width; top or bottom, half its height. A fixed
+      // radius left it touching the ring at the sides of the wheel, so the
+      // radius is worked out per label to keep one clear gap all the way round.
+      // R travels with the degree. Set apart at the glyph's corner, it landed
+      // exactly on the ring.
+      var label = Math.floor(g.degInSign) + '°';
+      var rad = (180 + at) * Math.PI / 180;
+      var halfW = (label.length + (g.retrograde ? 2 : 0)) * DEG_CHAR / 2;
+      var reach = Math.abs(Math.cos(rad)) * halfW + Math.abs(Math.sin(rad)) * DEG_H / 2;
+      var dp = pt(R_GLYPH - RING - DEG_GAP - reach, at);
+      var deg = el('text', {
         x: f(dp[0]), y: f(dp[1]), 'text-anchor': 'middle', dy: '0.36em',
         class: 'sw-deg',
-      }, Math.floor(g.degInSign) + '°'));
-
-      if (g.retrograde) {
-        grp.appendChild(el('text', {
-          x: f(gp[0] + 11), y: f(gp[1] - 8), 'text-anchor': 'middle', class: 'sw-retro',
-        }, 'R'));
-      }
+      }, label);
+      if (g.retrograde) deg.appendChild(el('tspan', { class: 'sw-retro', dx: '3' }, 'R'));
+      grp.appendChild(deg);
       marks.appendChild(grp);
     });
     sky.appendChild(marks);
@@ -385,7 +407,7 @@
     // — the lagna. One hand, in the second plate's colour, because it is the
     //   one value here that depends on where and when you are standing.
     if (data.lagna) {
-      var l1 = pt(R_INNER + 8, data.lagna.lon), l2 = pt(R_NAK_I - 4, data.lagna.lon);
+      var l1 = pt(inner() + 8, data.lagna.lon), l2 = pt(R_NAK_I - 4, data.lagna.lon);
       var hand = el('g', { class: 'sw-lagna' });
       hand.appendChild(el('line', { x1: f(l1[0]), y1: f(l1[1]), x2: f(l2[0]), y2: f(l2[1]) }));
       var hp = pt(R_NAK_I - 4, data.lagna.lon);
@@ -403,7 +425,7 @@
     if (old) old.remove();
 
     var g = el('g', { class: 'sw-readout' });
-    g.appendChild(el('circle', { cx: C, cy: C, r: R_INNER, class: 'sw-disc' }));
+    g.appendChild(el('circle', { cx: C, cy: C, r: inner(), class: 'sw-disc' }));
 
     var lines;
     if (state === 'live') {
@@ -415,17 +437,24 @@
         { y: 30,  t: data.panchanga ? data.panchanga.tithi.name + ' · ' + data.panchanga.tithi.paksha : '', c: 'sw-r-small' },
         { y: 48,  t: 'ayan ' + data.ayanamsa.toFixed(3) + '°', c: 'sw-r-small' },
       ];
+      // The phone centre says two things it can say at a readable size.
+      if (PHONE.matches) {
+        lines = [
+          { y: -4, t: lines[1].t, c: 'sw-r-big' },
+          { y: 30, t: lines[2].t, c: 'sw-r-mid' },
+        ];
+      }
     } else if (state === 'snapshot') {
       lines = [
-        { y: -10, t: 'computing', c: 'sw-r-mid' },
+        { y: -10, t: 'loading', c: 'sw-r-mid' },
         { y: 10,  t: 'the sky', c: 'sw-r-mid' },
-        { y: 34,  t: 'waking the engine', c: 'sw-r-small' },
+        { y: 34,  t: 'starting up', c: 'sw-r-small' },
       ];
     } else {
       lines = [
         { y: -10, t: 'live sky', c: 'sw-r-mid' },
         { y: 10,  t: 'unavailable', c: 'sw-r-mid' },
-        { y: 34,  t: 'positions are a snapshot', c: 'sw-r-small' },
+        { y: 34,  t: 'showing a saved sky', c: 'sw-r-small' },
       ];
     }
 
@@ -457,14 +486,14 @@
       out.setAttribute('data-lit', '');
       out.textContent =
         key + ' (' + SA[key] + ') · ' + g.sign + ' ' + (g.degInSignStr || '') +
-        ' · ' + g.nakshatra + (g.pada ? ' pada ' + g.pada : '') +
+        ' · ' + g.nakshatra + ' star' +
         (g.retrograde ? ' · retrograde' : '') +
-        ' · aspects the ' + houses.map(function (h) { return ORDINAL[h] || h; }).join(', ') +
+        ' · influences the ' + houses.map(function (h) { return ORDINAL[h] || h; }).join(', ') +
         // Drishti falls on SIGNS, and a sign is often empty. Saturn can be
         // aspecting three houses with no graha standing in any of them, and
         // without this the wheel dims everything, draws no chord and looks
         // broken rather than correct.
-        (litCount ? '' : ', and no graha is standing in any of them');
+        (litCount ? '' : ', and no planet is in any of them');
     }
 
     return function set(key) {
@@ -495,6 +524,11 @@
         var to = e.relatedTarget;
         if (!to || !to.closest || !to.closest('.sw-graha')) get()(null);
       });
+    });
+    // A phone has no hover, so a tap selects and a tap anywhere else lets go.
+    document.addEventListener('click', function (e) {
+      var g = e.target.closest ? e.target.closest('.sw-graha') : null;
+      get()(g && svg.contains(g) ? g.dataset.graha : null);
     });
   }
 
@@ -576,9 +610,9 @@
 
     var svg = el('svg', {
       viewBox: '0 0 600 600', class: 'sw', role: 'img',
-      'aria-label': 'The current sky: the twelve rasi, the twenty-seven nakshatra ' +
-                    'divisions, and the nine grahas at their sidereal longitudes, ' +
-                    'with the graha drishti drawn between them.',
+      'aria-label': 'The sky right now: the twelve signs, the twenty-seven birth stars ' +
+                    'and the nine planets where they are now, ' +
+                    'with lines showing which planet influences which.',
     });
     root.appendChild(svg);
     drawPlate(svg);
@@ -593,7 +627,9 @@
     var set = function () {};
     bind(svg, function () { return set; });
 
+    var last = null;
     function paint(data, state) {
+      last = [data, state];
       drawSky(svg, data, state);
       drawReadout(svg, data, state);
       set = wireHighlight(svg, root, data, out, base);
@@ -604,6 +640,15 @@
     }
 
     if (SNAPSHOT) paint(SNAPSHOT, 'snapshot');
+
+    // Turning a phone or dragging a window across the line swaps drawings.
+    if (PHONE.addEventListener) {
+      PHONE.addEventListener('change', function () {
+        svg.textContent = '';
+        drawPlate(svg);
+        if (last) paint(last[0], last[1]);
+      });
+    }
 
     function load() {
       fetch(api + '/api/transits', { mode: 'cors' })

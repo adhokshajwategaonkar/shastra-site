@@ -17,17 +17,18 @@
 
   var NS = 'http://www.w3.org/2000/svg';
 
-  // Mirrors the tokens in shastra.css. Read once, not per call: a chart is
-  // re-rendered on every submit and these never change inside a page load.
-  var css = getComputedStyle(document.documentElement);
-  function token(name, fallback) {
-    return (css.getPropertyValue(name) || '').trim() || fallback;
-  }
-  var INK   = token('--ink', '#22211C');
-  var SOFT  = token('--ink-soft', '#55524A');
-  var FAINT = token('--ink-faint', '#6F6B60');
-  var MARK  = token('--mark', '#B4342A');
-  var MONO  = token('--mono', 'ui-monospace, monospace');
+  // The tokens themselves, not their values. These used to be read once at
+  // load and written into the chart as literal colours, so a chart drawn
+  // before a colour change kept the old one, and its fallbacks were still the
+  // black the site stopped using. As var() references the chart follows the
+  // stylesheet like everything else. SVG presentation attributes cannot take
+  // var(), so el() routes fill and stroke through `style`.
+  var INK   = 'var(--ink)';
+  var SOFT  = 'var(--ink-soft)';
+  var FAINT = 'var(--ink-faint)';
+  var MARK  = 'var(--mark)';
+  var MONO  = 'var(--mono)';
+  var STYLED = { fill: 1, stroke: 1, 'font-family': 1 };
 
   // Centroids for a 320×320 viewBox with a 10px margin. Order is house 1..12.
   var SEATS = [
@@ -52,7 +53,14 @@
 
   function el(name, attrs, text) {
     var n = document.createElementNS(NS, name);
-    for (var k in attrs) if (Object.prototype.hasOwnProperty.call(attrs, k)) n.setAttribute(k, attrs[k]);
+    var style = '';
+    for (var k in attrs) {
+      if (!Object.prototype.hasOwnProperty.call(attrs, k)) continue;
+      var v = String(attrs[k]);
+      if (STYLED[k] && v.indexOf('var(') === 0) style += k + ':' + v + ';';
+      else n.setAttribute(k, v);
+    }
+    if (style) n.setAttribute('style', style);
     if (text != null) n.textContent = text;
     return n;
   }

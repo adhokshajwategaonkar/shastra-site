@@ -1,18 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="shastra">
-  <!-- The lagna: a point rising on the horizon, inside the frame of a chart.
-
-       The lagna is the one value that makes a chart yours. It moves a whole
-       sign every two hours, so it is the thing a birth minute actually fixes,
-       and it is what this product computes before anything else.
-
-       It replaced a plain ring, which was legible and meant nothing, and
-       before that the North Indian kundli square, which every astrology site
-       in India already uses and which turns to mush below 24px. A frame, a
-       line and a disc survive 16px and say something only this product says. -->
-  <rect width="64" height="64" fill="#FAF9F6"/>
-  <g fill="none" stroke="#81251E" stroke-width="3.2">
-    <rect x="11" y="11" width="42" height="42"/>
-    <path d="M11 38h42"/>
-  </g>
-  <circle cx="24" cy="38" r="6.5" fill="#E41101"/>
+  <!-- The four main houses of a North Indian kundli, cut as windows from a solid
+       block, with the first house lit because the rising sign is what makes a
+       chart yours. Solid on purpose: the gaps between windows land at about one
+       pixel at 16px, where thin lines and concentric outlines turn to a smudge.
+       Colours are literal because a favicon cannot read the stylesheet. -->
+  <rect x="2" y="2" width="60" height="60" fill="#831729"/><path fill="#C8102E" d="M32 7L43 18L32 29L21 18Z"/><path fill="#FBF4E6" d="M46 21L57 32L46 43L35 32Z"/><path fill="#FBF4E6" d="M32 35L43 46L32 57L21 46Z"/><path fill="#FBF4E6" d="M18 21L29 32L18 43L7 32Z"/>
 </svg>

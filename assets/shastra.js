@@ -107,17 +107,17 @@
         return r.json().then(
           function (data) {
             if (!r.ok) {
-              if (r.status === 429) throw new Error('too many charts too fast. give it a minute.');
-              throw new Error(data && data.error ? data.error : 'that did not compute. try again.');
+              if (r.status === 429) throw new Error('too many requests. please wait a minute.');
+              throw new Error(data && data.error ? data.error : 'something went wrong. please try again.');
             }
             return data;
           },
-          function () { throw new Error('the server answered with something we could not read.'); }
+          function () { throw new Error('something went wrong. please try again.'); }
         );
       })
       .catch(function (err) {
         clearTimeout(timer);
-        if (err.name === 'AbortError') throw new Error('the server is taking too long. it may be waking up, so try once more.');
+        if (err.name === 'AbortError') throw new Error('this is taking too long. please try again.');
         if (err instanceof TypeError) throw new Error('could not reach shastra. check your connection and try again.');
         throw err;
       });
@@ -232,7 +232,7 @@
   S.busy = function (btn, on, labelWhenBusy) {
     if (on) {
       btn.dataset.idle = btn.dataset.idle || btn.textContent;
-      btn.textContent = labelWhenBusy || 'computing…';
+      btn.textContent = labelWhenBusy || 'working…';
       btn.setAttribute('aria-disabled', 'true');
     } else {
       if (btn.dataset.idle) btn.textContent = btn.dataset.idle;
@@ -306,4 +306,12 @@
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
+
+  // The phone menu is a plain <details>, so it works with no script at all.
+  // This only adds what a menu is expected to do: close on a tap elsewhere.
+  document.addEventListener('click', function (e) {
+    document.querySelectorAll('.nav-menu[open]').forEach(function (m) {
+      if (!m.contains(e.target)) m.removeAttribute('open');
+    });
+  });
 })();

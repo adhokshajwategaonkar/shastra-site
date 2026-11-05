@@ -80,30 +80,59 @@
       });
     });
 
-    /* ── the section drawings draw themselves ─────────────────────────────
-       Stroke-dash on the lines only. The text inside each drawing is never
-       touched, so nothing here can leave a label invisible. */
-    gsap.utils.toArray('.section-art .draw-art').forEach(function (art) {
-      var strokes = art.querySelectorAll('path, circle, rect');
-      // Each stroke draws over its OWN length. The drawings use non-scaling
-      // strokes, so the dash is measured in screen pixels: geometric length
-      // times the element's on-screen scale. One fixed dash for everything
-      // either cuts long outlines short (600px against a 900px phone) or, at
-      // 2400px, keeps short strokes like the tick row invisible until the
-      // tail of the ease, where they pop in last.
-      var len = function (i, el) {
-        if (!el.getTotalLength) return 600;
-        var m = el.getScreenCTM();
-        return Math.ceil(el.getTotalLength() * (m ? Math.hypot(m.a, m.b) : 1)) + 2;
-      };
+    /* ── the drawings draw themselves ──────────────────────────────────────
+       Outlines only, and only just before they arrive.
+
+       THE LINES STAY VISIBLE UNTIL THE TRIGGER FIRES. `immediateRender: false`
+       is what keeps this inside the one rule above: without it fromTo hides
+       every stroke at page load, so a print, a full-page screenshot or a
+       stalled tween shows labels and fills with no lines in them. The trigger
+       sits at 88% of the viewport, when only the figure's top edge has
+       entered, so the moment of hiding is below the fold.
+
+       ONE DURATION, WHATEVER THE PART COUNT. It used to be 1.2s per stroke
+       plus 0.06s per part, so the phone took 2.76s and the meter 2.1s, and a
+       reader had usually scrolled past the end. `stagger.amount` spreads the
+       parts across a fixed window instead: 1.2s for every figure.
+
+       Left out on purpose: labels (never touched), leaders, whose arrowheads
+       sit at the far end and would float there before the line arrived,
+       dashed and dotted lines, which would draw solid and then snap to their
+       pattern, and shapes with no stroke to draw.
+
+       Each stroke draws over its OWN length. The drawings use non-scaling
+       strokes, so the dash is in screen pixels: geometric length times the
+       element's on-screen scale. */
+    var drawable = 'path, circle, rect';
+    var skip = '.lead, .dash, .dot, .mkd, .hxf, .field, .frame';
+    var len = function (i, el) {
+      if (!el.getTotalLength) return 600;
+      var m = el.getScreenCTM();
+      return Math.ceil(el.getTotalLength() * (m ? Math.hypot(m.a, m.b) : 1)) + 2;
+    };
+    function drawOn(targets, trigger) {
+      var strokes = targets.filter(function (el) { return !el.matches(skip); });
+      if (!strokes.length) return;
       gsap.fromTo(strokes,
         { strokeDasharray: len, strokeDashoffset: len },
         {
-          strokeDashoffset: 0, duration: 1.2, ease: 'power2.out', stagger: 0.06,
+          strokeDashoffset: 0, duration: 0.7, ease: 'power2.out', stagger: { amount: 0.5 },
+          immediateRender: false,
           clearProps: 'strokeDasharray,strokeDashoffset',
-          scrollTrigger: { trigger: art, start: 'top 88%', once: true },
+          scrollTrigger: { trigger: trigger, start: 'top 88%', once: true },
         });
+    }
+    gsap.utils.toArray('.section-art .draw-art').forEach(function (art) {
+      drawOn(gsap.utils.toArray(art.querySelectorAll(drawable)), art);
     });
+    // The three pitch figures are one row, so they draw as one: same trigger,
+    // same window. Nothing staggers between siblings that arrive together.
+    var pipes = document.querySelector('.pipeline');
+    if (pipes) {
+      gsap.utils.toArray(pipes.querySelectorAll('.pipe-art svg')).forEach(function (svg) {
+        drawOn(gsap.utils.toArray(svg.querySelectorAll(drawable)), pipes);
+      });
+    }
 
     // ── the wheel drifts slower than the page ──────────────────────────────
     var art = document.querySelector('.hero-art');

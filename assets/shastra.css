@@ -128,13 +128,13 @@
 }
 
 :root {
-  /* ── paper ──────────────────────────────────────────────────────────────
-     Warm, not blue-white. #FFFFFF reads as "screen"; this reads as stock.
-     The sunk tints carry a trace of the ink hue, the way a red plate ghosts
-     into the stock around it. */
-  --paper:      #FAF9F6;
-  --paper-sunk: #F6EFEE;   /* inset panels, alternate rows — barely there    */
-  --paper-edge: #F0E4E3;
+  /* ── paper: haldi ───────────────────────────────────────────────────────
+     A faint turmeric cream. Kumkum on haldi is the traditional auspicious
+     pairing, as on a tilak or a wedding card, so the tint means something
+     beyond warmth. #FFFFFF reads as "screen"; this reads as stock. */
+  --paper:      #FBF4E6;
+  --paper-sunk: #F6ECD9;   /* inset panels, alternate rows — barely there    */
+  --paper-edge: #F0E2CA;
 
   /* ── ink ────────────────────────────────────────────────────────────────
      ONE HUE, FIVE TINTS. Every ratio below is measured against --paper, not
@@ -143,36 +143,49 @@
      floor for anything a reader has to read; nothing lighter carries text.
      The ceiling is real too — pure red tops out around 9:1 where black
      reached 15:1, so --ink is as dark as it can be and still read as red. */
-  --ink:       #81251E;    /* headings, strong text, strokes    9.0:1        */
-  --ink-soft:  #9D2D25;    /* body                              7.0:1        */
-  --ink-faint: #B4342A;    /* labels, captions, table heads     5.8:1        */
+  --ink:       #831729;    /* headings, strong text, strokes    9.1:1        */
+  --ink-soft:  #A01C32;    /* body                              7.1:1        */
+  --ink-faint: #B72039;    /* labels, captions, table heads     5.9:1        */
 
   /* ── rules ──────────────────────────────────────────────────────────── */
-  --rule:      #E7D1D0;
-  --rule-firm: #81251E;
+  --rule:      #E9D8BE;
+  --rule-firm: #831729;
 
-  /* ── the mark ───────────────────────────────────────────────────────────
-     Was a second plate in a different colour; now that the whole page prints
-     in one hue that distinction is gone, so the mark is the most SATURATED
-     red available that still carries text (99% chroma, 4.5:1). It reads as
-     lit against the browner ink rather than as another colour.
+  /* ── the mark: kumkum ───────────────────────────────────────────────────
+     The brand colour. The whole page prints in its hue, so the mark is told
+     apart by saturation: full kumkum (5.4:1) against the deeper ink.
+     It reads as lit rather than as another colour.
      Emphasis inside an illustration is carried by flat tints and hatching
      instead, which is how a real blueprint does it. */
-  --mark:      #E41101;
-  --mark-wash: rgba(228, 17, 1, 0.07);
+  --mark:      #C8102E;
+  --mark-wash: rgba(200, 16, 46, 0.07);
+
+  /* ── the selected state ─────────────────────────────────────────────────
+     Black, deliberately outside the one-hue ramp. A drawing is already
+     printed in the brand colour, so a selection in that colour has nothing to
+     stand out against. */
+  --select:        #000000;   /* selected strokes; behind selected labels */
+  --select-ground: #FFFFFF;   /* selected label text                      */
 
   /* ── flat tints, for illustration fills ─────────────────────────────────
      Three steps of the same red. A drawing is built from these plus a single
      --ink hairline: no gradients, no second hue, no shadow. */
-  --tint-1:    #F1DCDA;
-  --tint-2:    #E8B4B0;
-  --tint-3:    #E28A83;
+  --tint-1:    #EFD5DA;
+  --tint-2:    #E7AEB7;
+  --tint-3:    #E28292;
 
-  /* ── the inverted band ──────────────────────────────────────────────── */
-  --night:      #1C1210;
-  --night-ink:  #F7EDEC;
-  --night-soft: #D2A7A2;
-  --night-rule: rgba(247, 237, 236, 0.18);
+  /* ── the inverted band: sindoor maroon, not black ───────────────────── */
+  --night:      #2B0D10;
+  --night-ink:  #F5DDE1;     /* 14:1 */
+  --night-soft: #DA9DA7;     /*  8:1 */
+  --night-faint: #BD7C87;    /* 5.5:1 */
+  --night-rule: rgba(245, 221, 225, 0.18);
+  --night-grid: rgba(245, 221, 225, 0.035);
+  --night-sunk: #2C181B;
+  --night-tint-1: #331B1F;
+  --night-tint-2: #53232B;
+  --night-tint-3: #842C3A;
+  --night-mark: #EF3956;     /* 4.6:1; #C8102E is too dark to read on night */
 
   /* ── type ───────────────────────────────────────────────────────────────
      Geist Serif says printed. Switzer says neutral. Plex Mono says measured.
@@ -182,6 +195,29 @@
   --display: 'Geist Serif', 'Libre Caslon Display', Georgia, 'Times New Roman', serif;
   --body:    'Switzer', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
   --mono:    'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* ── the display scale ──────────────────────────────────────────────────
+     ONE BASE, ONE RATIO. Every heading is base × ratio^step, so changing the
+     ratio moves the whole ladder together and the gap between a title and
+     the line under it stays proportionate. The four headings used to be set
+     one by one, and the steps between them were 1.55×, 1.83× and 1.26×,
+     which is a list of sizes rather than a scale.
+     The step exponents are fitted so the defaults reproduce the sizes the
+     site already had, within half a pixel. Phones get a gentler ratio:
+     a ladder that reads as confident at 1200px is shouting at 375px.
+     The body steps (lede, body, small, tiny) stay fixed on purpose.
+     --type-base is a plain number of rem, not a length, because the fluid
+     formula below has to subtract and multiply it, and CSS cannot multiply
+     a length by a length. */
+  --type-base:     1;
+  --ratio:         1.26;
+  --ratio-mobile:  1.159;
+  --step-sm:       0.74;
+  --step-h3:       1.75;
+  --step-h2:       4.38;
+  --step-doc:      5.42;
+  --step-h1:       6.26;
+  --step-score:    7.38;
 
   /* ── motion ─────────────────────────────────────────────────────────── */
   --spring: cubic-bezier(0.22, 1, 0.36, 1);
@@ -269,9 +305,32 @@ button, input, select { font: inherit; color: inherit; }
   margin: 0;
 }
 
+/* Each heading runs from its phone size at a 375px window to its desktop
+   size at 1200px, in a straight line between, and holds at either end.
+
+   THE FLUID PART COMES FROM THE SCALE TOO. The first version kept the old
+   `6vw` as the middle term of each clamp(), and across the whole laptop range
+   that middle term is what decides the size, so moving the ratio did nothing
+   at 1024px. It only showed on phones and very wide screens, i.e. it looked
+   broken exactly where anyone would test it.
+
+   The static clamps come first as a fallback for a browser without CSS
+   pow(); one that cannot parse the second declaration keeps the first. */
 h1.display { font-size: clamp(2.5rem, 6vw, 4.25rem); line-height: 1.02; }
 h2.display { font-size: clamp(1.875rem, 4vw, 2.75rem); }
 h3.display { font-size: clamp(1.25rem, 2.4vw, 1.5rem); line-height: 1.2; }
+h1.display, .display.step-h1 { --e: var(--step-h1); }
+h2.display                   { --e: var(--step-h2); }
+h3.display                   { --e: var(--step-h3); }
+.display.step-doc            { --e: var(--step-doc); }
+.fluid-score                 { --e: var(--step-score); }
+h1.display, h2.display, h3.display, .display.step-h1, .display.step-doc, .fluid-score {
+  --lo: calc(var(--type-base) * pow(var(--ratio-mobile), var(--e)));
+  --hi: calc(var(--type-base) * pow(var(--ratio), var(--e)));
+  font-size: clamp(calc(var(--lo) * 1rem),
+                   calc(var(--lo) * 1rem + (var(--hi) - var(--lo)) * (100vw - 23.4375rem) / 51.5625),
+                   calc(var(--hi) * 1rem));
+}
 
 /* Italic is the serif's own emphasis. Caslon's italic is a different design,
    not a slanted roman, and it is the right way to stress a word in a headline
@@ -310,6 +369,7 @@ h3.display { font-size: clamp(1.25rem, 2.4vw, 1.5rem); line-height: 1.2; }
    this so they agree with each other. */
 .display-sm {
   font-family: var(--display); font-weight: 400; font-size: 1.1875rem;
+  font-size: calc(var(--type-base) * pow(var(--ratio), var(--step-sm)) * 1rem);
   letter-spacing: -0.008em; line-height: 1.25; color: var(--ink); margin: 0;
 }
 
@@ -358,20 +418,20 @@ h3.display { font-size: clamp(1.25rem, 2.4vw, 1.5rem); line-height: 1.2; }
   background: var(--night);
   color: var(--night-soft);
   --paper: var(--night);
-  --paper-sunk: #271714;
-  --tint-1: #2B1916;
-  --tint-2: #4A2420;
-  --tint-3: #7A3129;
+  --paper-sunk: var(--night-sunk);
+  --tint-1: var(--night-tint-1);
+  --tint-2: var(--night-tint-2);
+  --tint-3: var(--night-tint-3);
   --ink: var(--night-ink);
   --ink-soft: var(--night-soft);
-  --ink-faint: #C08D88;
+  --ink-faint: var(--night-faint);
   --rule: var(--night-rule);
   --rule-firm: var(--night-ink);
-  --mark: #FF6A5A;             /* lightened: #E41101 is 3.0:1 on night       */
+  --mark: var(--night-mark);
   /* It paints over body's graph paper, so it carries its own. */
   background-image:
-    repeating-linear-gradient(to right,  rgba(247,237,236,0.035) 0 1px, transparent 1px 100%),
-    repeating-linear-gradient(to bottom, rgba(247,237,236,0.035) 0 1px, transparent 1px 100%);
+    repeating-linear-gradient(to right,  var(--night-grid) 0 1px, transparent 1px 100%),
+    repeating-linear-gradient(to bottom, var(--night-grid) 0 1px, transparent 1px 100%);
   background-size: 56px 56px;
 }
 .invert + .section, .section + .invert { border-top: 0; }
@@ -422,7 +482,7 @@ a.card:hover, a.card:focus-visible { background: var(--paper-sunk); }
 .btn[disabled], .btn[aria-disabled='true'] { opacity: 0.5; cursor: progress; }
 
 .btn-primary { background: var(--rule-firm); color: var(--paper); }
-.btn-primary:hover, .btn-primary:focus-visible { background: var(--mark); border-color: var(--mark); color: #FAF9F6; }
+.btn-primary:hover, .btn-primary:focus-visible { background: var(--mark); border-color: var(--mark); color: var(--paper); }
 
 .btn-ghost { background: transparent; color: var(--ink); border-color: var(--rule); }
 .btn-ghost:hover, .btn-ghost:focus-visible { border-color: var(--rule-firm); background: var(--paper-sunk); }
@@ -599,7 +659,7 @@ table.data tr:last-child td, table.data tr:last-child th { border-bottom: 0; }
 /* ── nav / footer ───────────────────────────────────────────────────────── */
 .nav {
   position: sticky; top: 0; z-index: 40;
-  background: rgba(250, 249, 246, 0.9);
+  background: color-mix(in srgb, var(--paper) 90%, transparent);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--rule);
@@ -804,7 +864,7 @@ table.data tr:last-child td, table.data tr:last-child th { border-bottom: 0; }
 .sw-graha:hover .sw-ring,
 .sw-graha:focus-visible .sw-ring,
 .sw-graha.is-demo .sw-ring { opacity: 0.5; }
-.sw-graha.is-lit .sw-ring { opacity: 1; stroke: var(--mark); stroke-dasharray: none; }
+.sw-graha.is-lit .sw-ring { opacity: 1; stroke: var(--select); stroke-dasharray: none; }
 /* An invisible target, so the hover area is the glyph's whole cell and not
    only the pixels its strokes happen to cover. */
 .sw-hit { fill: transparent; }
@@ -845,9 +905,11 @@ table.data tr:last-child td, table.data tr:last-child th { border-bottom: 0; }
 
 /* ── hover / focus: one graha's drishti, isolated ───────────────────────── */
 .sw-focused .sw-chord { opacity: 0.07; }
-.sw-focused .sw-chord.is-lit { opacity: 1; stroke: var(--mark); }
+.sw-focused .sw-chord.is-lit { opacity: 1; stroke: var(--select); }
 .sw-focused .sw-graha { opacity: 0.28; }
 .sw-focused .sw-graha.is-lit { opacity: 1; }
+.sw-graha.is-lit .sw-glyph, .sw-graha.is-lit .sw-deg, .sw-graha.is-lit .sw-retro { fill: var(--select); }
+.sw-graha.is-lit .sw-graha-tick, .sw-graha.is-lit .sw-leader { stroke: var(--select); stroke-width: 0.9; opacity: 1; }
 
 /* ── the caption under the wheel, which doubles as the hover readout ────── */
 .sky-note {
@@ -1022,7 +1084,7 @@ html.has-gsap .reveal { opacity: 1; transform: none; transition: none; }
    at either lights both. This is what makes the chart worth looking at
    instead of decoration above the text. */
 .kc-graha { cursor: pointer; transition: fill var(--fast) linear; }
-.kc-graha:hover, .kc-graha.is-lit { fill: var(--mark); }
+.kc-graha:hover, .kc-graha.is-lit { fill: var(--select); }
 .read-block { transition: background var(--fast) linear; scroll-margin-top: 6rem; }
 .read-block.is-lit { background: var(--mark-wash); }
 .read-block.is-lit .read-head { color: var(--mark); }
@@ -1056,7 +1118,9 @@ html.has-gsap .reveal { opacity: 1; transform: none; transition: none; }
 }
 
 /* The small marks used across the tool pages and the trust cards. */
-.value-icon { width: 3.5rem; height: 3.5rem; display: block; margin-bottom: 1.1rem; }
+/* Ink starts 4 units into the 48-unit box. The negative margin takes that back
+   out, so a mark's left edge lines up with the heading beneath it. */
+.value-icon { width: 3.5rem; height: 3.5rem; display: block; margin: 0 0 1.1rem -0.29rem; }
 
 /* ─── the verdict ────────────────────────────────────────────────────────────
    Before any prose: what is working, what is awkward, what takes work, and
@@ -1338,7 +1402,6 @@ svg.bp { overflow: visible; }
 .bp .num {
   font-family: var(--mono); font-size: 8px; letter-spacing: 0.06em; fill: var(--ink-faint);
 }
-.bp .say { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; fill: var(--ink); }
 .bp .fig {
   font-family: var(--mono); font-size: 7px; letter-spacing: 0.16em;
   text-transform: uppercase; fill: var(--ink-faint);
@@ -1354,4 +1417,92 @@ svg.bp { overflow: visible; }
   stroke: var(--ink-faint); stroke-width: 0.7;
 }
 #bp-dots circle, #bp-dots-n circle { fill: var(--tint-2); }
+
+/* Selected label text. SVG text paints with `fill`, which the page-wide
+   ::selection rule does not set, so it needs its own. */
+svg text::selection { fill: var(--select-ground); color: var(--select-ground); background: var(--select); }
 #bp-arrow path, #bp-arrow-n path { fill: var(--ink); }
+
+/* ─── phones ─────────────────────────────────────────────────────────────────
+   The layout was already fluid: no page overflows at 320px. What it was not
+   is built for a thumb. These are the rules that make it so, and the measure
+   behind them is a 44px target for anything tapped. Text inputs stay at 16px
+   or above, because iOS zooms the whole page into anything smaller.
+   ──────────────────────────────────────────────────────────────────────── */
+a, button, summary, label, input, .sw-graha { touch-action: manipulation; }
+.wrap { padding-left: max(var(--gutter), env(safe-area-inset-left));
+        padding-right: max(var(--gutter), env(safe-area-inset-right)); }
+
+/* Hover colours stick after a tap on a touch screen, so a button would stay
+   lit once tapped. On touch they only apply while pressed. */
+@media (hover: none) {
+  .btn-primary:hover { background: var(--rule-firm); border-color: var(--rule-firm); }
+  .btn-primary:active { background: var(--mark); border-color: var(--mark); }
+  .wordmark:hover .wordmark-mark { transform: none; }
+}
+
+/* The menu. Tools were only reachable from the footer on a phone. */
+.nav-menu { display: none; position: relative; }
+.nav-menu > summary {
+  list-style: none; cursor: pointer; color: var(--ink);
+  width: 2.75rem; height: 2.75rem; display: flex; align-items: center; justify-content: center;
+  margin-right: -0.6rem;
+}
+.nav-menu > summary::-webkit-details-marker { display: none; }
+.nav-menu-list {
+  position: absolute; top: calc(100% + 0.6rem); right: -0.6rem; z-index: 50; min-width: 13rem;
+  background: var(--paper); border: 1px solid var(--rule-firm);
+}
+.nav nav .nav-menu-list a {
+  display: flex; align-items: center; min-height: 3rem; padding: 0 1rem;
+  font-size: 0.75rem; color: var(--ink);
+}
+.nav nav .nav-menu-list a + a { border-top: 1px solid var(--rule); }
+@media (max-width: 46rem) { .nav-menu { display: block; } }
+
+.checkbox { min-height: 2.75rem; align-items: center; }
+.checkbox input { margin-top: 0; width: 1.25rem; height: 1.25rem; }
+.read-more > summary { min-height: 2.75rem; }
+.glossary > summary { min-height: 2.75rem; padding-bottom: 0; }
+.suggestions button { min-height: 2.75rem; font-size: 1rem; }
+.datefield .df-part { min-height: 2.75rem; }
+.datefield { align-items: center; padding-block: 0; }
+.datefield .df-d, .datefield .df-m { width: 3.25rem; }
+.datefield .df-y { width: 4.5rem; }
+
+@media (max-width: 46rem) {
+  .footer li + li { margin-top: 0; }
+  .footer li a { display: flex; align-items: center; min-height: 2.75rem; }
+  .footer .wordmark { min-height: 2.75rem; }
+  .label, .footer h4 { font-size: 0.75rem; }
+}
+
+@media (max-width: 34rem) {
+  :root { --gutter: 1.25rem; }
+  .nav .wrap { height: 3.5rem; gap: 0.5rem; }
+  .nav nav { gap: 0.5rem; }
+  .wordmark { font-size: 1.3rem; }
+  .hide-xs { display: none; }
+  .nav .btn { padding: 0 0.75rem; min-height: 2.75rem; display: inline-flex; align-items: center; }
+
+  /* The main action fills the width, where a thumb can reach all of it. */
+  form button[type='submit'], form .btn, .btn-row .btn { width: 100%; justify-content: center; min-height: 3rem; }
+
+  /* Labels in the drawings: sized in viewBox units, so they shrink with it. */
+  .bp .lab { font-size: 9.5px; }
+  .bp .num { font-size: 9px; }
+  .pipe-art .bp .lab { font-size: 6.5px; }
+
+  /* The wheel's phone drawing. See the note at the top of sky-wheel.js. */
+  .sw-rasi { display: none; }
+  .sw-rasi-glyph text { font-size: 32px; }
+  .sw-glyph { font-size: 34px; }
+  .sw-deg { display: none; }
+  .sw-r-big { font-size: 36px; }
+  .sw-r-mid { font-size: 21px; }
+  .sw-graha-tick { stroke-width: 1.6; }
+  .sw-leader { stroke-width: 1.1; }
+  .sw-graha.is-lit .sw-graha-tick, .sw-graha.is-lit .sw-leader { stroke-width: 1.6; }
+  .sw-chord { stroke-width: 1.4; }
+}
+@media (max-width: 22.5rem) { :root { --gutter: 1rem; } }

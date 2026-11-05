@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#FAF9F6">
+<meta name="theme-color" content="#FBF4E6">
 <title>Free Kundli · birth chart with nakshatra and dasha | shastra</title>
-<meta name="description" content="Generate a free janam kundli instantly. Sidereal positions computed with the Swiss Ephemeris, Lahiri ayanamsa, whole-sign houses. Lagna, all nine grahas, nakshatra and pada, navamsa, and your current vimshottari dasha. No signup, no wall.">
+<meta name="description" content="Get your free kundli in seconds: your rising sign, all nine planets, your birth star and the dasha you are in now, explained in plain words. No signup.">
 <link rel="canonical" href="https://adhokshajwategaonkar.github.io/shastra-site/kundli/">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="shastra">
-<meta property="og:title" content="Free Kundli · your real birth chart, computed">
-<meta property="og:description" content="Lagna, nine grahas, nakshatra and pada, navamsa and your current dasha. Swiss Ephemeris, Lahiri ayanamsa. Free, no signup.">
+<meta property="og:title" content="Free Kundli · your birth chart, explained">
+<meta property="og:description" content="Your rising sign, all nine planets, your birth star and your current dasha, in plain words. Free, no signup.">
 <meta property="og:url" content="https://adhokshajwategaonkar.github.io/shastra-site/kundli/">
 <meta property="og:image" content="https://adhokshajwategaonkar.github.io/shastra-site/assets/og-kundli.png">
 <meta property="og:image:width" content="1200">
@@ -24,7 +24,7 @@
 
 <link rel="preload" href="../assets/fonts/geistserif-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/switzer-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../assets/shastra.css?v=ceea2c4c">
+<link rel="stylesheet" href="../assets/shastra.css?v=35c042cc">
 
 <script type="application/ld+json">
 {
@@ -59,9 +59,9 @@
       "totalTime": "PT1M",
       "step": [
         { "@type": "HowToStep", "position": 1, "name": "Enter your date of birth", "text": "Enter the calendar date you were born, as day, month and year." },
-        { "@type": "HowToStep", "position": 2, "name": "Enter your time of birth", "text": "Enter the clock time from your birth certificate or hospital record. If you do not know it, tick the unknown box. The chart is then computed from sunrise and the sign positions remain accurate, while the lagna, houses and dasha dates become approximate." },
-        { "@type": "HowToStep", "position": 3, "name": "Enter your place of birth", "text": "Start typing the city or town. Latitude, longitude and the historical time zone are resolved automatically." },
-        { "@type": "HowToStep", "position": 4, "name": "Read the chart", "text": "The kundli is computed instantly: lagna, all nine grahas with sign, house, nakshatra and pada, the navamsa chart, and the vimshottari dasha period running now." }
+        { "@type": "HowToStep", "position": 2, "name": "Enter your time of birth", "text": "Enter the time from your birth certificate or hospital record. If you do not know it, tick the unknown box. We then use sunrise. Planet signs stay reliable, but your rising sign, houses and dasha dates become approximate." },
+        { "@type": "HowToStep", "position": 3, "name": "Enter your place of birth", "text": "Start typing your city or town and pick it from the list. We work out the location and time zone for you." },
+        { "@type": "HowToStep", "position": 4, "name": "Read the chart", "text": "Your kundli appears straight away: your rising sign, all nine planets, your birth star, and the dasha period you are in now, explained in plain words." }
       ]
     },
     {
@@ -70,37 +70,37 @@
         {
           "@type": "Question",
           "name": "What is a kundli?",
-          "acceptedAnswer": { "@type": "Answer", "text": "A kundli, also called a janam kundli or birth chart, is a diagram of where the planets stood in the sky at the moment and place you were born. In vedic astrology it records the twelve houses, the twelve zodiac signs, the nine grahas (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu and Ketu), and the nakshatra, one of 27 lunar mansions, occupied by each. It is computed arithmetically from astronomical data, so two correct kundlis for the same birth details will always be identical." }
+          "acceptedAnswer": { "@type": "Answer", "text": "A kundli, also called a janam kundli or birth chart, is a map of where the planets were at the moment and place you were born. It shows the twelve houses, the twelve zodiac signs, the nine planets (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu and Ketu) and the nakshatra, or birth star, of each. It is calculated from astronomical data, so two correct kundlis for the same birth details are always identical." }
         },
         {
           "@type": "Question",
           "name": "What is Lahiri ayanamsa?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Lahiri ayanamsa, also called Chitrapaksha ayanamsa, is the offset between the tropical zodiac (measured from the March equinox) and the sidereal zodiac (measured against the fixed stars) used in Indian vedic astrology. It is defined by placing the star Spica (Chitra) at exactly 180° of sidereal longitude. The offset is currently about 24°, and it grows by roughly 50.29 arcseconds a year because the Earth's axis precesses. It was adopted as the Indian national standard by the Calendar Reform Committee in 1955. This is why a vedic chart usually puts your Sun one sign earlier than a western horoscope does." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Lahiri, also called Chitrapaksha, is the standard Indian way of setting where the zodiac starts. Western astrology starts the zodiac from the March equinox. Indian astrology starts it from the fixed stars, with the star Spica at exactly 180°. The gap between the two is about 24° today and grows slowly each year. India adopted Lahiri as its national standard in 1955. This is why a vedic chart usually puts your Sun one sign earlier than a western horoscope does." }
         },
         {
           "@type": "Question",
           "name": "What if I do not know my exact birth time?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Tick the unknown-time box and the chart is computed from sunrise on your birth date. What stays reliable is everything that depends on the date rather than the clock: your Moon sign and nakshatra, and the sign of every planet except in rare boundary cases where the Moon changes sign that day. What becomes approximate is your lagna (ascendant), which moves through a full sign about every two hours, the house positions that follow from it, and the vimshottari dasha dates, which can shift by months. shastra says so on the chart rather than quietly defaulting to noon." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Tick the unknown-time box and we use sunrise on your birth date. Your Moon sign, birth star and the sign of every planet stay reliable, except in the rare case that the Moon changes sign that day. Your rising sign (lagna), your houses and your dasha dates become approximate. The rising sign changes about every two hours, and dasha dates can shift by months. shastra tells you this on the chart." }
         },
         {
           "@type": "Question",
           "name": "Why is my vedic Sun sign different from my western one?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Because the two systems measure from different starting points. Western astrology uses the tropical zodiac, anchored to the March equinox. Vedic astrology uses the sidereal zodiac, anchored to the fixed stars. The Earth's axis wobbles, so those two reference points have drifted about 24° apart over the last two millennia, a little under one full sign. That is why someone born in late March is Aries in a western horoscope and usually Pisces in a vedic one. Neither is a mistake; they answer to different definitions of where the zodiac begins." }
+          "acceptedAnswer": { "@type": "Answer", "text": "The two systems start the zodiac from different points. Western astrology uses the March equinox. Vedic astrology uses the fixed stars. The Earth's axis wobbles slowly, so these two points have drifted about 24° apart, a little under one full sign. So someone born in late March is Aries in a western horoscope and usually Pisces in a vedic one. Neither is wrong. They define the start of the zodiac differently." }
         },
         {
           "@type": "Question",
           "name": "What is a nakshatra?",
-          "acceptedAnswer": { "@type": "Answer", "text": "A nakshatra is one of 27 equal divisions of the zodiac, each 13°20' wide, sometimes called a lunar mansion. It is roughly the distance the Moon travels in a day. Each nakshatra is divided into four padas of 3°20' each, and each has a ruling planet that drives the vimshottari dasha system. In practice the nakshatra of your Moon is the single most used value in Indian astrology: it sets your dasha sequence, it is what kundli matching actually compares, and it is traditionally used to choose the first syllable of a child's name." }
+          "acceptedAnswer": { "@type": "Answer", "text": "A nakshatra, or birth star, is one of 27 equal parts of the zodiac. Each is about as wide as the distance the Moon travels in a day, and each is split into four quarters, called padas. Your Moon's nakshatra is the most used value in Indian astrology. It sets the order of your dashas, kundli matching compares it, and it traditionally gives the first syllable of a child's name." }
         },
         {
           "@type": "Question",
           "name": "What is vimshottari dasha?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Vimshottari dasha is the vedic timing system that divides life into planetary periods totalling 120 years. Each of the nine grahas rules a mahadasha of fixed length: Ketu 7 years, Venus 20, Sun 6, Moon 10, Mars 7, Rahu 18, Jupiter 16, Saturn 19, Mercury 17. The sequence you start on, plus how much of it was already elapsed at birth, is determined by the exact position of your Moon within its nakshatra. Each mahadasha subdivides into antardashas in the same proportion and the same order." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Vimshottari dasha divides life into periods ruled by the planets, adding up to 120 years. Each planet's main period, or mahadasha, has a fixed length: Ketu 7 years, Venus 20, Sun 6, Moon 10, Mars 7, Rahu 18, Jupiter 16, Saturn 19, Mercury 17. The exact position of your Moon at birth decides which period you start in and how much of it was already over. Each main period is split into shorter ones, called antardashas, in the same order." }
         },
         {
           "@type": "Question",
           "name": "Is this kundli free, and do I need an account?",
-          "acceptedAnswer": { "@type": "Answer", "text": "It is free and there is no account. The chart is computed and shown immediately, with no result held back behind a signup. Nothing you type here is stored unless you choose to create an account to save the chart." }
+          "acceptedAnswer": { "@type": "Answer", "text": "It is free and you don't need an account. You see your chart straight away. Nothing you type here is saved unless you create an account to keep the chart." }
         }
       ]
     }
@@ -115,12 +115,13 @@
 
 <header class="nav">
   <div class="wrap">
-    <a class="wordmark" href="../"><svg class="wordmark-mark" viewBox="0 0 64 64" aria-hidden="true" role="presentation"><g fill="none" stroke="currentColor" stroke-width="5"><rect x="9" y="9" width="46" height="46"/><path d="M9 39h46"/></g><circle cx="23.5" cy="39" r="7.5" fill="var(--mark)"/></svg><span class="wordmark-text">shastra</span></a>
+    <a class="wordmark" href="../"><svg class="wordmark-mark" viewBox="0 0 64 64" aria-hidden="true" role="presentation"><rect x="2" y="2" width="60" height="60" fill="currentColor"/><path fill="var(--mark)" d="M32 7L43 18L32 29L21 18Z"/><path fill="var(--paper)" d="M46 21L57 32L46 43L35 32Z"/><path fill="var(--paper)" d="M32 35L43 46L32 57L21 46Z"/><path fill="var(--paper)" d="M18 21L29 32L18 43L7 32Z"/></svg><span class="wordmark-text">shastra</span></a>
     <nav aria-label="primary">
       <a href="./">free kundli</a>
       <a href="../kundli-matching/" class="hide-sm">kundli matching</a>
       <a href="../sade-sati/" class="hide-sm">sade sati</a>
-      <a class="btn btn-primary" href="#tool" data-warm="cold">get your kundli</a>
+      <a class="btn btn-primary" href="#tool" data-warm="cold">get <span class="hide-xs">your </span>kundli</a>
+      <details class="nav-menu"><summary aria-label="menu"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18" fill="none" stroke="currentColor" stroke-width="1.75"/></svg></summary><div class="nav-menu-list"><a href="./">free kundli</a><a href="../kundli-matching/">kundli matching</a><a href="../sade-sati/">sade sati</a></div></details>
     </nav>
   </div>
 </header>
@@ -138,24 +139,24 @@
            still come away with a correct definition. -->
       <p class="lede" style="margin-top:1.5rem;max-width:46rem">
         <strong style="color:var(--ink)">a kundli is where the planets stood at the minute and place you were born.</strong>
-        this one is worked out from the same tables astronomers use.
+        we work it out using the same planet data astronomers use.
       </p>
-      <p class="label" style="margin:2.75rem 0 0">what a kundli actually tells you</p>
+      <p class="label" style="margin:2.75rem 0 0">what a kundli tells you</p>
       <div class="grid grid-3" style="margin-top:2.5rem">
         <div class="card">
-          <svg class="value-icon bp" viewBox="0 0 48 48" aria-hidden="true" role="presentation"><rect class="hxs" x="4" y="30" width="40" height="8"/><path class="ln dash" d="M10 30a14 14 0 0 1 28 0"/><path class="t2" d="M15 30a9 9 0 0 1 18 0Z"/><path class="mks" d="M24 30L33 21"/><circle class="mkd" cx="33" cy="21" r="1.6"/></svg>
+          <svg class="value-icon bp" viewBox="0 0 48 48" aria-hidden="true" role="presentation"><rect class="hxs" x="4" y="30" width="40" height="9"/><path class="ln dash" d="M4 30a20 20 0 0 1 40 0"/><path class="t2" d="M13 30a11 11 0 0 1 22 0Z"/><path class="mks" d="M24 30L36 18"/><circle class="mkd" cx="36" cy="18" r="1.8"/></svg>
           <h3 class="display">how you come across</h3>
-          <p class="small">the sign climbing over the horizon at your birth minute, called the lagna. it decides where everything else in the chart lands.</p>
+          <p class="small">this comes from your rising sign, or lagna: the sign on the horizon the minute you were born. it sets the layout of your whole chart.</p>
         </div>
         <div class="card">
-          <svg class="value-icon bp" viewBox="0 0 48 48" aria-hidden="true" role="presentation"><path class="hxs" d="M40 18L43 21V31L40 28Z"/><path class="hxs" d="M6 28H40L43 31H9Z"/><rect class="pl" x="6" y="18" width="34" height="10"/><rect class="mk" x="23" y="18" width="8.5" height="10"/><path class="ln" d="M14.5 18v10M23 18v10M31.5 18v10"/></svg>
-          <h3 class="display">what you were born under</h3>
-          <p class="small">your birth star, one of 27. the moon's sets the running order of every chapter of your life.</p>
+          <svg class="value-icon bp" viewBox="0 0 48 48" aria-hidden="true" role="presentation"><path class="hxs" d="M40 23L44 27V37L40 33Z"/><path class="hxs" d="M4 33H40L44 37H8Z"/><rect class="pl" x="4" y="23" width="36" height="10"/><rect class="mk" x="22" y="23" width="9" height="10"/><path class="ln" d="M13 23v10M22 23v10M31 23v10"/><path class="mks" d="M26.5 17V23"/><circle class="pl" cx="26.5" cy="12" r="5"/><circle class="mkd" cx="26.5" cy="12" r="1.8"/></svg>
+          <h3 class="display">your birth star</h3>
+          <p class="small">one of 27 stars, set by where the moon was when you were born. it decides the order of the periods in your life.</p>
         </div>
         <div class="card">
-          <svg class="value-icon bp" viewBox="0 0 48 48" aria-hidden="true" role="presentation"><rect class="hxs" x="5" y="38" width="38" height="3"/><rect class="t1" x="7" y="32" width="5" height="6"/><rect class="t1" x="14" y="28" width="5" height="10"/><rect class="t1" x="21" y="24" width="5" height="14"/><rect class="mk" x="28" y="20" width="5" height="18"/><rect class="t2" x="35" y="16" width="5" height="22"/></svg>
+          <svg class="value-icon bp" viewBox="0 0 48 48" aria-hidden="true" role="presentation"><rect class="hxs" x="4" y="39" width="40" height="4"/><rect class="t1" x="6.0" y="30" width="6" height="9"/><rect class="t1" x="13.5" y="24" width="6" height="15"/><rect class="t1" x="21.0" y="18" width="6" height="21"/><rect class="mk" x="28.5" y="12" width="6" height="27"/><rect class="t2" x="36.0" y="6" width="6" height="33"/></svg>
           <h3 class="display">what comes easily</h3>
-          <p class="small">how well each planet sits where it landed. it is what separates the parts of you that run on their own from the parts you build.</p>
+          <p class="small">each planet is stronger in some signs than others. that shows which things come naturally to you and which take effort.</p>
         </div>
       </div>
     </div>
@@ -179,7 +180,7 @@
 
           <label class="checkbox">
             <input type="checkbox" name="timeUnknown" id="timeUnknown">
-            <span>I don't know my birth time. compute from sunrise and tell me what that costs</span>
+            <span>I don't know my birth time. use sunrise, and tell me what changes</span>
           </label>
 
           <label class="field">
@@ -188,14 +189,13 @@
           </label>
 
           <div class="btn-row">
-            <button type="submit" class="btn btn-primary" id="go" data-warm="cold">compute my kundli</button>
+            <button type="submit" class="btn btn-primary" id="go" data-warm="cold">get my kundli</button>
             <span class="tiny" id="warmnote"></span>
           </div>
         </form>
 
         <p class="tiny" style="margin-top:1.25rem">
-          small town or village not in the list? type the nearest city. the difference over a few
-          kilometres is far below anything that changes a reading.
+          town or village not listed? type the nearest city. a few kilometres won't change your reading.
         </p>
       </div>
 
@@ -204,13 +204,13 @@
           <p class="label" style="margin-bottom:0.75rem">what you get, free</p>
           <ul class="ticks">
             <li>what each of the nine planets means for you, in plain english</li>
-            <li>what comes easily, what runs hot, what takes work</li>
+            <li>what comes easily, what's mixed and what takes work</li>
             <li>your rising sign, to the exact degree</li>
             <li>the chapter you are in now, and what it is good for</li>
-            <li>every number behind it, checkable against any ephemeris</li>
+            <li>all the numbers behind it, so you can check them</li>
           </ul>
           <p class="tiny" style="margin-top:1.25rem;margin-bottom:0">
-            no result is held back behind a signup. the account only saves it.
+            you don't need to sign up to see your result. an account only saves it.
           </p>
         </div>
       </div>
@@ -226,18 +226,15 @@
       <p class="small" id="precision" style="margin-top:1rem;max-width:var(--prose)"></p>
 
       <div id="verdict-block" hidden>
-        <p class="label" style="margin-top:2.75rem">the nine, sorted</p>
+        <p class="label" style="margin-top:2.75rem">your nine planets</p>
         <p class="small sect-how">
-          each line is one planet: what it governs, where it landed, and what
-          that does to you. the four groups run from the parts of you that
-          need no effort to the parts you have had to build.
+          each line is one planet and what it means for you. the groups show what comes easily and what takes work.
         </p>
         <div class="verdict" id="verdict"></div>
 
         <p class="label" style="margin-top:2.75rem">what to do with it</p>
         <p class="small sect-how">
-          five situations you will recognise, and what your chart says about
-          how you handle each one.
+          everyday situations, and what your chart suggests you do in each.
         </p>
         <div class="dodont" id="dodont"></div>
       </div>
@@ -254,7 +251,7 @@
         <div>
           <p class="chart-key">
             Su sun · Mo moon · Ma mars · Me mercury · Ju jupiter · Ve venus ·
-            Sa saturn · Ra rahu · Ke ketu · ASC the rising point.
+            Sa saturn · Ra rahu · Ke ketu · ASC your rising sign.
             the small numbers are the twelve houses.
           </p>
           <p class="label" style="margin-top:1.5rem">your chart in four lines</p>
@@ -272,10 +269,9 @@
            which made this page a readout off an instrument rather than
            something a person could use. -->
       <div id="reading" hidden>
-        <h3 class="display" style="margin-top:3.5rem">what this chart says</h3>
+        <h3 class="display" style="margin-top:3.5rem">your reading</h3>
         <p class="small" style="max-width:var(--prose)">
-          in order of weight: how you come across, then how you feel, then who
-          you are.
+          most important first: how you come across, how you feel, and who you are.
         </p>
         <div id="openers" class="grid" style="margin-top:1.75rem"></div>
 
@@ -283,10 +279,9 @@
         <div id="now-block" class="card" style="margin-top:0.75rem;border-left:2px solid var(--mark)"></div>
 
         <div id="tensions-block" hidden>
-          <p class="label" style="margin-top:3rem">where you disagree with yourself</p>
+          <p class="label" style="margin-top:3rem">where your chart pulls two ways</p>
           <p class="small" style="max-width:var(--prose);margin-top:0.5rem">
-            every real chart contradicts itself somewhere. these are the places
-            yours does.
+            every chart has a few of these. here are yours.
           </p>
           <div id="tensions" class="grid" style="margin-top:1.25rem"></div>
         </div>
@@ -311,8 +306,7 @@
 
       <h3 class="display" style="margin-top:3.5rem">the numbers behind it</h3>
       <p class="small" style="max-width:var(--prose)">
-        check them against any
-        ephemeris you like.
+        check them against any astronomy table.
       </p>
       <div class="scroller" style="margin-top:1.25rem">
         <table class="data" id="grahas">
@@ -327,7 +321,7 @@
         </table>
       </div>
 
-      <h3 class="display" style="margin-top:3.5rem">vimshottari dasha</h3>
+      <h3 class="display" style="margin-top:3.5rem">the periods of your life (vimshottari dasha)</h3>
       
       <div class="scroller" style="margin-top:1.25rem">
         <table class="data" id="dasha">
@@ -338,21 +332,18 @@
         </table>
       </div>
 
-      <h3 class="display" style="margin-top:3.5rem">panchanga on the day you were born</h3>
+      <h3 class="display" style="margin-top:3.5rem">the day you were born (panchanga)</h3>
       <div class="readout" id="panchanga" style="margin-top:1.25rem;max-width:32rem"></div>
 
       <!-- The one upgrade path. One, and it does not block anything above. -->
       <div class="card upsell" style="margin-top:3.5rem">
         <p class="label" style="margin-bottom:0.75rem">keep this</p>
-        <h3 class="display">save your kundli, get the reading that goes with it</h3>
+        <h3 class="display">save your kundli</h3>
         <p class="small" style="max-width:44rem">
-          the chart above is the arithmetic. the reading is what it means. create an account and
-          shastra keeps this chart, sends you a free daily reading over WhatsApp when you say good
-          morning, and can go deeper when you want it to: ₹99 for career, ₹149 for compatibility,
-          one-time, no subscription.
+          create an account and shastra keeps this chart. say good morning on WhatsApp and you get a free daily reading. longer reports cost ₹99 for career and ₹149 for compatibility, paid once. no subscription.
         </p>
         <div class="btn-row" style="margin-top:1.5rem">
-          <a class="btn btn-primary" href="../kundli-matching/" data-warm="cold">match it against someone</a>
+          <a class="btn btn-primary" href="../kundli-matching/" data-warm="cold">compare with someone</a>
         </div>
       </div>
     </div>
@@ -363,11 +354,10 @@
 
   <section class="section">
     <div class="wrap">
-      <p class="label">the settings this chart uses</p>
-      <h2 class="display" style="max-width:22ch">three choices that change the answer.</h2>
+      <p class="label">how we calculate</p>
+      <h2 class="display" style="max-width:22ch">the settings that change your result.</h2>
       <p class="lede" style="margin-top:1.5rem">
-        two kundli sites can disagree about your lagna and both be arithmetically correct, because
-        they made different choices here. shastra's choices are fixed and published:
+        two kundli sites can show different results and both be correct, because they use different settings. these are ours:
       </p>
       <div class="readout" style="margin-top:2rem;max-width:38rem">
         <div><span class="k">zodiac</span><span class="v">sidereal</span></div>
@@ -391,85 +381,42 @@
       <div class="faq">
         <details open>
           <summary>What is a kundli?</summary>
-          <div><p>A kundli, also called a janam kundli or birth chart, is a diagram of where the
-            planets stood in the sky at the moment and place you were born. In vedic astrology it
-            records the twelve houses, the twelve zodiac signs, the nine grahas (Sun, Moon, Mars,
-            Mercury, Jupiter, Venus, Saturn, Rahu and Ketu), and the nakshatra, one of 27 lunar mansions, occupied by each. It is computed arithmetically from astronomical data, so
-            two correct kundlis for the same birth details will always be identical.</p></div>
+          <div><p>A kundli, also called a janam kundli or birth chart, is a map of where the planets were at the moment and place you were born. It shows the twelve houses, the twelve zodiac signs, the nine planets (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu and Ketu) and the nakshatra, or birth star, of each. It is calculated from astronomical data, so two correct kundlis for the same birth details are always identical.</p></div>
         </details>
 
         <details>
           <summary>What is Lahiri ayanamsa?</summary>
-          <div><p>Lahiri ayanamsa, also called Chitrapaksha ayanamsa, is the offset between the
-            tropical zodiac (measured from the March equinox) and the sidereal zodiac (measured
-            against the fixed stars) used in Indian vedic astrology. It is defined by placing the
-            star Spica (Chitra) at exactly 180° of sidereal longitude. The offset is currently
-            about 24°, and it grows by roughly 50.29 arcseconds a year because the Earth's axis
-            precesses. It was adopted as the Indian national standard by the Calendar Reform
-            Committee in 1955.</p>
-            <p>This is why a vedic chart usually places your Sun one sign earlier than a western
-            horoscope does.</p></div>
+          <div><p>Lahiri, also called Chitrapaksha, is the standard Indian way of setting where the zodiac starts. Western astrology starts the zodiac from the March equinox. Indian astrology starts it from the fixed stars, with the star Spica at exactly 180°. The gap between the two is about 24° today and grows slowly each year. India adopted Lahiri as its national standard in 1955.</p><p>This is why a vedic chart usually puts your Sun one sign earlier than a western horoscope does.</p></div>
         </details>
 
         <details>
           <summary>What if I don't know my exact birth time?</summary>
-          <div><p>Tick the unknown-time box and the chart is computed from sunrise on your birth
-            date. What stays reliable is everything driven by the date rather than the clock: your
-            Moon sign and nakshatra, and the sign of every planet except in the rare case where the
-            Moon changes sign that day.</p>
-            <p>What becomes approximate is your lagna, which moves a full sign about every two
-            hours, the house positions that follow from it, and your vimshottari dasha dates, which
-            can shift by months. shastra prints that caveat on the chart rather than silently
-            defaulting to noon and presenting the result as exact.</p></div>
+          <div><p>Tick the unknown-time box and we use sunrise on your birth date. Your Moon sign, birth star and the sign of every planet stay reliable, except in the rare case that the Moon changes sign that day.</p><p>Your rising sign (lagna), your houses and your dasha dates become approximate. The rising sign changes about every two hours, and dasha dates can shift by months. shastra tells you this on the chart.</p></div>
         </details>
 
         <details>
           <summary>Why is my vedic sun sign different from my western one?</summary>
-          <div><p>Because the two systems measure from different starting points. Western astrology
-            uses the tropical zodiac, anchored to the March equinox. Vedic astrology uses the
-            sidereal zodiac, anchored to the fixed stars. The Earth's axis wobbles, so those two
-            reference points have drifted about 24° apart over roughly two millennia, a little under one full sign.</p>
-            <p>That is why someone born in late March is Aries in a western horoscope and usually
-            Pisces in a vedic one. Neither is a mistake. They answer to different definitions of
-            where the zodiac begins.</p></div>
+          <div><p>The two systems start the zodiac from different points. Western astrology uses the March equinox. Vedic astrology uses the fixed stars. The Earth's axis wobbles slowly, so these two points have drifted about 24° apart, a little under one full sign.</p><p>So someone born in late March is Aries in a western horoscope and usually Pisces in a vedic one. Neither is wrong. They define the start of the zodiac differently.</p></div>
         </details>
 
         <details>
           <summary>What is a nakshatra?</summary>
-          <div><p>A nakshatra is one of 27 equal divisions of the zodiac, each 13°20' wide, roughly the distance the Moon travels in a day, which is why they are called lunar
-            mansions. Each is divided into four padas of 3°20'.</p>
-            <p>Your Moon's nakshatra is the single most used value in Indian astrology: it sets your
-            vimshottari dasha sequence, it is what kundli matching actually compares, and it
-            traditionally supplies the first syllable of a child's name.</p></div>
+          <div><p>A nakshatra, or birth star, is one of 27 equal parts of the zodiac. Each is about as wide as the distance the Moon travels in a day, and each is split into four quarters, called padas.</p><p>Your Moon's nakshatra is the most used value in Indian astrology. It sets the order of your dashas, kundli matching compares it, and it traditionally gives the first syllable of a child's name.</p></div>
         </details>
 
         <details>
           <summary>What is vimshottari dasha?</summary>
-          <div><p>Vimshottari dasha divides life into planetary periods totalling 120 years. Each
-            graha rules a mahadasha of fixed length: Ketu 7 years, Venus 20, Sun 6, Moon 10, Mars 7,
-            Rahu 18, Jupiter 16, Saturn 19, Mercury 17.</p>
-            <p>Which one you start on, and how much of it had already elapsed when you were born, is
-            set by the exact position of your Moon inside its nakshatra. Each mahadasha then
-            subdivides into antardashas in the same proportions and the same order.</p></div>
+          <div><p>Vimshottari dasha divides life into periods ruled by the planets, adding up to 120 years. Each planet's main period, or mahadasha, has a fixed length: Ketu 7 years, Venus 20, Sun 6, Moon 10, Mars 7, Rahu 18, Jupiter 16, Saturn 19, Mercury 17.</p><p>The exact position of your Moon at birth decides which period you start in and how much of it was already over. Each main period is split into shorter ones, called antardashas, in the same order.</p></div>
         </details>
 
         <details>
           <summary>Is my birth data stored?</summary>
-          <div><p>Not by this page. The details you type are sent to shastra's chart engine, the
-            chart comes back, and nothing is written to a database unless you create an account to
-            save it. If you do create one, the birth details are used to compute your charts and for
-            nothing else. see the <a href="../privacy/">privacy policy</a>.</p></div>
+          <div><p>Not by this page. Your details go to shastra's chart engine, your chart comes back, and nothing is saved unless you create an account. If you do, your birth details are only used to work out your charts. See the <a href="../privacy/">privacy policy</a>.</p></div>
         </details>
 
         <details>
           <summary>How is this different from other free kundli sites?</summary>
-          <div><p>Mostly in what happens after the chart. The arithmetic is standard and should
-            agree with any other correct implementation using Lahiri ayanamsa and whole-sign houses
-            . if it doesn't, one of us has a bug and we would like to know.</p>
-            <p>The difference is that there is no result held behind a signup, no per-minute
-            consultation being sold on the next screen, and no remedy, gemstone or puja for sale
-            anywhere on this site. shastra makes money from two flat-price reports and nothing
-            else.</p></div>
+          <div><p>Mostly in what comes after the chart. The calculation is standard, so it should match any other correct site using Lahiri and whole-sign houses. If it doesn't, one of us has a bug and we'd like to know.</p><p>We don't hide results behind a signup, sell per-minute consultations, or sell remedies, gemstones or pujas. shastra makes money from two fixed-price reports and nothing else.</p></div>
         </details>
       </div>
     </div>
@@ -477,9 +424,9 @@
 
   <section class="section center">
     <div class="wrap">
-      <h2 class="display" style="max-width:18ch;margin-inline:auto">the chart is the easy half.</h2>
+      <h2 class="display" style="max-width:18ch;margin-inline:auto">get a reading every morning.</h2>
       <p class="lede" style="margin:1.5rem auto 0;text-align:center">
-        a free daily reading, computed against this chart, delivered when you say good morning.
+        say good morning on WhatsApp and get a free reading based on this chart.
       </p>
       <div class="btn-row" style="justify-content:center;margin-top:2rem">
         <a class="btn btn-primary" href="../" data-warm="cold">what shastra is</a>
@@ -493,8 +440,8 @@
   <div class="wrap">
     <div class="cols">
       <div>
-        <a class="wordmark" href="../"><svg class="wordmark-mark" viewBox="0 0 64 64" aria-hidden="true" role="presentation"><g fill="none" stroke="currentColor" stroke-width="5"><rect x="9" y="9" width="46" height="46"/><path d="M9 39h46"/></g><circle cx="23.5" cy="39" r="7.5" fill="var(--mark)"/></svg><span class="wordmark-text">shastra</span></a>
-        <p class="tiny" style="margin-top:0.75rem;max-width:24rem">the sky, computed. read plainly.<br>made in Bengaluru.</p>
+        <a class="wordmark" href="../"><svg class="wordmark-mark" viewBox="0 0 64 64" aria-hidden="true" role="presentation"><rect x="2" y="2" width="60" height="60" fill="currentColor"/><path fill="var(--mark)" d="M32 7L43 18L32 29L21 18Z"/><path fill="var(--paper)" d="M46 21L57 32L46 43L35 32Z"/><path fill="var(--paper)" d="M32 35L43 46L32 57L21 46Z"/><path fill="var(--paper)" d="M18 21L29 32L18 43L7 32Z"/></svg><span class="wordmark-text">shastra</span></a>
+        <p class="tiny" style="margin-top:0.75rem;max-width:24rem">free vedic astrology on WhatsApp.<br>made in Bengaluru.</p>
       </div>
       <div>
         <h4>free tools</h4>
@@ -566,9 +513,9 @@
   .upsell { border-left: 2px solid var(--mark); }
 </style>
 
-<script src="../assets/shastra.js?v=6ec5d4f0" defer></script>
+<script src="../assets/shastra.js?v=26303106" defer></script>
 <script src="../assets/datefield.js?v=84e8ba01" defer></script>
-<script src="../assets/kundli-chart.js?v=3bb41d20" defer></script>
+<script src="../assets/kundli-chart.js?v=b123f808" defer></script>
 <script defer>
 window.addEventListener('load', function () {
   var S = window.shastra;
@@ -589,7 +536,7 @@ window.addEventListener('load', function () {
 
   // Tell the truth about a sleeping free instance instead of showing nothing.
   var warnTimer = setTimeout(function () {
-    if (S.warm === 'warming') warmnote.textContent = 'waking the engine up. the first request of the hour is slow.';
+    if (S.warm === 'warming') warmnote.textContent = 'starting up. this can take up to a minute.';
   }, 2500);
   var poll = setInterval(function () {
     if (S.warm === 'warm') { clearInterval(poll); clearTimeout(warnTimer); warmnote.textContent = ''; }
@@ -782,7 +729,7 @@ window.addEventListener('load', function () {
     if (interp.tensions.length) {
       document.getElementById('tensions').innerHTML = interp.tensions.map(function (x) {
         return '<div class="card">' +
-          '<h4 class="display" style="margin:0 0 0.7rem;font-size:1.0625rem">' +
+          '<h4 class="display-sm" style="margin:0 0 0.7rem">' +
             esc(x.title) + '</h4>' +
           '<p class="small" style="color:var(--muted);margin:0">' + esc(x.text) + '</p></div>';
       }).join('');
@@ -934,10 +881,10 @@ window.addEventListener('load', function () {
     } catch (ex) {
       return S.fail(err, 'check the birth details and try again.');
     }
-    if (!payload.date) return S.fail(err, 'a date of birth is needed. it is the one field with no substitute.');
-    if (!payload.place && !payload.lat) return S.fail(err, 'a place of birth is needed. type a city and pick from the list.');
+    if (!payload.date) return S.fail(err, 'please enter your date of birth.');
+    if (!payload.place && !payload.lat) return S.fail(err, 'please enter your place of birth. type a city and pick from the list.');
     if (payload.timeKnown === false && !unknown.checked) {
-      return S.fail(err, 'add a birth time, or tick the box to compute from sunrise.');
+      return S.fail(err, 'add a birth time, or tick the box if you don\u2019t know it.');
     }
 
     S.busy(go, true);
