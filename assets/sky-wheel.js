@@ -513,22 +513,30 @@
 
   /** Attach the delegated listeners once. `get()` returns the live `set`. */
   function bind(svg, get) {
+    // A real pick clicks (sound.js); the demo calls set() directly, so it is
+    // silent. Only a CHANGE of planet sounds, so resting on one is quiet.
+    var picked = null;
+    function pick(key) {
+      if (key && key !== picked && window.shastraSound) window.shastraSound.sfx.tick(1.1);
+      picked = key;
+    }
     ['mouseover', 'focusin'].forEach(function (ev) {
       svg.addEventListener(ev, function (e) {
         var g = e.target.closest ? e.target.closest('.sw-graha') : null;
-        if (g) get()(g.dataset.graha);
+        if (g) { pick(g.dataset.graha); get()(g.dataset.graha); }
       });
     });
     ['mouseout', 'focusout'].forEach(function (ev) {
       svg.addEventListener(ev, function (e) {
         var to = e.relatedTarget;
-        if (!to || !to.closest || !to.closest('.sw-graha')) get()(null);
+        if (!to || !to.closest || !to.closest('.sw-graha')) { picked = null; get()(null); }
       });
     });
     // A phone has no hover, so a tap selects and a tap anywhere else lets go.
     document.addEventListener('click', function (e) {
       var g = e.target.closest ? e.target.closest('.sw-graha') : null;
-      get()(g && svg.contains(g) ? g.dataset.graha : null);
+      var key = g && svg.contains(g) ? g.dataset.graha : null;
+      pick(key); get()(key);
     });
   }
 

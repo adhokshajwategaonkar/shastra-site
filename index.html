@@ -24,7 +24,7 @@
 
 <link rel="preload" href="assets/fonts/geistserif-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/switzer-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/shastra.css?v=35c042cc">
+<link rel="stylesheet" href="assets/shastra.css?v=7fc7156a">
 
 <script type="application/ld+json">
 {
@@ -231,6 +231,29 @@
         <span class="gate-mark" aria-hidden="true"></span>
         <span>the AI that writes your reading never sees your birth date, birth place or phone number. it only gets the finished chart. our tests fail if that ever changes.</span>
       </p>
+    </div>
+  </section>
+
+  <!-- ── the sky dial ─────────────────────────────────────────────────────
+       The hero shows the sky now; this lets a visitor move it. Positions are
+       worked out in the browser (sky-dial.js), so the copy says they are
+       approximate and points back to the server's numbers. -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="label reveal">the sky, day by day</p>
+          <h2 class="display reveal" style="max-width:16ch">drag the moon to any day.</h2>
+          <p class="lede reveal" style="margin-top:1.5rem">
+            the moon moves faster than anything else in the sky. it changes sign every two or three days, and nakshatra, the star it sits in, about once a day. tithi is the lunar day, counted from the gap between the sun and the moon.
+          </p>
+          <p class="small reveal" id="dial-hint" aria-live="polite" style="margin-top:1.25rem">press the band of signs and drag left or right. the moon follows, and the date moves with it.</p>
+          <p class="tiny reveal" style="margin-top:1rem">these positions are approximate and worked out in your browser, so near the edge of a sign or a star they can be slightly off. the wheel above and every kundli on this site use Swiss Ephemeris on our server.</p>
+        </div>
+        <div class="reveal">
+          <div class="sd" id="dial"></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -677,9 +700,11 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-<script src="assets/shastra.js?v=26303106" defer></script>
-<script src="assets/sky-snapshot.js?v=3bb840ef" defer></script>
-<script src="assets/sky-wheel.js?v=58fa75b6" defer></script>
+<script src="assets/sound.js?v=b5f28fae" defer></script>
+<script src="assets/shastra.js?v=eef72da5" defer></script>
+<script src="assets/sky-snapshot.js?v=85bebfdd" defer></script>
+<script src="assets/sky-wheel.js?v=a58cb697" defer></script>
+<script src="assets/sky-dial.js?v=c1f8e7f8" defer></script>
 <script src="assets/motion.js?v=9397acd9" defer></script>
 <script defer>
   // The CTA tells the truth about a sleeping free-tier instance instead of

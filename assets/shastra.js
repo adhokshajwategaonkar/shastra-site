@@ -243,6 +243,7 @@
   S.fail = function (el, message) {
     el.textContent = message;
     el.hidden = false;
+    if (window.shastraSound) window.shastraSound.sfx.err();
   };
 
   S.clearFail = function (el) { el.textContent = ''; el.hidden = true; };

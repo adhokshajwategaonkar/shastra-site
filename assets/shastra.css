@@ -976,6 +976,107 @@ html.js .sky-wheel:not(.sw-gsap) .sw-readout { animation: sw-in var(--base) line
   html.js .sky-wheel * { animation: none !important; }
 }
 
+/* ── the sky dial (sky-dial.js) ─────────────────────────────────────────────
+   A strip of the twelve signs, the Sun and Moon on it, four readings above.
+   Its numbers are worked out in the browser and the copy beside it says so.
+   It is the one thing on the page you can hold, so the band is the same ink
+   band as the wheel's: a solid plate, no gradient, no shadow, square. The
+   held state is a black rule, because a selection is black (see --select). */
+.sd { display: grid; gap: 1.25rem; border: 1px solid var(--rule-firm); padding: clamp(1rem, 2.6vw, 1.75rem); background: var(--paper); }
+.sd-read { display: grid; }
+.sd-row {
+  display: grid; grid-template-columns: 6.5rem 1fr auto; align-items: baseline; gap: 0.75rem;
+  padding: 0.6rem 0; border-bottom: 1px solid var(--rule);
+}
+.sd-row:last-child { border-bottom: 0; }
+.sd-row .k {
+  font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink-faint); display: flex; align-items: center; gap: 0.5rem;
+}
+.sd-row .v {
+  position: relative; height: 1.25em; overflow: hidden;
+  font-family: var(--display); font-size: clamp(1.25rem, 2.2vw, 1.625rem); line-height: 1.2;
+  letter-spacing: -0.012em; color: var(--ink);
+}
+.sd-row .v span { position: absolute; left: 0; top: 0; white-space: nowrap; transition: transform var(--base) var(--spring), opacity var(--base) linear; }
+.sd-row .v span.in  { transform: translateY(70%);  opacity: 0; }
+.sd-row .v span.out { transform: translateY(-70%); opacity: 0; }
+.sd-row .d {
+  font-family: var(--mono); font-size: 0.8125rem; font-variant-numeric: tabular-nums;
+  color: var(--mark); display: flex; align-items: center; gap: 0.45rem; white-space: nowrap;
+}
+.sd-row .d svg { color: var(--ink); display: inline-block; }
+.sd-key-mk { display: inline-block; width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--ink); }
+.sd-key-mk.moon { background: var(--ink); }
+
+.sd-band {
+  position: relative; height: 4.25rem; background: var(--ink);
+  cursor: grab; touch-action: pan-y; overflow: hidden; user-select: none; -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent; outline: 2px solid transparent; outline-offset: 3px;
+}
+.sd-band:focus { outline-color: transparent; }
+.sd-band:focus-visible, .sd-band.held { outline-color: var(--select); }
+.sd-band.held { cursor: grabbing; }
+.sd-signs {
+  position: absolute; inset: 0 0 auto; display: grid; grid-template-columns: repeat(12, 1fr);
+  padding-top: 0.55rem; font-family: var(--mono); font-weight: 500; font-size: 0.625rem;
+  color: var(--paper); text-transform: lowercase;
+}
+.sd-signs span {
+  display: flex; align-items: center; gap: 0.2rem; height: 0.9rem; padding-left: 0.3rem;
+  border-left: 1px solid rgba(251, 244, 230, 0.25); white-space: nowrap; overflow: hidden;
+  opacity: 0.6; transition: opacity var(--base) linear;
+}
+.sd-signs span:first-child { border-left: 0; }
+.sd-signs em { font-style: normal; font-size: 0.8125rem; }
+/* Twelve names do not fit in a 400px band. The glyphs carry it, and the two
+   lit signs swap their glyph for the name, which the rows above also print. */
+.sd-signs span b { display: none; }
+.sd-signs span.on { opacity: 1; }
+.sd-signs span.on b { display: inline; }
+.sd-signs span.on em { display: none; }
+/* 27 nakshatra ticks and 108 pada ticks along the bottom edge. Repeating
+   linear backgrounds draw hard-edged rules, not a gradient: no colour blends. */
+.sd-ticks {
+  position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(90deg, rgba(251, 244, 230, 0.45) 0 1px, transparent 1px calc(100% / 27)) 0 100% / 100% 9px no-repeat,
+    repeating-linear-gradient(90deg, rgba(251, 244, 230, 0.2) 0 1px, transparent 1px calc(100% / 108)) 0 100% / 100% 5px no-repeat;
+}
+.sd-mk { position: absolute; top: 0; bottom: 0; width: 0; left: 0; transition: left var(--slow) var(--spring); pointer-events: none; color: var(--paper); }
+.sd-mk::before { content: ''; position: absolute; left: -0.5px; top: 2.85rem; bottom: 0; width: 1px; background: currentColor; }
+.sd-mk::after {
+  content: ''; position: absolute; left: -7px; top: 2rem; width: 14px; height: 14px; border-radius: 50%;
+  border: 1.5px solid currentColor; background: var(--ink); box-sizing: border-box;
+  transition: transform var(--base) var(--spring);
+}
+.sd-mk.moon::after { background: currentColor; }
+.sd-band.held .sd-mk.moon::after { transform: scale(1.35); }
+.sd-mk.hit::after { animation: sd-hit 0.5s var(--spring); }
+@keyframes sd-hit { 40% { transform: scale(1.5); } }
+.sd-band.drag .sd-mk { transition: none; }
+
+.sd-ctl { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0.75rem; }
+.sd-step {
+  min-height: 44px; padding: 0 1rem; border: 1px solid var(--rule-firm); border-radius: 0;
+  background: transparent; color: var(--ink); cursor: pointer; white-space: nowrap;
+  font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase;
+}
+.sd-step:hover, .sd-step:focus-visible { background: var(--paper-sunk); }
+.sd-date {
+  min-height: 44px; background: none; border: 0; border-radius: 0; cursor: pointer; text-align: center;
+  font-family: var(--mono); font-size: 0.75rem; line-height: 1.45; color: var(--ink-faint);
+}
+.sd-date b { display: block; font-weight: 500; color: var(--ink); }
+.sd-date:hover, .sd-date:focus-visible { background: var(--paper-sunk); }
+.sd.is-now .sd-date { cursor: default; }
+.sd.is-now .sd-date:hover { background: none; }
+
+@media (max-width: 34rem) {
+  .sd-row { grid-template-columns: 5.25rem 1fr auto; gap: 0.5rem; }
+  .sd-step { padding: 0 0.6rem; }
+}
+
 
 
 /* GSAP owns opacity on .reveal once it has loaded, so the CSS fallback has to
@@ -1459,6 +1560,29 @@ a, button, summary, label, input, .sw-graha { touch-action: manipulation; }
 }
 .nav nav .nav-menu-list a + a { border-top: 1px solid var(--rule); }
 @media (max-width: 46rem) { .nav-menu { display: block; } }
+
+/* The sound switch (sound.js injects it, so it exists only where sound can).
+   A speaker in ink; the waves give way to a cross when it is off. 44px for a
+   thumb, and no border: it is a control, not a call to action. */
+.snd {
+  width: 2.75rem; height: 2.75rem; display: inline-flex; align-items: center; justify-content: center;
+  margin: 0 -0.6rem; padding: 0; border: 0; border-radius: 0; background: none; color: var(--ink-faint);
+  cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
+.snd:hover, .snd:focus-visible { color: var(--ink); }
+.snd .snd-x { display: none; }
+.snd[aria-pressed="false"] .snd-w { display: none; }
+.snd[aria-pressed="false"] .snd-x { display: inline; }
+/* On a phone the header copy goes and the menu carries a labelled row. */
+.snd-row { display: none; }
+@media (max-width: 46rem) {
+  .nav nav > .snd { display: none; }
+  .nav-menu-list .snd-row {
+    display: flex; gap: 0.6rem; justify-content: flex-start; width: 100%; height: auto; min-height: 3rem;
+    margin: 0; padding: 0 1rem; border-top: 1px solid var(--rule); color: var(--ink);
+    font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+  }
+}
 
 .checkbox { min-height: 2.75rem; align-items: center; }
 .checkbox input { margin-top: 0; width: 1.25rem; height: 1.25rem; }
